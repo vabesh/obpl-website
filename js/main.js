@@ -121,7 +121,7 @@
       'Dr. M. Krishnaswamy is Chief Systems Engineer and the architect of the OB1 lunar lander, holding the systems-engineering design authority the India centre is built around.',
       'With more than 40 years at ISRO, he served as Programme Director for Chandrayaan-1 and the Cartosat series, led the TES high-resolution imaging programme, guided IMS-1 and directed the NIUSAT nanosatellite mission.',
       'His honours include the IAA Laurel and ISRO\'s award for Overall Outstanding Contribution to Space.'] },
-    sashi: { img: null, name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
+    sashi: { img: 'assets/team-sashi.jpg', name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
       'R. Sashi Sekhar heads propulsion at Orbit Beyond Private Limited, responsible for the OB1 lander\'s descent and attitude-control propulsion from design through hot-fire qualification.',
       'He brings ISRO propulsion heritage to the programme.'] },
     kesava: { img: null, name: 'Dr. V. Kesava Raju', role: 'Head, GNC · Mars Orbiter Mission Director', tag: 'GNC', bio: [

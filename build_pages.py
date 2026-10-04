@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "15"
+VER = "16"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -162,7 +162,7 @@ def numbers():
 def team_grid():
     ppl = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director","Leadership"),
            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect","Systems"),
-           ("sashi",None,"RS","R. Sashi Sekhar","Head, Propulsion","Propulsion"),
+           ("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion","Propulsion"),
            ("kesava",None,"KR","Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director","GNC"),
            ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power","Power"),
            ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications","Communications"),
