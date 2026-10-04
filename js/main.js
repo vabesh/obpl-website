@@ -127,7 +127,7 @@
     kesava: { img: null, name: 'Dr. V. Kesava Raju', role: 'Head, GNC · Mars Orbiter Mission Director', tag: 'GNC', bio: [
       'Dr. V. Kesava Raju heads guidance, navigation and control, the subsystem that takes OB1 from lunar orbit to a precision touchdown.',
       'At ISRO he served as Mission Director of the Mars Orbiter Mission, India\'s first interplanetary spacecraft.'] },
-    venugopalan: { img: null, name: 'Dr. Venugopalan Srinivasan', role: 'Head, Electrical Power', tag: 'Power', bio: [
+    venugopalan: { img: 'assets/team-venugopalan.jpg', name: 'Dr. Venugopalan Srinivasan', role: 'Head, Electrical Power', tag: 'Power', bio: [
       'Dr. Venugopalan Srinivasan heads electrical power, spanning the lander and orbiter power systems and the VSAT vertical solar array with its RHU and battery night-survival chain.',
       'He brings ISRO spacecraft power-system heritage to the programme.'] },
     sambasiva: { img: 'assets/team-sambasiva.jpg', name: 'Dr. Sambasiva Rao Venigalla', role: 'Head, Communications', tag: 'Communications', bio: [

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "14"
+VER = "15"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -164,7 +164,7 @@ def team_grid():
            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect","Systems"),
            ("sashi",None,"RS","R. Sashi Sekhar","Head, Propulsion","Propulsion"),
            ("kesava",None,"KR","Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director","GNC"),
-           ("venugopalan",None,"VS","Dr. Venugopalan Srinivasan","Head, Electrical Power","Power"),
+           ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power","Power"),
            ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications","Communications"),
            ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival","Thermal"),
            ("rk",None,"RK","Dr. R.K. Srinivasan","Head, Structures · Chandrayaan-2/3 landing legs","Structures")]
