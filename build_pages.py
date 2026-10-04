@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "31"
+VER = "32"
 OUT = os.path.dirname(os.path.abspath(__file__))
-SITE = "https://orbitbeyond.in"
+SITE = "https://obpl.space"
 
 NAV = """
 <div id="loader" class="loader"><div class="loader-in">
