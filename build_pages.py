@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "35"
+VER = "36"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -18,7 +18,7 @@ NAV = """
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="programmes.html">Programmes</a></li>
+    <li><a href="programmes.html">Capabilities</a></li>
     <li><a href="team.html">People</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -28,7 +28,7 @@ NAV = """
   </div>
 </div></header>
 <nav class="mnav" aria-label="Mobile">
-  <a href="index.html">Home</a><a href="about.html">About</a><a href="programmes.html">Programmes</a><a href="team.html">People</a><a href="contact.html">Contact</a>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="programmes.html">Capabilities</a><a href="team.html">People</a><a href="contact.html">Contact</a>
   <div class="mnav-foot">DPIIT Recognised Startup · DIPP285038</div>
 </nav>
 """
@@ -42,7 +42,7 @@ FOOTER = """
       <p>Orbit Beyond Private Limited designs, integrates and manufactures landers, orbiters and mobility systems for missions worldwide.</p>
     </div>
     <div><h4>Explore</h4><ul>
-      <li><a href="about.html">About</a></li><li><a href="programmes.html">Programmes</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li><li><a href="programmes.html">Capabilities</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
     </ul></div>
     <div><h4>Offices</h4><ul>
       <li><a href="contact.html">World Trade Center, Brigade Gateway, Bengaluru 560055</a></li>
@@ -106,7 +106,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
-def cta(h, p, a1="Partner with us", h1="contact.html", a2="Explore the programmes", h2="programmes.html"):
+def cta(h, p, a1="Partner with us", h1="contact.html", a2="Explore our capabilities", h2="programmes.html"):
     second = f'<a href="{h2}" class="btn btn-ghost">{a2}</a>' if a2 else ""
     return f"""
 <section class="section"><div class="wrap"><div class="cta rv">
@@ -171,7 +171,8 @@ ADVISORS = [("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Head of 
             ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power"),
             ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications"),
             ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival"),
-            ("rk",None,"RK","Dr. R.K. Srinivasan","Head of Structures")]
+            ("rk",None,"RK","Dr. R.K. Srinivasan","Head of Structures"),
+            ("monica","assets/team-monica.jpg",None,"Monica Dey","HR & Operations Manager")]
 
 def team_cards(ppl, tag):
     cards = ""
@@ -210,7 +211,7 @@ def surface_section():
       <div class="tag">Orbit to Outpost</div>
       <h1>Designed in India. <span class="grad">Built for the Moon.</span></h1>
       <p>Lunar infrastructure engineering, built in India: power, night survival, mobility, Helium-3 extraction, landers and orbiters, and AI compute. Scroll to fly across the lunar south pole and meet each system.</p>
-      <div class="acts"><a href="programmes.html" class="btn btn-ghost">The programmes</a><a href="contact.html" class="btn">Partner with us {ARROW}</a></div>
+      <div class="acts"><a href="programmes.html" class="btn btn-ghost">Our capabilities</a><a href="contact.html" class="btn">Partner with us {ARROW}</a></div>
     </div><div class="cue">Scroll to descend<i></i></div></div>
     <div class="s-caption" id="stationCaption"></div>
     <div class="s-rail">{dots}</div>
@@ -221,7 +222,7 @@ def surface_section():
 <aside class="spanel" id="stationPanel" aria-label="Station details">
   <button class="sp-x" onclick="closeStation()" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <img class="sp-img" src="" alt="" />
-  <div class="sp-body"><div class="sp-k"></div><h3 class="sp-t"></h3><p class="sp-b"></p><table><tbody class="sp-specs"></tbody></table><div class="sp-note">Draft specification · figures to be confirmed by Orbit Beyond engineering</div><a class="btn sp-link" href="programmes.html">Programme details {ARROW}</a></div>
+  <div class="sp-body"><div class="sp-k"></div><h3 class="sp-t"></h3><p class="sp-b"></p><table><tbody class="sp-specs"></tbody></table><div class="sp-note">Draft specification · figures to be confirmed by Orbit Beyond engineering</div><a class="btn sp-link" href="programmes.html">Capability details {ARROW}</a></div>
 </aside>"""
 
 index_body = f"""
@@ -315,9 +316,9 @@ def wp_section(n, title, img, lead, bullets, meta, flip=False):
 
 programmes_body = f"""
 <section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
-  <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Programmes</span></div>
-  <div class="eyebrow">Programmes</div>
-  <h1>From orbit to outpost: <span class="grad">the systems we build.</span></h1>
+  <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Capabilities</span></div>
+  <div class="eyebrow">What we build in India</div>
+  <h1>Power, mobility, resources, <span class="grad">landers and orbiters.</span></h1>
   <p class="lede">The integrated lunar infrastructure stack Orbit Beyond engineers in India.</p>
 </div></section>
 <section class="section" id="stack" style="padding-top:1rem"><div class="wrap">
@@ -383,6 +384,6 @@ contact_body = f"""
 
 shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
 shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure: landers, orbiters and mobility systems.", about_body)
-shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
+shell("programmes.html","Capabilities · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
 shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: the founding members and team heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
 shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: engineering office at World Trade Center, Bengaluru, and registered office in Bhubaneswar.", contact_body)

@@ -148,6 +148,8 @@
     alok: { img: null, name: 'Dr. Alok Srivastava', role: 'Head, Thermal · lunar-night survival', tag: 'Thermal', bio: [
       'Dr. Alok Srivastava heads thermal engineering, including the lunar-night survival design that keeps landers and surface assets alive through fourteen days of darkness below minus 170 °C.',
       'He brings ISRO spacecraft thermal heritage to the programme.'] },
+    monica: { img: 'assets/team-monica.jpg', name: 'Monica Dey', role: 'HR & Operations Manager', tag: 'Team member', bio: [
+      'Monica Dey is HR & Operations Manager at Orbit Beyond Private Limited, responsible for people operations, recruitment and the day-to-day running of the company.'] },
     rk: { img: null, name: 'Dr. R.K. Srinivasan', role: 'Head of Structures', tag: 'Structures', bio: [
       'Dr. R.K. Srinivasan heads structures, including the OB1 landing legs, shock attenuation and crushable energy absorbers.',
       'At ISRO he worked on the landing legs of Chandrayaan-2 and Chandrayaan-3.'] }
