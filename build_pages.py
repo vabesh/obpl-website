@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "17"
+VER = "19"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -19,7 +19,6 @@ NAV = """
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="programmes.html">Programmes</a></li>
-    <li><a href="odisha.html">Odisha Centre</a></li>
     <li><a href="team.html">People</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -29,7 +28,7 @@ NAV = """
   </div>
 </div></header>
 <nav class="mnav" aria-label="Mobile">
-  <a href="index.html">Home</a><a href="about.html">About</a><a href="programmes.html">Programmes</a><a href="odisha.html">Odisha Centre</a><a href="team.html">People</a><a href="contact.html">Contact</a>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="programmes.html">Programmes</a><a href="team.html">People</a><a href="contact.html">Contact</a>
   <div class="mnav-foot">DPIIT Recognised Startup · DIPP285038</div>
 </nav>
 """
@@ -43,15 +42,15 @@ FOOTER = """
       <p>Orbit Beyond Private Limited designs, integrates and manufactures lunar landers, rovers, satellites and lunar AI compute payloads from India, for missions worldwide.</p>
     </div>
     <div><h4>Explore</h4><ul>
-      <li><a href="about.html">About the company</a></li><li><a href="programmes.html">Five work packages</a></li><li><a href="odisha.html">Odisha centre</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About the company</a></li><li><a href="programmes.html">Programmes</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
     </ul></div>
     <div><h4>Offices</h4><ul>
       <li><a href="contact.html">World Trade Center, Brigade Gateway, Bengaluru 560055</a></li>
-      <li><a href="contact.html">Regd. office: MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</a></li><li><a href="odisha.html">Global Space Systems Centre (proposed), Bhubaneswar</a></li>
+      <li><a href="contact.html">Regd. office: MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</a></li>
       <li><a href="mailto:info@orbitbeyond.com">info@orbitbeyond.com</a></li>
     </ul></div>
     <div><h4>Recognition</h4><ul>
-      <li><a href="about.html#recognition">DPIIT Recognised Startup</a></li><li><a href="about.html#recognition">Certificate DIPP285038</a></li><li><a href="about.html#recognition">Aerospace &amp; Defence · Space Technology</a></li><li><a href="https://orbitbeyond.com" rel="noopener" target="_blank">US group: orbitbeyond.com</a></li>
+      <li><a href="about.html#recognition">DPIIT Recognised Startup</a></li><li><a href="about.html#recognition">Certificate DIPP285038</a></li><li><a href="about.html#recognition">Aerospace &amp; Defence · Space Technology</a></li><li><span>Customer: Orbit Beyond, Inc. (USA)</span></li>
     </ul></div>
   </div>
   <div class="footer-bot">
@@ -87,7 +86,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Michroma&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css?v=VER" /><link rel="stylesheet" href="css/surface.css?v=VER" />
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"Orbit Beyond Private Limited","alternateName":"ORBITBeyond India","url":"{SITE}/","foundingDate":"2022-12-27","address":{{"@type":"PostalAddress","streetAddress":"World Trade Center, Brigade Gateway, 26/1 Dr. Rajkumar Road, Malleswaram West","addressLocality":"Bengaluru","postalCode":"560055","addressCountry":"IN"}},"parentOrganization":{{"@type":"Organization","name":"ORBITBeyond Inc.","url":"https://orbitbeyond.com/"}},"description":"{desc}"}}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"Orbit Beyond Private Limited","alternateName":"ORBITBeyond India","url":"{SITE}/","foundingDate":"2022-12-27","address":{{"@type":"PostalAddress","streetAddress":"World Trade Center, Brigade Gateway, 26/1 Dr. Rajkumar Road, Malleswaram West","addressLocality":"Bengaluru","postalCode":"560055","addressCountry":"IN"}},"description":"{desc}"}}</script>
 {extra_head}
 </head>
 <body>
@@ -107,11 +106,12 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
 def cta(h, p, a1="Partner with us", h1="contact.html", a2="Explore the programmes", h2="programmes.html"):
+    second = f'<a href="{h2}" class="btn btn-ghost">{a2}</a>' if a2 else ""
     return f"""
 <section class="section"><div class="wrap"><div class="cta rv">
   <div class="orb"></div><div class="chakra" style="color:var(--marigold)" data-chakra="24" data-stroke=".6"></div>
   <h2>{h}</h2><p>{p}</p>
-  <div class="acts"><a href="{h1}" class="btn">{a1} {ARROW}</a><a href="{h2}" class="btn btn-ghost">{a2}</a></div>
+  <div class="acts"><a href="{h1}" class="btn">{a1} {ARROW}</a>{second}</div>
 </div></div></section>"""
 
 ICONS = {
@@ -199,12 +199,12 @@ def surface_section():
     <div class="s-hero" id="surfaceHero"><div class="s-hero-in">
       <div class="tag">Orbit to Outpost</div>
       <h1>Designed in India. <span class="grad">Built for the Moon.</span></h1>
-      <p>Lunar infrastructure engineering, built in Bhubaneswar: power, night survival, mobility, Helium-3 extraction, landers and orbiters, and AI compute. Scroll to fly across the surface and meet each system.</p>
+      <p>Lunar infrastructure engineering, built in India: power, night survival, mobility, Helium-3 extraction, landers and orbiters, and AI compute. Scroll to fly across the surface and meet each system.</p>
       <div class="acts"><a href="programmes.html" class="btn btn-ghost">The programmes</a><a href="contact.html" class="btn">Partner with us {ARROW}</a></div>
     </div><div class="cue">Scroll to descend<i></i></div></div>
     <div class="s-caption" id="stationCaption"></div>
     <div class="s-rail">{dots}</div>
-    <div class="s-end" id="surfaceEnd"><div><div class="eyebrow" style="justify-content:center">Leaving the surface</div><h2>Seven systems. One outpost. <span class="grad">Built in India.</span></h2><p>Now the people, the places and the services that make it real.</p><div class="cue">Keep scrolling</div></div></div>
+    <div class="s-end" id="surfaceEnd"><div><div class="eyebrow" style="justify-content:center">Leaving the surface</div><h2>Seven systems. One outpost. <span class="grad">Built in India.</span></h2><p>Now the people and the services that make it real.</p><div class="cue">Keep scrolling</div></div></div>
   </div>
 </section>
 <div class="spanel-scrim" onclick="closeStation()"></div>
@@ -223,38 +223,28 @@ index_body = f"""
   {team_grid()}
 </div></section>
 
-<section class="section" id="offices" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">02 · Office locations</div><h2>Bengaluru today. <span class="grad">Bhubaneswar next.</span></h2></div>
-    <p class="lede">An engineering office in the World Trade Center and a 20-acre Global Space Systems Centre proposed for Odisha.</p></div>
-  <div class="offices">
-    <div class="fac glass tilt rv"><img src="assets/wtc-bengaluru.jpg" alt="World Trade Center Bengaluru" loading="lazy" /><div class="ov"></div><div class="k">Operational · Bengaluru</div><h3>World Trade Center, Brigade Gateway</h3><p>26/1 Dr. Rajkumar Road, Malleswaram West, Bengaluru 560055. Systems design, software and programme management.</p></div>
-    <div class="fac glass tilt rv rv-d1"><img src="assets/cttc.jpg" alt="CTTC Bhubaneswar" loading="lazy" /><div class="ov"></div><div class="k">Proposed · Bhubaneswar, Odisha</div><h3>Global Space Systems Centre</h3><p>20 acres: R&amp;D, assembly-integration-test, production lines and Bhubaneswar Mission Control, with CTTC as precision manufacturing partner.</p></div>
-  </div>
-  <div class="rv" style="margin-top:1.5rem"><a href="odisha.html" class="btn btn-ghost">Inside the Odisha centre {ARROW}</a></div>
-</div></section>
-
 <section class="section" id="newsletter" style="padding-top:0"><div class="wrap"><div class="glass news" style="padding:clamp(2rem,4vw,3.5rem)">
-  <div class="rv"><div class="eyebrow">03 · Newsletter</div><h2 style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Dispatches from <span class="grad">orbit to outpost.</span></h2>
-    <p class="lede" style="margin-top:1rem">Programme milestones, Odisha centre updates and lunar resource notes, a few times a year. No noise.</p>
+  <div class="rv"><div class="eyebrow">02 · Newsletter</div><h2 style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Dispatches from <span class="grad">orbit to outpost.</span></h2>
+    <p class="lede" style="margin-top:1rem">Programme milestones and lunar resource notes, a few times a year. No noise.</p>
     <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:info@orbitbeyond.com?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
       <input type="email" name="email" placeholder="you@organisation.com" required /><button class="btn" type="submit">Subscribe {ARROW}</button></form></div>
   <div class="rv rv-d2"><div class="glass img-card duo" style="min-height:300px;border-radius:var(--r)"><img src="assets/wp-lander.jpg" alt="Lander integration" loading="lazy" /><div class="ov"></div><div class="cap-ov"><span class="chip">Latest · Helium-3 and the return trip</span></div></div></div>
 </div></div></section>
 
 <section class="section" id="services" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">04 · Services</div><h2>What we deliver, <span class="grad">end to end.</span></h2></div>
-    <p class="lede">From a payload slot on OB-1 to a serial production line in Odisha.</p></div>
+  <div class="sec-head rv"><div><div class="eyebrow">03 · Services</div><h2>What we deliver, <span class="grad">end to end.</span></h2></div>
+    <p class="lede">From a payload slot on OB1 to India-owned products for the lunar economy.</p></div>
   <div class="svc-grid">
-    <div class="svc glass tilt rv"><div class="k">S01 · Today</div><div><h3>Contract engineering</h3><p>Full-system lander, orbiter and payload engineering on milestones: SRR, PDR, CDR, structures, integration and test. Anchor customer Orbit Beyond, Inc.; next, other lander and infrastructure primes.</p></div></div>
+    <div class="svc glass tilt rv"><div class="k">S01 · Today</div><div><h3>Contract engineering</h3><p>Full-system lander, orbiter and payload engineering on milestones: SRR, PDR, CDR, structures, integration and test. Customer: Orbit Beyond, Inc. (USA).</p></div></div>
     <div class="svc glass tilt rv rv-d1"><div class="k">S02 · Next</div><div><h3>Own-IP products</h3><p>Rover mobility platforms and Helium-3 extraction systems on India-owned IP, sold per unit with integration and mission support.</p></div></div>
     <div class="svc glass tilt rv rv-d2"><div class="k">S03</div><div><h3>Lunar power-as-a-service</h3><p>VSAT vertical solar arrays with RHU and battery night survival, delivered as recurring power on the surface.</p></div></div>
-    <div class="svc glass tilt rv"><div class="k">S04</div><div><h3>Relay communications</h3><p>Communications relay orbiter and lunar 5G co-development with Tejas Networks for landers, rovers and surface payloads.</p></div></div>
+    <div class="svc glass tilt rv"><div class="k">S04</div><div><h3>Relay communications</h3><p>Communications relay orbiter for landers, rovers and surface payloads.</p></div></div>
     <div class="svc glass tilt rv rv-d1"><div class="k">S05</div><div><h3>Lunar compute</h3><p>LunarEdge AI data-centre prototype for inference, autonomy and sensor processing at the Moon.</p></div></div>
-    <div class="svc glass tilt rv rv-d2"><div class="k">S06</div><div><h3>Mission support &amp; manufacturing</h3><p>Mission support services, plus rover, satellite and lander-component production with CTTC and Odisha's industrial base.</p></div></div>
+    <div class="svc glass tilt rv rv-d2"><div class="k">S06</div><div><h3>Mission support &amp; manufacturing</h3><p>Mission support services, plus rover, satellite and lander-component production.</p></div></div>
   </div>
 </div></section>
 
-{cta("The first to host lunar systems manufacturing will hold it.", "We are seeking engagement with the Government of Odisha, CTTC, IDCO and strategic industry partners.")}
+{cta("Talk to us about lunar systems engineering in India.", "Payload customers, industry partners, research institutions and press: we respond within two business days.")}
 """
 
 # =============================== ABOUT ===============================
@@ -263,16 +253,15 @@ about_body = f"""
   <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>About</span></div>
   <div class="eyebrow">Orbit Beyond Private Limited</div>
   <h1>An Indian company, built to <span class="grad">design and fly</span> lunar systems.</h1>
-  <p class="lede">The engineering and manufacturing arm of the ORBITBeyond group: incorporated in India on 27 December 2022 and recognised by DPIIT as a startup in Space Technology.</p>
+  <p class="lede">An Indian space-technology company engineering lunar infrastructure: incorporated on 27 December 2022 and recognised by DPIIT as a startup in Space Technology.</p>
 </div></section>
 
 <section class="section" style="padding-top:2rem"><div class="wrap"><div class="split">
-  <div class="prose rv"><div class="eyebrow">Who we are</div><h2 style="margin-bottom:1.5rem">Two entities. <span class="grad">One mission.</span></h2>
-    <p>The ORBITBeyond group operates as a two-entity structure. A US parent delivers lunar missions for NASA as one of only ten providers certified under the Commercial Lunar Payload Services programme. Orbit Beyond Private Limited is the India company that designs, integrates and manufactures the hardware those missions fly.</p>
-    <p>Our product scope covers the OB-1 lunar lander, surface rovers, small satellites, lunar 5G communications systems and AI data-centre payloads for lunar-surface compute.</p>
-    <p>The programme draws on three of the very few engineering communities anywhere that have attempted a lunar soft landing: India's ISRO Chandrayaan team, NASA Marshall Space Flight Center, and Israel's Beresheet guidance, navigation and control engineers.</p></div>
+  <div class="prose rv"><div class="eyebrow">Who we are</div><h2 style="margin-bottom:1.5rem">An Indian company, <span class="grad">engineering for the Moon.</span></h2>
+    <p>Orbit Beyond Private Limited is an Indian company. Its customer is Orbit Beyond, Inc. (USA).</p>
+    <p>Our product scope covers the OB1 lunar lander, a communications relay orbiter, lunar power and night-survival systems, long-range rovers, Helium-3 extraction and AI data-centre payloads for lunar-surface compute.</p></div>
   <div class="glass tilt rv rv-d2"><div class="eyebrow">At a glance</div>
-    <table class="table"><tr><td>Legal name</td><td>Orbit Beyond Private Limited</td></tr><tr><td>CIN</td><td>U73100OR2022PTC041555</td></tr><tr><td>Incorporated</td><td>27 December 2022</td></tr><tr><td>Registered office</td><td>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</td></tr><tr><td>Anchor customer</td><td>Orbit Beyond, Inc. (USA), 1 of 10 NASA CLPS vendors</td></tr><tr><td>Recognition</td><td>DPIIT Startup · DIPP285038</td></tr><tr><td>Industry</td><td>Aeronautics, Aerospace &amp; Defence</td></tr><tr><td>Sector</td><td>Space Technology</td></tr><tr><td>Engineering office</td><td>World Trade Center, Bengaluru</td></tr><tr><td>Proposed centre</td><td>Bhubaneswar, Odisha · 20 acres</td></tr><tr><td>Group parent</td><td>ORBITBeyond Inc., USA</td></tr></table></div>
+    <table class="table"><tr><td>Legal name</td><td>Orbit Beyond Private Limited</td></tr><tr><td>CIN</td><td>U73100OR2022PTC041555</td></tr><tr><td>Incorporated</td><td>27 December 2022</td></tr><tr><td>Registered office</td><td>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</td></tr><tr><td>Customer</td><td>Orbit Beyond, Inc. (USA)</td></tr><tr><td>Recognition</td><td>DPIIT Startup · DIPP285038</td></tr><tr><td>Industry</td><td>Aeronautics, Aerospace &amp; Defence</td></tr><tr><td>Sector</td><td>Space Technology</td></tr><tr><td>Engineering office</td><td>World Trade Center, Bengaluru</td></tr></table></div>
 </div></div></section>
 
 <section class="section" style="padding-top:0"><div class="wrap">
@@ -289,30 +278,24 @@ about_body = f"""
 <section class="section" style="padding-top:0"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Market opportunity</div><h2>The lunar economy is <span class="grad">being contracted now.</span></h2></div>
     <p class="lede">Target customers: space agencies, lander and rover companies, lunar infrastructure and resource firms.</p></div>
-  <div class="numbers rv">
-    <div><div class="n">Up to 30</div><div class="l">NASA robotic lunar landings from 2027 under Ignition, with about US$20B for a lunar base</div></div>
-    <div><div class="n">US$566B</div><div class="l">Cumulative lunar economy value through 2050, accelerated scenario</div></div>
-    <div><div class="n">1 of 10</div><div class="l">NASA CLPS vendors: Orbit Beyond, Inc., our anchor customer</div></div>
+  <div class="numbers rv" style="grid-template-columns:1fr">
     <div><div class="n">₹200 Cr</div><div class="l">Lander, orbiter and AI prototype programme under contract</div></div>
   </div>
-  <p class="form-note" style="margin-top:1rem">Sources: NASA Ignition announcements, 24 March 2026; Deloitte lunar economy report, 2026.</p>
 </div></section>
 
 <section class="section" style="padding-top:0"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Business model</div><h2>Two revenue engines, <span class="grad">one engineering base.</span></h2></div></div>
   <div class="offices">
-    <div class="glass tilt rv" style="padding:2.2rem"><div class="eyebrow">Engine 1 · Today</div><h3 style="margin-bottom:.6rem">Contract engineering</h3><p>Milestone-billed engineering for lander, orbiter and payload programmes. Low risk; it funds the team and the facilities. First customer Orbit Beyond, Inc.; next, other lander and infrastructure primes.</p></div>
+    <div class="glass tilt rv" style="padding:2.2rem"><div class="eyebrow">Engine 1 · Today</div><h3 style="margin-bottom:.6rem">Contract engineering</h3><p>Milestone-billed engineering for lander, orbiter and payload programmes. Low risk; it funds the team and the facilities. Customer: Orbit Beyond, Inc. (USA).</p></div>
     <div class="glass tilt rv rv-d1" style="padding:2.2rem"><div class="eyebrow">Engine 2 · Next</div><h3 style="margin-bottom:.6rem">Own-IP products</h3><p>Rover platforms and Helium-3 extraction systems on India-owned IP, sold per unit plus integration and mission support, growing into lunar power-as-a-service and relay communications.</p></div>
   </div>
-  <div class="lineage rv" style="margin-top:1.2rem"><span class="chip"><b>Scale</b> flight-proven designs reused across missions</span><span class="chip"><b>Cost base</b> Indian engineering</span><span class="chip"><b>Talent</b> NITs and IIST</span><span class="chip"><b>Channels</b> CLPS missions · ISRO and IN-SPACe calls · agency tenders</span></div>
+  <div class="lineage rv" style="margin-top:1.2rem"><span class="chip"><b>Scale</b> flight-proven designs reused across missions</span><span class="chip"><b>Cost base</b> Indian engineering</span><span class="chip"><b>Talent</b> NITs and IIST</span></div>
 </div></section>
 
 <section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Engineering lineage</div><h2>Three communities that have <span class="grad">attempted a soft landing.</span></h2></div></div>
+  <div class="sec-head rv"><div><div class="eyebrow">Engineering lineage</div><h2>Engineers who have <span class="grad">flown to the Moon.</span></h2></div></div>
   <div class="bento">
-    <div class="glass tilt b-4 rv"><div class="big grad">ISRO</div><div class="cap">Chandrayaan heritage</div><p style="margin-top:1rem;font-size:.92rem">Chief Systems Engineer Dr. M. Krishnaswamy led Cartosat and guided Chandrayaan-1; the structures, propulsion, GNC, power, communications and thermal heads all come from ISRO.</p></div>
-    <div class="glass tilt b-4 rv rv-d1"><div class="big grad">NASA</div><div class="cap">Marshall Space Flight Center</div><p style="margin-top:1rem;font-size:.92rem">Mission control is paired with NASA Marshall in Huntsville, giving dual control during descent with no single point of failure.</p></div>
-    <div class="glass tilt b-4 rv rv-d2"><div class="big grad">Beresheet</div><div class="cap">SpaceIL GNC engineers</div><p style="margin-top:1rem;font-size:.92rem">Guidance, navigation and control know-how from Israel's private lunar programme is co-developed with the India team.</p></div>
+    <div class="glass tilt b-12 rv"><div class="big grad">ISRO</div><div class="cap">Chandrayaan heritage</div><p style="margin-top:1rem;font-size:.92rem">Chief Systems Engineer Dr. M. Krishnaswamy led Cartosat and guided Chandrayaan-1; the structures, propulsion, GNC, power, communications and thermal heads all come from ISRO.</p></div>
   </div>
 </div></section>
 
@@ -340,9 +323,9 @@ def wp_section(n, title, img, lead, bullets, meta, flip=False):
 programmes_body = f"""
 <section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
   <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Programmes</span></div>
-  <div class="eyebrow">What we build in Odisha</div>
+  <div class="eyebrow">What we build in India</div>
   <h1>Power, mobility, resources, <span class="grad">landers and orbiters.</span></h1>
-  <p class="lede">The integrated lunar infrastructure stack Orbit Beyond engineers in India, the ₹200 crore programme under contract, and the work packages built in Odisha.</p>
+  <p class="lede">The integrated lunar infrastructure stack Orbit Beyond engineers in India, and the ₹200 crore programme under contract.</p>
 </div></section>
 <section class="section" id="stack" style="padding-top:1rem"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Product, technology &amp; innovation</div><h2>An integrated <span class="grad">lunar infrastructure stack.</span></h2></div>
@@ -359,7 +342,7 @@ programmes_body = f"""
 
 <section class="section" id="programme" style="padding-top:0"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Programme under contract</div><h2>A ₹200 crore flight programme <span class="grad">is underway.</span></h2></div>
-    <p class="lede">An engineering services, supply and development agreement with Orbit Beyond, Inc., effective 1 April 2026, delivered milestone by milestone.</p></div>
+    <p class="lede">An engineering services, supply and development agreement with our customer, Orbit Beyond, Inc. (USA), effective 1 April 2026, delivered milestone by milestone.</p></div>
   <div class="split">
     <div class="glass tilt rv" style="padding:1.2rem 1.6rem"><table class="table"><tr><th>Project</th><th>Scope</th><th>Value</th></tr>
       <tr><td>OB1 lunar lander</td><td>Full-system design, payloads, integration and test</td><td>₹93.92 Cr</td></tr>
@@ -368,7 +351,7 @@ programmes_body = f"""
       <tr><td><b>Total</b></td><td>Approximately US$20.7M</td><td><b>₹200 Cr</b></td></tr></table></div>
     <div class="rv rv-d2"><div class="eyebrow">Milestone-driven delivery</div>
       <div class="wp-detail" style="border-top:0;padding-top:0"><ul><li><b>SRR</b> system requirements review</li><li><b>PDR</b> preliminary design review</li><li><b>CDR</b> critical design review</li><li><b>Structures</b> qualification structure and environmental test</li><li><b>Integration</b> and acceptance, OB1 completion targeted in 2029</li></ul></div>
-      <div class="lineage" style="margin-top:1.4rem"><span class="chip"><b>Tejas Networks</b> lunar 5G co-development, LOI targeted</span><span class="chip"><b>ISRO / NSIL</b> technology transfer under evaluation</span></div></div>
+    </div>
   </div>
 </div></section>
 
@@ -378,87 +361,11 @@ programmes_body = f"""
     <div class="phase glass tilt rv" style="transform:none;opacity:1"><div class="node">27</div><div class="when">FY2027</div><h3>Design reviews</h3><ul><li>OB1 SRR and PDR</li><li>Orbiter and AI prototype design reviews</li><li>GENESIS rover and Helium-3 extraction prototypes</li></ul></div>
     <div class="phase glass tilt rv rv-d1" style="transform:none;opacity:1"><div class="node">28</div><div class="when">FY2028</div><h3>Qualification</h3><ul><li>OB1 CDR and qualification structure</li><li>Orbiter testing</li><li>First external LOI, patent filings</li></ul></div>
     <div class="phase glass tilt rv rv-d2" style="transform:none;opacity:1"><div class="node">29</div><div class="when">FY2029</div><h3>Delivery</h3><ul><li>OB1 integration and acceptance</li><li>Orbiter delivery, AI prototype demo</li><li>First product sale</li></ul></div>
-    <div class="phase glass tilt rv rv-d3" style="transform:none;opacity:1"><div class="node">30+</div><div class="when">FY2030 and beyond</div><h3>Products</h3><ul><li>Products for agencies and lander firms</li><li>Rover and Helium-3 demonstrators</li><li>Japan, EU and US markets</li></ul></div>
+    <div class="phase glass tilt rv rv-d3" style="transform:none;opacity:1"><div class="node">30+</div><div class="when">FY2030 and beyond</div><h3>Products</h3><ul><li>Products for agencies and lander firms</li><li>Rover and Helium-3 demonstrators</li></ul></div>
   </div>
 </div></section>
 
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Built in Odisha</div><h2>Five manufacturing <span class="grad">work packages.</span></h2></div>
-    <p class="lede">What the Global Space Systems Centre in Bhubaneswar will design, integrate and produce.</p></div>
-  {wp_cards()}</div></section>
-
-{wp_section("01","Lander Leg Development","assets/wp-legs.jpg","Deployable landing gear is where Odisha's capability is most directly relevant: legs, shock-attenuation struts and crushable energy absorbers, machined to ISRO standards.",
-  ["Legs, shock-attenuation and energy absorbers","CTTC Bhubaneswar built around 70,000 precision parts for Chandrayaan-3","Built on Odisha's aluminium ecosystem","Drop-test rig in the Phase II facility"],
-  [("Customer","OB-1 lander · group missions"),("Partner","CTTC Bhubaneswar"),("Phase","I to II")])}
-{wp_section("02","Rover Development","assets/rover-color.jpg","Serial manufacture of lunar surface rovers: mobility systems, wheels, drive assemblies and autonomous navigation. Flown on ORBITBeyond missions and sold to third-party operators worldwide.",
-  ["Mobility, autonomy, wheels and drive assemblies","Regolith test yard built in-state","From 0 to 60 rover engineers by 2031","Export sales to third-party operators"],
-  [("Customer","Group missions · global operators"),("Facility","Rover test yard, Bhubaneswar"),("Phase","II to III")], True)}
-{wp_section("03","Satellite Development","assets/sat-color.jpg","Three product lines on one common bus, generating recurring export revenue from day one.",
-  ["Lunar 5G communications relay, with Tejas Networks","Cislunar awareness at L1/L2 for the US Space Force","Lunar resource mapping, built in India's mineral State","Common platform across all three lines"],
-  [("Customer","USSF · group · commercial"),("Partner","Tejas Networks"),("Phase","II to III")])}
-{wp_section("04","Lunar AI Data Centre","assets/wp-compute.jpg","AI compute engineered for the lunar surface is an advanced-packaging problem: radiation-tolerant, thermally managed processing that runs inference and autonomy at the Moon, without routing data back to Earth.",
-  ["Radiation-tolerant, thermally-managed processing","Aligned with the $225M 3D packaging facility at Info Valley, Khordha","Operated as LunarEdge","14-day lunar night survival through the Tec-Masters partnership"],
-  [("Customer","Commercial compute · science"),("Ecosystem","Odisha semiconductor packaging"),("Phase","III")], True)}
-{wp_section("05","Mission Control &amp; Ground Segment","assets/wp-control.jpg","Two linked centres, NASA Marshall and Bhubaneswar, with dual control so there is no single point of failure during descent.",
-  ["Bhubaneswar leads all non-US missions","Dual control during descent","Offered commercially to IN-SPACe operators","Shared ground infrastructure for Indian and international missions"],
-  [("Customer","Group · IN-SPACe operators"),("Pair","NASA Marshall, Huntsville"),("Phase","II")])}
-
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Project phasing</div><h2>Engineering now. <span class="grad">Flying by 2029.</span></h2></div></div>
-  {roadmap()}
-</div></section>
-{cta("Have a payload, a product line or a partnership in mind?", "Talk to the engineering team about lander, rover, satellite or compute programmes.", "Start a conversation", "contact.html", "Why Odisha", "odisha.html")}
-"""
-
-# =============================== ODISHA ===============================
-odisha_body = f"""
-<section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
-  <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Odisha Centre</span></div>
-  <div class="eyebrow">Global Space Systems Centre · Bhubaneswar</div>
-  <h1>Originally planned for Bengaluru. <span class="grad">Odisha won on evidence.</span></h1>
-  <p class="lede">A 20-acre campus for lander integration, rover and satellite production, a lunar AI data-centre line and Bhubaneswar Mission Control.</p>
-</div></section>
-
-<section class="section" style="padding-top:1rem"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Why Odisha</div><h2>Four inputs <span class="grad">decided it.</span></h2></div><p class="lede">Flip each card for the evidence behind the decision.</p></div>
-  {flip_cards()}
-</div></section>
-
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Our presence in India</div><h2>Two anchors. <span class="grad">One mission.</span></h2></div></div>
-  <div class="fac-grid">
-    <div class="fac glass tilt rv"><img src="assets/wtc-bengaluru.jpg" alt="World Trade Center Bengaluru" loading="lazy" /><div class="ov"></div><div class="k">Operational · Bengaluru</div><h3>World Trade Center Bengaluru</h3><p>The engineering office: systems design, software and programme management for the lander and satellite programmes.</p></div>
-    <div class="fac glass tilt rv rv-d1"><img src="assets/cttc.jpg" alt="CTTC Bhubaneswar" loading="lazy" /><div class="ov"></div><div class="k">Strategic partner · Bhubaneswar</div><h3>CTTC Bhubaneswar</h3><p>Precision manufacturing partner with over 20 years supplying ISRO: lander leg components, rover assemblies and around 70,000 precision parts for Chandrayaan-3.</p></div>
-  </div>
-  <div class="campus glass rv">
-    <div><div class="eyebrow">The facility</div><h2 style="font-size:clamp(1.6rem,3vw,2.6rem);margin-bottom:1.25rem">20 acres. Three components. <span class="grad">One campus.</span></h2>
-      <ul class="campus-list"><li><i style="background:var(--marigold)"></i><span><b>R&amp;D Centre.</b> Systems engineering, guidance-navigation-control, structures and thermal design: the design authority of the programme.</span></li>
-      <li><i style="background:var(--teal)"></i><span><b>AI&amp;T Facility.</b> Assembly, integration and test in-house: clean rooms, thermal-vacuum, vibration and the lander integration hall.</span></li>
-      <li><i style="background:var(--sky)"></i><span><b>Production Lines.</b> Rover and satellite manufacturing scaling with demand, plus the AI data-centre line and Bhubaneswar Mission Control on 4 dedicated acres.</span></li></ul></div>
-    <div class="iso"><div class="iso-plane"><div class="ground"></div>
-      <div class="block" style="left:8%;top:10%;width:36%;height:34%;background:var(--marigold)"><span>R&amp;D Centre</span></div>
-      <div class="block" style="left:50%;top:8%;width:42%;height:48%;background:var(--teal)"><span>AI&amp;T Hall</span></div>
-      <div class="block" style="left:8%;top:52%;width:58%;height:38%;background:var(--sky)"><span>Production Lines</span></div>
-      <div class="block" style="left:70%;top:62%;width:22%;height:28%;background:var(--ember)"><span>Mission Control</span></div>
-    </div></div>
-  </div>
-</div></section>
-
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="growth">
-    <div class="rv"><div class="eyebrow">Employment generation</div><h2>50 to 500 skilled engineers, <span class="grad">2026 to 2031.</span></h2>
-      <p class="lede" style="margin-top:1.25rem">Plus around 1,000 semi-skilled and blue-collar roles: roughly 1,500 combined at scale. Sourced through CTTC and Odisha's ITI and skill-development channels, reversing the outflow that today sends the State's best engineers overseas.</p></div>
-    <div class="glass rv rv-d2" style="padding:3rem 2rem 2rem"><div class="bars">
-      <div class="bar"><i data-h="10%" data-v="50"></i><span class="y">2026</span></div><div class="bar"><i data-h="15%" data-v="75"></i><span class="y">2027</span></div><div class="bar"><i data-h="20%" data-v="100"></i><span class="y">2028</span></div><div class="bar"><i data-h="30%" data-v="150"></i><span class="y">2029</span></div><div class="bar"><i data-h="60%" data-v="300"></i><span class="y">2030</span></div><div class="bar"><i data-h="100%" data-v="500"></i><span class="y">2031</span></div>
-    </div></div>
-  </div>
-</div></section>
-
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Scale &amp; impact</div><h2>The numbers behind <span class="grad">the centre.</span></h2></div></div>
-  {numbers()}
-</div></section>
-{cta("The first to host lunar systems manufacturing will hold it.", "We are seeking engagement with the Government of Odisha, CTTC, IDCO and strategic industry partners.")}
+{cta("Have a payload, a product line or a partnership in mind?", "Talk to the engineering team about lander, rover, satellite or compute programmes.", "Start a conversation", "contact.html", None, None)}
 """
 
 # =============================== TEAM ===============================
@@ -472,16 +379,6 @@ team_body = f"""
 <section class="section" style="padding-top:1rem"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">The team</div><h2>Chandrayaan heritage, <span class="grad">subsystem by subsystem.</span></h2></div></div>
   {team_grid()}</div></section>
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Join us</div><h2>From 50 to 500 engineers <span class="grad">by 2031.</span></h2></div>
-    <p class="lede">Lander structures, GNC, flight software, rover autonomy, RF and satellite systems, advanced packaging and mission operations. Based in Bengaluru today and Bhubaneswar as the centre comes online.</p></div>
-  <div class="pillars">
-    <div class="pillar glass tilt rv"><div class="ic">{ICONS['layers']}</div><h3>Systems &amp; structures</h3><p>Landing gear, energy absorbers, thermal and structural design for OB-1 and the rover family.</p></div>
-    <div class="pillar glass tilt rv rv-d1"><div class="ic">{ICONS['target']}</div><h3>GNC &amp; flight software</h3><p>Terrain-relative navigation, descent guidance and software-in-the-loop with Sim Dot Space.</p></div>
-    <div class="pillar glass tilt rv rv-d2"><div class="ic">{ICONS['globe']}</div><h3>Satellites &amp; ground</h3><p>Lunar 5G relay, cislunar awareness, resource mapping and Bhubaneswar Mission Control.</p></div>
-  </div>
-</div></section>
-{cta("Want to build lunar hardware from India?", "Send us your profile and the programme you want to work on.", "Write to us", "contact.html", "See the programmes", "programmes.html")}
 """
 
 # =============================== CONTACT ===============================
@@ -490,27 +387,25 @@ contact_body = f"""
   <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
   <div class="eyebrow">Contact</div>
   <h1>Let's build it <span class="grad">in India.</span></h1>
-  <p class="lede">Government, industry, payload customers, research institutions and candidates: we respond within two business days.</p>
+  <p class="lede">Payload customers, industry, research institutions and press: we respond within two business days.</p>
 </div></section>
 <section class="section" style="padding-top:1rem"><div class="wrap"><div class="contact-grid">
   <div style="display:grid;gap:1.1rem">
     <div class="addr glass tilt rv"><div class="k">Engineering office · Bengaluru</div><h3>World Trade Center</h3><p>Brigade Gateway, 26/1 Dr. Rajkumar Road, Malleswaram West, Bengaluru 560055, Karnataka</p><div class="map"><span class="pin" style="--x:38%;--y:62%" data-l="Bengaluru"></span></div></div>
-    <div class="addr glass tilt rv rv-d1"><div class="k">Proposed centre · Bhubaneswar</div><h3>Global Space Systems Centre</h3><p>20-acre campus, Bhubaneswar, Odisha. Lander integration, rover and satellite lines, lunar AI data-centre and Mission Control.</p><div class="map"><span class="pin" style="--x:64%;--y:40%" data-l="Bhubaneswar"></span></div></div>
     <div class="addr glass rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:info@orbitbeyond.com">info@orbitbeyond.com</a> · DPIIT recognised startup DIPP285038</p></div>
   </div>
   <form class="form glass rv rv-d1" id="contactForm">
     <div class="eyebrow">Send a message</div>
     <div class="f2"><div class="field"><label for="name">Name</label><input id="name" name="name" required /></div><div class="field"><label for="org">Organisation</label><input id="org" name="org" /></div></div>
-    <div class="f2"><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required /></div><div class="field"><label for="topic">Topic</label><select id="topic" name="topic"><option>Partnership</option><option>Government &amp; policy</option><option>Payload or product enquiry</option><option>Careers</option><option>Press</option><option>Other</option></select></div></div>
+    <div class="f2"><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required /></div><div class="field"><label for="topic">Topic</label><select id="topic" name="topic"><option>Payload or product enquiry</option><option>Partnership</option><option>Press</option><option>Other</option></select></div></div>
     <div class="field"><label for="msg">Message</label><textarea id="msg" name="msg" rows="6" required></textarea></div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap"><span class="form-note">Opens in your mail client</span><button type="submit" class="btn">Send message {ARROW}</button></div>
   </form>
 </div></div></section>
 """
 
-shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company designing the OB-1 lunar lander, rovers, satellites and lunar AI compute from Bhubaneswar and Bengaluru.", index_body, three=True)
-shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, the engineering and manufacturing arm of the ORBITBeyond group.", about_body)
+shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
+shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure for its customer Orbit Beyond, Inc. (USA).", about_body)
 shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack and ₹200 Cr contracted programme.", programmes_body)
-shell("odisha.html","Odisha Centre · ORBITBeyond India","Why Odisha won on evidence: supply chain, materials, talent and speed. The 20-acre Global Space Systems Centre in Bhubaneswar and the CTTC partnership.", odisha_body)
 shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: founder Siba Prasad Padhi and seven ex-ISRO subsystem heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
-shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: World Trade Center Bengaluru and the proposed Global Space Systems Centre, Bhubaneswar.", contact_body)
+shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: engineering office at World Trade Center, Bengaluru, and registered office in Bhubaneswar.", contact_body)

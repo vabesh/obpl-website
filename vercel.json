@@ -1,1 +1,1 @@
-{ "cleanUrls": true, "trailingSlash": false }
+{ "cleanUrls": true, "trailingSlash": false, "redirects": [ { "source": "/odisha", "destination": "/", "permanent": true }, { "source": "/odisha.html", "destination": "/", "permanent": true } ] }

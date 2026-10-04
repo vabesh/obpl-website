@@ -114,11 +114,10 @@
   /* ---------- team modal ---------- */
   var TEAM = {
     siba: { img: 'assets/team-siba.jpg', name: 'Siba Prasad Padhi', role: 'Founder & Director', tag: 'Leadership', bio: [
-      'Siba Prasad Padhi is the founder of the ORBITBeyond group and Founder and Director of Orbit Beyond Private Limited, the Indian company recognised by DPIIT as a startup in the Aerospace & Defence and Space Technology sector.',
-      'A serial entrepreneur and former Director of Finance at ConEdison Communications, educated at NYU Stern, LSE and AIM, he leads a two-entity structure: a US parent delivering lunar missions for NASA under the Commercial Lunar Payload Services programme, and the India company that engineers the OB1 lander, relay orbiter, surface power, rovers, Helium-3 extraction and lunar AI compute.',
-      'An Odisha native, he is the driving force behind the proposed Global Space Systems Centre in Bhubaneswar.'] },
+      'Siba Prasad Padhi is Founder and Director of Orbit Beyond Private Limited, the Indian company recognised by DPIIT as a startup in the Aerospace & Defence and Space Technology sector.',
+      'A serial entrepreneur and former Director of Finance at ConEdison Communications, educated at NYU Stern, LSE and AIM, he leads the Indian company that engineers, for its customer Orbit Beyond, Inc. (USA), the OB1 lander, relay orbiter, surface power, rovers, Helium-3 extraction and lunar AI compute.'] },
     krishnaswamy: { img: 'assets/team-krishnaswamy.jpg', name: 'Dr. M. Krishnaswamy', role: 'Chief Systems Engineer · OB1 lander architect', tag: 'Systems', bio: [
-      'Dr. M. Krishnaswamy is Chief Systems Engineer and the architect of the OB1 lunar lander, holding the systems-engineering design authority the India centre is built around.',
+      'Dr. M. Krishnaswamy is Chief Systems Engineer and the architect of the OB1 lunar lander, holding the systems-engineering design authority for the programme.',
       'With more than 40 years at ISRO, he served as Programme Director for Chandrayaan-1 and the Cartosat series, led the TES high-resolution imaging programme, guided IMS-1 and directed the NIUSAT nanosatellite mission.',
       'His honours include the IAA Laurel and ISRO\'s award for Overall Outstanding Contribution to Space.'] },
     sashi: { img: 'assets/team-sashi.jpg', name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
@@ -131,13 +130,13 @@
       'Dr. Venugopalan Srinivasan heads electrical power, spanning the lander and orbiter power systems and the VSAT vertical solar array with its RHU and battery night-survival chain.',
       'He brings ISRO spacecraft power-system heritage to the programme.'] },
     sambasiva: { img: 'assets/team-sambasiva.jpg', name: 'Dr. Sambasiva Rao Venigalla', role: 'Head, Communications', tag: 'Communications', bio: [
-      'Dr. Sambasiva Rao Venigalla heads communications, covering the lander and rover links, the communications relay orbiter and the lunar 5G co-development with Tejas Networks.',
+      'Dr. Sambasiva Rao Venigalla heads communications, covering the lander and rover links, and the communications relay orbiter.',
       'He brings ISRO spacecraft communications heritage to the programme.'] },
     alok: { img: null, name: 'Dr. Alok Srivastava', role: 'Head, Thermal · lunar-night survival', tag: 'Thermal', bio: [
       'Dr. Alok Srivastava heads thermal engineering, including the lunar-night survival design that keeps landers and surface assets alive through fourteen days of darkness below minus 170 °C.',
       'He brings ISRO spacecraft thermal heritage to the programme.'] },
     rk: { img: null, name: 'Dr. R.K. Srinivasan', role: 'Head, Structures · Chandrayaan-2/3 landing legs', tag: 'Structures', bio: [
-      'Dr. R.K. Srinivasan heads structures, including the OB1 landing legs, shock attenuation and crushable energy absorbers built on Odisha\'s precision manufacturing base.',
+      'Dr. R.K. Srinivasan heads structures, including the OB1 landing legs, shock attenuation and crushable energy absorbers.',
       'At ISRO he worked on the landing legs of Chandrayaan-2 and Chandrayaan-3.'] }
   };
   var modal = document.getElementById('teamModal');
