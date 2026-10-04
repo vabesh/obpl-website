@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "19"
+VER = "20"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -273,23 +273,6 @@ about_body = f"""
     <div class="pillar glass tilt rv rv-d2"><div class="ic">{ICONS['target']}</div><h3>Mobility</h3><p>Mining and logistics need rovers that travel long distances. Very few have been built.</p></div>
     <div class="pillar glass tilt rv rv-d3"><div class="ic">{ICONS['globe']}</div><h3>Communications</h3><p>No lunar relay network exists. Orbiters are needed for relay and exploration.</p></div>
   </div>
-</div></section>
-
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Market opportunity</div><h2>The lunar economy is <span class="grad">being contracted now.</span></h2></div>
-    <p class="lede">Target customers: space agencies, lander and rover companies, lunar infrastructure and resource firms.</p></div>
-  <div class="numbers rv" style="grid-template-columns:1fr">
-    <div><div class="n">₹200 Cr</div><div class="l">Lander, orbiter and AI prototype programme under contract</div></div>
-  </div>
-</div></section>
-
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Business model</div><h2>Two revenue engines, <span class="grad">one engineering base.</span></h2></div></div>
-  <div class="offices">
-    <div class="glass tilt rv" style="padding:2.2rem"><div class="eyebrow">Engine 1 · Today</div><h3 style="margin-bottom:.6rem">Contract engineering</h3><p>Milestone-billed engineering for lander, orbiter and payload programmes. Low risk; it funds the team and the facilities. Customer: Orbit Beyond, Inc. (USA).</p></div>
-    <div class="glass tilt rv rv-d1" style="padding:2.2rem"><div class="eyebrow">Engine 2 · Next</div><h3 style="margin-bottom:.6rem">Own-IP products</h3><p>Rover platforms and Helium-3 extraction systems on India-owned IP, sold per unit plus integration and mission support, growing into lunar power-as-a-service and relay communications.</p></div>
-  </div>
-  <div class="lineage rv" style="margin-top:1.2rem"><span class="chip"><b>Scale</b> flight-proven designs reused across missions</span><span class="chip"><b>Cost base</b> Indian engineering</span><span class="chip"><b>Talent</b> NITs and IIST</span></div>
 </div></section>
 
 <section class="section" style="padding-top:0"><div class="wrap">
