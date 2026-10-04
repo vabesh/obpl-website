@@ -120,7 +120,7 @@
       'Dr. M. Krishnaswamy is Chief Systems Engineer and the architect of the OB1 lunar lander, holding the systems-engineering design authority for the programme.',
       'With more than 40 years at ISRO, he served as Programme Director for Chandrayaan-1 and the Cartosat series, led the TES high-resolution imaging programme, guided IMS-1 and directed the NIUSAT nanosatellite mission.',
       'His honours include the IAA Laurel and ISRO\'s award for Overall Outstanding Contribution to Space.'] },
-    shreya: { img: null, name: 'Dr. Shreya Santra', role: 'Robotics & Autonomy', tag: 'Founding member', bio: [
+    shreya: { img: 'assets/team-shreya.jpg', name: 'Dr. Shreya Santra', role: 'Robotics & Autonomy', tag: 'Founding member', bio: [
       'Dr. Shreya Santra leads robotics and autonomy at Orbit Beyond Private Limited, including the long-range rover platform and its AI-based autonomous navigation.',
       'She holds a PhD from Tohoku University, where she led lunar rover autonomy research, and co-led lunar-base robotics in the Moonshot programme.',
       'She is an International Astronautical Federation Emerging Space Leader.'] },

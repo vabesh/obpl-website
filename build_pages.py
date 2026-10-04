@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "24"
+VER = "25"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -161,7 +161,7 @@ def numbers():
 
 FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director"),
             ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect"),
-            ("shreya",None,"SS","Dr. Shreya Santra","Robotics & Autonomy"),
+            ("shreya","assets/team-shreya.jpg",None,"Dr. Shreya Santra","Robotics & Autonomy"),
             ("durga",None,"DP","Y. V. Durga Prasad","Propulsion"),
             ("anand","assets/team-anand.jpg",None,"Anand Nagesh","Avionics & Communications"),
             ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Finance & Compliance")]
