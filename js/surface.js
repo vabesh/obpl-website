@@ -9,7 +9,7 @@
   var isSmall = Math.min(innerWidth, innerHeight) < 700 || !window.matchMedia('(pointer:fine)').matches;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var WX = 30000, WZ = 12000, HMAX = 1142, SEG_X = isSmall ? 512 : 1024, SEG_Z = isSmall ? 205 : 410;
+  var WX = 30000, WZ = 12000, HMAX = 1213, SEG_X = isSmall ? 512 : 1024, SEG_Z = isSmall ? 205 : 410;
   var SKY = 0x070c1a;
 
   /* ---------------- stations (draft specifications, to be confirmed by the company) ---------------- */
@@ -48,18 +48,18 @@
   /* ---------------- renderer, scene, lights ---------------- */
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !isSmall, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, isSmall ? 1.25 : 1.5));
-  renderer.outputEncoding = THREE.sRGBEncoding; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.15;
+  renderer.outputEncoding = THREE.sRGBEncoding; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.25;
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   var scene = new THREE.Scene(); scene.background = new THREE.Color(SKY); scene.fog = new THREE.Fog(SKY, 14000, 42000);
   var camera = new THREE.PerspectiveCamera(46, 1, 1, 90000);
-  var SUN_DIR = new THREE.Vector3(0.86, 0.115, 0.40).normalize();          // low sun, long shadows
-  var sun = new THREE.DirectionalLight(0xfff1dc, 2.9); sun.castShadow = true;
+  var SUN_DIR = new THREE.Vector3(0.84, 0.27, 0.42).normalize();          // south-polar sun, about 16 degrees up: long shadows, lit ground
+  var sun = new THREE.DirectionalLight(0xfff4e6, 2.4); sun.castShadow = true;
   sun.shadow.mapSize.set(isSmall ? 1024 : 4096, isSmall ? 1024 : 4096);
   var SH = isSmall ? 1100 : 1400; sun.shadow.camera.left = -SH; sun.shadow.camera.right = SH; sun.shadow.camera.top = SH; sun.shadow.camera.bottom = -SH;
   sun.shadow.camera.near = 10; sun.shadow.camera.far = 12000; sun.shadow.bias = -0.0004; sun.shadow.normalBias = 2.2;
   scene.add(sun); scene.add(sun.target);
-  scene.add(new THREE.HemisphereLight(0x2a4a86, 0x000000, 0.10));          // faint earthshine only: no sky on the Moon
-  scene.add(new THREE.AmbientLight(0x101626, 0.22));
+  scene.add(new THREE.HemisphereLight(0x3a5a96, 0x000000, 0.16));          // faint earthshine only: no sky on the Moon
+  scene.add(new THREE.AmbientLight(0x1a2236, 0.30));
 
   /* ---------------- textures and terrain ---------------- */
   var manager = new THREE.LoadingManager(), loader = new THREE.TextureLoader(manager);
@@ -67,19 +67,22 @@
   var albedo = tex('assets/moon/albedo.jpg', true), normal = tex('assets/moon/normal.jpg'), height = tex('assets/moon/height.png'), detail = tex('assets/moon/detail.jpg');
   albedo.wrapS = albedo.wrapT = normal.wrapS = normal.wrapT = height.wrapS = height.wrapT = THREE.ClampToEdgeWrapping;
   var geo = new THREE.PlaneGeometry(WX, WZ, SEG_X, SEG_Z); geo.rotateX(-Math.PI / 2);
-  var mat = new THREE.MeshStandardMaterial({ map: albedo, normalMap: normal, normalScale: new THREE.Vector2(1.5, 1.5), displacementMap: height, displacementScale: HMAX, roughness: 1.0, metalness: 0, color: 0xb9b5ae });
+  var mat = new THREE.MeshStandardMaterial({ map: albedo, normalMap: normal, normalScale: new THREE.Vector2(1.0, 1.0), displacementMap: height, displacementScale: HMAX, roughness: 1.0, metalness: 0, color: 0xd6d2cb });
   mat.onBeforeCompile = function (sh) {
-    sh.uniforms.detailMap = { value: detail }; sh.uniforms.detailRepeat = { value: new THREE.Vector2(120, 48) }; sh.uniforms.detailScale = { value: 1.15 };
-    sh.fragmentShader = 'uniform sampler2D detailMap; uniform vec2 detailRepeat; uniform float detailScale;\n' + sh.fragmentShader.replace('#include <normal_fragment_maps>',
+    sh.uniforms.detailMap = { value: detail }; sh.uniforms.detailRepeat = { value: new THREE.Vector2(170, 68) }; sh.uniforms.detailScale = { value: 0.5 };
+    var lunar = THREE.ShaderChunk.lights_physical_pars_fragment.replace('reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );',
+      'float muV = saturate( dot( geometry.normal, geometry.viewDir ) ); float opp = 1.0 + 0.45 * pow( saturate( dot( geometry.viewDir, directLight.direction ) ), 6.0 );' +
+      ' reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor ) * ( 1.35 / ( dotNL + muV + 0.08 ) ) * opp;');
+    sh.fragmentShader = 'uniform sampler2D detailMap; uniform vec2 detailRepeat; uniform float detailScale;\n' + sh.fragmentShader.replace('#include <lights_physical_pars_fragment>', lunar).replace('#include <normal_fragment_maps>',
       'vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0; mapN.xy *= normalScale;\n' +
       'vec3 dN = texture2D( detailMap, vUv * detailRepeat ).xyz * 2.0 - 1.0; dN.xy *= detailScale;\n' +
-      'vec3 dN2 = texture2D( detailMap, vUv * detailRepeat * 4.1 + 0.37 ).xyz * 2.0 - 1.0; dN2.xy *= detailScale * 0.5;\n' +
+      'vec3 dN2 = texture2D( detailMap, vUv * detailRepeat * 4.1 + 0.37 ).xyz * 2.0 - 1.0; dN2.xy *= detailScale * 0.35;\n' +
       'mapN = normalize( vec3( mapN.xy + dN.xy + dN2.xy, mapN.z ) );\n' +
       'normal = perturbNormal2Arb( -vViewPosition, normal, mapN, faceDirection );');
   };
   var terrain = new THREE.Mesh(geo, mat); terrain.castShadow = true; terrain.receiveShadow = true; scene.add(terrain);
   // horizon skirt: a vast dark plane so the strip never ends against black
-  var skirt = new THREE.Mesh(new THREE.CircleGeometry(90000, 64), new THREE.MeshStandardMaterial({ color: 0x6f6b66, roughness: 1 }));
+  var skirt = new THREE.Mesh(new THREE.CircleGeometry(90000, 64), new THREE.MeshStandardMaterial({ color: 0x9c9892, roughness: 1 }));
   skirt.rotation.x = -Math.PI / 2; skirt.position.y = 60; scene.add(skirt);
 
   /* height sampling (reads the displacement map through a canvas, approximating the mesh) */
@@ -205,7 +208,7 @@
   var objects = {};
   STATIONS.forEach(function (s) { var o = builders[s.id](); o.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); o.position.set(s.pos[0], s.pos[1], s.pos[2]); o.userData.x0 = s.pos[0]; scene.add(o); objects[s.id] = o; });
   // a few boulders around the sites
-  var rocks = new THREE.Group(); scene.add(rocks); var rockMat = new THREE.MeshStandardMaterial({ color: 0x5e5a55, roughness: 1, flatShading: true });
+  var rocks = new THREE.Group(); scene.add(rocks); var rockMat = new THREE.MeshStandardMaterial({ color: 0x3b3835, roughness: 1, flatShading: true });
   function rockGeo() { var g = new THREE.DodecahedronGeometry(1, 1), pa = g.attributes.position; for (var i = 0; i < pa.count; i++) { var k = .75 + Math.random() * .5; pa.setXYZ(i, pa.getX(i) * k, pa.getY(i) * (k * .8), pa.getZ(i) * k); } g.computeVertexNormals(); return g; }
   var rockGeos = [rockGeo(), rockGeo(), rockGeo(), rockGeo(), rockGeo()];
   var rockList = [];
@@ -297,7 +300,7 @@
   if (THREE.EffectComposer && THREE.UnrealBloomPass && THREE.ShaderPass && !isSmall) {
     composer = new THREE.EffectComposer(renderer);
     composer.addPass(new THREE.RenderPass(scene, camera));
-    var bloom = new THREE.UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.42, 0.65, 0.86); composer.addPass(bloom);
+    var bloom = new THREE.UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.3, 0.6, 0.9); composer.addPass(bloom);
     gradePass = new THREE.ShaderPass({
       uniforms: { tDiffuse: { value: null }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } },
       vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
@@ -309,12 +312,12 @@
         '  float ca = 0.0022 * r2 * 4.0;',                                     // chromatic aberration toward the edges
         '  float rr = texture2D(tDiffuse, uv + c * ca).r; float gg = texture2D(tDiffuse, uv).g; float bb = texture2D(tDiffuse, uv - c * ca).b;',
         '  vec3 col = vec3(rr, gg, bb);',
-        '  col = pow(col, vec3(1.06));',                                       // a touch more contrast
+        '  col = col * 0.96 + 0.012;',                                       // a touch more contrast
         '  float l = dot(col, vec3(0.299, 0.587, 0.114));',
         '  col = mix(col, vec3(l), 0.08);',                                    // slight desaturation
-        '  col += (vec3(0.02, 0.03, 0.07) * (1.0 - l)) - (vec3(0.0, 0.01, 0.03) * l);', // cool shadows, warm highlights
-        '  float vig = smoothstep(0.95, 0.35, r2 * 1.9); col *= mix(0.72, 1.0, vig);',
-        '  float g = hash(uv * res + fract(time * 13.7)) - 0.5; col += g * 0.045;',  // film grain
+        '  col += (vec3(0.01, 0.015, 0.035) * (1.0 - l)) - (vec3(0.0, 0.005, 0.015) * l);', // cool shadows, warm highlights
+        '  float vig = smoothstep(0.95, 0.35, r2 * 1.9); col *= mix(0.86, 1.0, vig);',
+        '  float g = hash(uv * res + fract(time * 13.7)) - 0.5; col += g * 0.022;',  // film grain
         '  gl_FragColor = vec4(col, 1.0);',
         '}'].join('\n')
     });

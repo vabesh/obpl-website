@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "28"
+VER = "29"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -209,7 +209,7 @@ def surface_section():
     <div class="s-hero" id="surfaceHero"><div class="s-hero-in">
       <div class="tag">Orbit to Outpost</div>
       <h1>Designed in India. <span class="grad">Built for the Moon.</span></h1>
-      <p>Lunar infrastructure engineering, built in India: power, night survival, mobility, Helium-3 extraction, landers and orbiters, and AI compute. Scroll to fly across the surface and meet each system.</p>
+      <p>Lunar infrastructure engineering, built in India: power, night survival, mobility, Helium-3 extraction, landers and orbiters, and AI compute. Scroll to fly across the lunar south pole and meet each system.</p>
       <div class="acts"><a href="programmes.html" class="btn btn-ghost">The programmes</a><a href="contact.html" class="btn">Partner with us {ARROW}</a></div>
     </div><div class="cue">Scroll to descend<i></i></div></div>
     <div class="s-caption" id="stationCaption"></div>

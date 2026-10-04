@@ -51,7 +51,7 @@ ridge = fbm(H, W, octaves=6, base=3.0, gain=.55, seed=5, ridged=True)
 ridge = np.clip(ridge * 1.6 + .2, 0, None) ** 1.6
 edge = np.clip((np.abs(v - .5) - .22) / .28, 0, 1) ** 1.3          # hills toward the far z edges
 ends = np.clip((np.abs(u - .5) - .40) / .10, 0, 1) ** 1.2          # and both ends of the strip
-hills = ridge * np.maximum(edge, ends) * 360.0
+hills = ridge * np.maximum(edge, ends) * 420.0
 undul = fbm(H, W, octaves=4, base=2.0, gain=.5, seed=11) * 70.0 + fbm(H, W, octaves=3, base=9.0, gain=.5, seed=12) * 18.0
 
 # ---------------- 2. crater population ----------------
@@ -63,7 +63,7 @@ def add_crater(cx, cy, r_px, depth_m, age, rays=0.0, cluster=True):
     dx = xx[y0:y1, x0:x1] - cx; dy = yy[y0:y1, x0:x1] - cy
     d = np.sqrt(dx * dx + dy * dy) / r_px
     ang = np.arctan2(dy, dx)
-    if r_px > 4: d = d * (1 + 0.05 * np.cos(ang * 3 + cx * .07) + 0.035 * np.cos(ang * 7 + cy * .05) + 0.02 * np.cos(ang * 13 + cx * .03))   # irregular outline
+    if r_px > 4: d = d * (1 + 0.035 * np.cos(ang * 3 + cx * .07) + 0.02 * np.cos(ang * 7 + cy * .05) + 0.012 * np.cos(ang * 13 + cx * .03))   # irregular outline
     rimw = 0.10 + 0.18 * age                                     # degraded rims widen with age
     bowl = -(1 - d ** 2) * (d < 1)
     if r_px > 50:
@@ -88,7 +88,7 @@ def add_crater(cx, cy, r_px, depth_m, age, rays=0.0, cluster=True):
             sr = r_px * (0.05 + rng.random() * 0.09)
             add_crater(cx + np.cos(a) * dd, cy + np.sin(a) * dd, sr, sr * MPP * 0.18, age * 0.8 + 0.1, 0.0, cluster=False)
 
-for (fx, fz, rm, dp, ag) in [(.20, .60, 2300, 300, .55), (.47, .27, 1500, 220, .35), (.72, .68, 950, 170, .25), (.86, .36, 1900, 260, .6), (.07, .32, 700, 130, .4), (.58, .80, 600, 120, .2)]:
+for (fx, fz, rm, dp, ag) in [(.20, .60, 2300, 220, .55), (.47, .27, 1500, 160, .35), (.72, .68, 950, 130, .25), (.86, .36, 1900, 200, .6), (.07, .32, 700, 95, .4), (.58, .80, 600, 90, .2)]:
     add_crater(fx * W, fz * H, rm / MPP, dp, ag, rays=(0.7 if ag < .3 else 0.0))
 for i in range(3400):
     r_m = 10.0 * (1 - rng.random()) ** -0.95
@@ -96,13 +96,13 @@ for i in range(3400):
     if r_px < 1.0: continue
     cx, cy = rng.random() * W, rng.random() * H
     age = rng.random() ** 0.8
-    depth = r_m * (0.2 if r_m < 300 else 0.11) * (0.55 + 0.6 * rng.random()) * (1 - 0.6 * age)
+    depth = r_m * (0.14 if r_m < 300 else 0.08) * (0.55 + 0.6 * rng.random()) * (1 - 0.65 * age)
     add_crater(cx, cy, r_px, depth, age, rays=((0.5 + rng.random() * 0.5) if (age < 0.07 and r_px > 8) else 0.0))
-h_cr = blur(h_cr, 1.0)
+h_cr = blur(h_cr, 2.0)
 
 # ---------------- 3. regolith roughness, hummocks ----------------
-rough = fbm(H, W, octaves=8, base=7.0, gain=.56, seed=7) * 12.0
-hummock = np.clip(fbm(H, W, octaves=5, base=30.0, gain=.5, seed=8), 0, None) * 9.0
+rough = fbm(H, W, octaves=8, base=7.0, gain=.56, seed=7) * 5.0
+hummock = np.clip(fbm(H, W, octaves=5, base=30.0, gain=.5, seed=8), 0, None) * 3.5
 height = hills + undul + h_cr + rough + hummock
 height -= height.min()
 HMAX = float(height.max()); print('height range m', HMAX)
@@ -117,10 +117,10 @@ nx, ny, nz = -gx, -gy, np.ones_like(gx); l = np.sqrt(nx * nx + ny * ny + nz * nz
 nrm = np.stack([(nx * .5 + .5), (-ny * .5 + .5), (nz * .5 + .5)], -1)
 Image.fromarray((nrm * 255).astype(np.uint8)).save(os.path.join(OUT, 'normal.jpg'), quality=90, subsampling=0)
 
-base = .46 + fbm(H, W, octaves=5, base=3.0, gain=.55, seed=21) * .10
+base = .56 + fbm(H, W, octaves=5, base=3.0, gain=.55, seed=21) * .06
 alb = base + np.clip(fresh_map, 0, 1.0) * .16 - np.clip(floor_map, 0, 1) * .05
 slope = np.sqrt(gx * gx + gy * gy); alb += np.clip(slope * 0.35, 0, .08)
-alb += fbm(H, W, octaves=4, base=60.0, gain=.5, seed=3) * .05
+alb += fbm(H, W, octaves=4, base=60.0, gain=.5, seed=3) * .03
 alb = np.clip(alb, .16, .95)
 rgb = np.stack([alb, alb * .985, alb * .955], -1)
 Image.fromarray((rgb * 255).astype(np.uint8)).save(os.path.join(OUT, 'albedo.jpg'), quality=84, optimize=True)
@@ -140,7 +140,7 @@ for i in range(140):
     r = 1.5 + r2.random() ** 2 * 6; cx, cy = r2.random() * S, r2.random() * S
     d = np.sqrt((dxx - cx) ** 2 + (dyy - cy) ** 2) / r; dh += np.clip(1 - d * d, 0, None) * r * 1.4
 gx = np.roll(dh, -1, 1) - np.roll(dh, 1, 1); gy = np.roll(dh, -1, 0) - np.roll(dh, 1, 0)
-nx, ny, nz = -gx * .55, -gy * .55, np.ones_like(gx); l = np.sqrt(nx * nx + ny * ny + nz * nz)
+nx, ny, nz = -gx * .35, -gy * .35, np.ones_like(gx); l = np.sqrt(nx * nx + ny * ny + nz * nz)
 dn = np.stack([(nx / l * .5 + .5), (-ny / l * .5 + .5), (nz / l * .5 + .5)], -1)
 Image.fromarray((dn * 255).astype(np.uint8)).save(os.path.join(OUT, 'detail.jpg'), quality=88, subsampling=0)
 
