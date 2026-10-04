@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "13"
+VER = "14"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -165,7 +165,7 @@ def team_grid():
            ("sashi",None,"RS","R. Sashi Sekhar","Head, Propulsion","Propulsion"),
            ("kesava",None,"KR","Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director","GNC"),
            ("venugopalan",None,"VS","Dr. Venugopalan Srinivasan","Head, Electrical Power","Power"),
-           ("sambasiva",None,"SR","Dr. V. Sambasiva Rao","Head, Communications","Communications"),
+           ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications","Communications"),
            ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival","Thermal"),
            ("rk",None,"RK","Dr. R.K. Srinivasan","Head, Structures · Chandrayaan-2/3 landing legs","Structures")]
     cards = ""

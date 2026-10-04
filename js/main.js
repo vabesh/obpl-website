@@ -130,8 +130,8 @@
     venugopalan: { img: null, name: 'Dr. Venugopalan Srinivasan', role: 'Head, Electrical Power', tag: 'Power', bio: [
       'Dr. Venugopalan Srinivasan heads electrical power, spanning the lander and orbiter power systems and the VSAT vertical solar array with its RHU and battery night-survival chain.',
       'He brings ISRO spacecraft power-system heritage to the programme.'] },
-    sambasiva: { img: null, name: 'Dr. V. Sambasiva Rao', role: 'Head, Communications', tag: 'Communications', bio: [
-      'Dr. V. Sambasiva Rao heads communications, covering the lander and rover links, the communications relay orbiter and the lunar 5G co-development with Tejas Networks.',
+    sambasiva: { img: 'assets/team-sambasiva.jpg', name: 'Dr. Sambasiva Rao Venigalla', role: 'Head, Communications', tag: 'Communications', bio: [
+      'Dr. Sambasiva Rao Venigalla heads communications, covering the lander and rover links, the communications relay orbiter and the lunar 5G co-development with Tejas Networks.',
       'He brings ISRO spacecraft communications heritage to the programme.'] },
     alok: { img: null, name: 'Dr. Alok Srivastava', role: 'Head, Thermal · lunar-night survival', tag: 'Thermal', bio: [
       'Dr. Alok Srivastava heads thermal engineering, including the lunar-night survival design that keeps landers and surface assets alive through fourteen days of darkness below minus 170 °C.',
