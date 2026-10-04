@@ -71,3 +71,8 @@ body.panel-open .spanel-scrim{opacity:1;pointer-events:auto}
 @media (max-width:900px){.svc-grid{grid-template-columns:1fr}.news,.offices{grid-template-columns:1fr}.s-rail{display:none}.s-caption{left:1rem;right:1rem;max-width:none;bottom:1rem;padding:1.1rem 1.2rem}.s-caption p{display:none}.shot .shot-t{display:none}.s-hero .acts .btn-ghost{display:none}#surfaceSection{height:760vh}}
 
 @media (max-width:560px){.brand .tagline{font-size:.46rem;letter-spacing:.22em}.brand img.word{height:15px}}
+
+.person .avatar{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:clamp(3rem,6vw,5rem);letter-spacing:-.04em;color:rgba(242,163,58,.85);background:radial-gradient(120% 90% at 50% 30%,rgba(26,45,82,.9),rgba(9,20,40,1))}
+.modal-card img[style*='display: none']+.modal-body{grid-column:1/-1}
+@media (max-width:1100px){.pillars[style*='repeat(4'],.road-grid[style*='repeat(4']{grid-template-columns:repeat(2,1fr)!important}}
+@media (max-width:560px){.pillars[style*='repeat(4'],.road-grid[style*='repeat(4']{grid-template-columns:1fr!important}}

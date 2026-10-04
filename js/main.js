@@ -113,7 +113,8 @@
 
   /* ---------- team modal ---------- */
   var TEAM = {
-    siba: { img: 'assets/team-siba.jpg', name: 'Siba Prasad Padhi', role: 'Founder & Chief Executive', tag: 'Leadership', bio: [
+    siba: { img: 'assets/team-siba.jpg', name: 'Siba Prasad Padhi', role: 'Founder & Director', tag: 'Leadership', bio: [
+      'Serial entrepreneur and former Director of Finance at ConEdison Communications, educated at NYU Stern, LSE and AIM.',
       'Siba Prasad Padhi is the founder of the ORBITBeyond group and the architect of Orbit Beyond Private Limited, the Indian company recognised by DPIIT as a startup in the Aerospace & Defence and Space Technology sector.',
       'He leads a two-entity structure: a US parent delivering lunar missions for NASA under the Commercial Lunar Payload Services programme, and the India company that designs and manufactures the OB-1 lunar lander, surface rovers, satellites and lunar AI compute payloads.',
       'An Odisha native, he is the driving force behind the proposed Global Space Systems Centre in Bhubaneswar, a programme designed to anchor India\'s private lunar story in his home state.'] },
@@ -121,10 +122,20 @@
       'Dr. S. Somanath is a distinguished space scientist with a career spanning nearly 40 years in launch vehicle systems engineering. He served as ISRO Chairman and Secretary of the Department of Space through January 2025.',
       'He oversaw the historic Chandrayaan-3 lunar south-pole landing, established India\'s National Space Policy and directed Space Vision-2047, including the Gaganyaan human spaceflight programme and the Bharatiya Antariksha Station. He previously directed the Vikram Sarabhai Space Centre and the Liquid Propulsion Systems Centre.',
       'He is a member of the US National Academy of Engineering, an IAF Hall of Fame inductee and recipient of the Von Kármán Award. He currently serves as Vikram Sarabhai Professor at ISRO and Chancellor of Chanakya University.'] },
-    krishnaswamy: { img: 'assets/team-krishnaswamy.jpg', name: 'Dr. M. Krishnaswamy', role: 'Chief Systems Engineer', tag: 'Engineering', bio: [
+    krishnaswamy: { img: 'assets/team-krishnaswamy.jpg', name: 'M. Krishnaswamy', role: 'Chief Systems Engineer · OB1 lander architect', tag: 'Engineering', bio: [
       'Dr. M. Krishnaswamy leads lunar lander configuration across the group and anchors the systems-engineering design authority that the India centre is built around.',
       'With over 40 years in space systems, he served as Programme Director and Outstanding Scientist at ISRO Satellite Centre, leading the Cartosat and TES high-resolution imaging programmes, guiding Chandrayaan-1 and IMS-1, and directing the NIUSAT nanosatellite mission.',
       'His honours include the IAA Laurel and ISRO\'s award for Overall Outstanding Contribution to Space.'] },
+    shreya: { img: null, name: 'Dr. Shreya Santra', role: 'Robotics & Autonomy', tag: 'Engineering', bio: [
+      'Dr. Shreya Santra leads robotics and autonomy at Orbit Beyond Private Limited, including the long-range rover platform and its AI-based autonomous navigation.',
+      'She holds a PhD from Tohoku University, where she led lunar rover autonomy research, and co-led lunar-base robotics in the Moonshot programme.',
+      'She is an International Astronautical Federation Emerging Space Leader.'] },
+    durga: { img: null, name: 'Y. V. Durga Prasad', role: 'Propulsion', tag: 'Engineering', bio: [
+      'Y. V. Durga Prasad leads propulsion, bringing more than six years of spacecraft propulsion experience.',
+      'He previously worked on lander propulsion at Starops, formerly TeamIndus, taking thrusters through to hot-fire testing.'] },
+    anand: { img: null, name: 'Anand Nagesh', role: 'Avionics & Communications', tag: 'Engineering', bio: [
+      'Anand Nagesh leads avionics and communications, with lunar electrical power system and battery-management design experience at BigDipper.',
+      'He trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
     rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'CFO Advisory', tag: 'Finance', bio: [
       'CA Rabindra Sahu serves as CFO Advisory for Orbit Beyond Private Limited, specialising as a Growth Partner and Virtual CFO Advisor for enterprises navigating finance and compliance in India.',
       'He transforms legacy business management systems into modern digitalised management systems, and advises global companies on setting up Indian subsidiaries as a transfer pricing consultant.',
@@ -133,7 +144,7 @@
   var modal = document.getElementById('teamModal');
   window.openTeam = function (k) {
     var t = TEAM[k]; if (!t || !modal) return;
-    modal.querySelector('img').src = t.img; modal.querySelector('img').alt = t.name;
+    var mi = modal.querySelector('img'); if (t.img) { mi.src = t.img; mi.alt = t.name; mi.style.display = ''; } else { mi.style.display = 'none'; }
     modal.querySelector('.tm-name').textContent = t.name; modal.querySelector('.tm-role').textContent = t.role;
     modal.querySelector('.tm-bio').innerHTML = t.bio.map(function (p) { return '<p>' + p + '</p>'; }).join('');
     modal.classList.add('open'); document.body.style.overflow = 'hidden';

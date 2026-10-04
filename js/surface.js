@@ -14,30 +14,34 @@
 
   /* ---------------- stations (draft specifications, to be confirmed by the company) ---------------- */
   var STATIONS = [
-    { id: 'vsat', n: '01', tag: 'Communications', title: 'Lunar VSAT Terminal', pos: [-10500, 0, -250], agl: 0,
-      short: 'High-gain terminal linking landers, rovers and the lunar 5G relay back to Bhubaneswar Mission Control.',
-      body: 'A deployable very-small-aperture terminal that gives every surface asset a direct Earth link and a path into the lunar 5G relay developed with Tejas Networks. It is the ground segment of the outpost: tracking, link budget and scheduling are run from Bhubaneswar.',
-      specs: [['Dish', '1.2 m deployable, 2-axis tracking'], ['Bands', 'S and Ka (draft)'], ['Downlink', 'up to 100 Mbps (draft)'], ['Network', 'Lunar 5G relay · Tejas Networks'], ['Control', 'Bhubaneswar Mission Control']], img: 'assets/wp-control.jpg', link: 'programmes.html#wp05' },
-    { id: 'lander', n: '02', tag: 'Transportation', title: 'OB-1 Lunar Lander', pos: [-6500, 0, 350], agl: 0,
-      short: 'Precision south-polar delivery. Landing legs and energy absorbers machined in Odisha.',
-      body: 'OB-1 is the group\'s lander for NASA CLPS and commercial customers, delivering up to 1,000 kg to the lunar south pole. The India centre holds design authority for the landing gear, shock attenuation and crushable energy absorbers, built on CTTC Bhubaneswar\'s ISRO-qualified precision base.',
-      specs: [['Payload', 'up to 1,000 kg to the south pole'], ['Landing gear', '4 deployable legs, crushable absorbers'], ['GNC lineage', 'ISRO · NASA Marshall · SpaceIL Beresheet'], ['First mission', '2029'], ['Built', 'Bhubaneswar · CTTC']], img: 'assets/wp-legs.jpg', link: 'programmes.html#wp01' },
-    { id: 'orbiter', n: '03', tag: 'Satellites', title: 'Relay & Awareness Orbiter', pos: [-2500, 300, -900], agl: 300, sky: true,
-      short: 'One common bus, three product lines: lunar 5G relay, cislunar awareness and resource mapping.',
-      body: 'A small satellite platform built in India on one common bus and sold in three configurations: a lunar 5G communications relay, a cislunar space-domain-awareness spacecraft at L1/L2 for the US Space Force, and a resource-mapping orbiter for India\'s mineral State. Export revenue from the first unit.',
-      specs: [['Platform', 'Common small-sat bus'], ['Lines', 'Comms relay · Cislunar awareness · Resource mapping'], ['Orbits', 'Lunar polar · Earth-Moon L1/L2'], ['Customers', 'USSF · group missions · commercial'], ['Built', 'Phase II production line']], img: 'assets/sat-color.jpg', link: 'programmes.html#wp03' },
-    { id: 'stirling', n: '04', tag: 'Power', title: 'Stirling Night-Power Generator', pos: [1500, 0, -300], agl: 0,
-      short: 'Keeps the outpost alive through the 354-hour lunar night.',
-      body: 'A free-piston Stirling converter with a deployable radiator, sized to keep electronics, batteries and compute warm and powered through fourteen days of darkness. It is the enabling unit behind the 14-day lunar night survival capability developed with Tec-Masters.',
-      specs: [['Cycle', 'Free-piston Stirling converter'], ['Night', '354 h continuous operation'], ['Output', 'kW-class (draft)'], ['Heat rejection', 'Deployable radiator panels'], ['Partner', 'Tec-Masters night survival']], img: null, link: 'programmes.html' },
-    { id: 'extract', n: '05', tag: 'Resources', title: 'Regolith Extraction Unit', pos: [5500, 0, 450], agl: 0,
-      short: 'Auger drill and hopper for volatiles and Helium-3 bearing regolith.',
-      body: 'A tracked excavation and extraction demonstrator: an auger drill brings regolith into a heated hopper where volatiles and Helium-3 are released and captured. It is the surface end of the group\'s lunar resource-return logistics and the proving ground for serial resource hardware built in Odisha.',
-      specs: [['Drill', 'Auger, 1 to 2 m depth (draft)'], ['Process', 'Thermal release of volatiles'], ['Target', 'Water ice · Helium-3 bearing regolith'], ['Mobility', 'Tracked base, rover-derived drive'], ['Built', 'Odisha production line']], img: 'assets/rover-color.jpg', link: 'programmes.html#wp02' },
-    { id: 'datacentre', n: '06', tag: 'Compute', title: 'LunarEdge AI Data Centre', pos: [9500, 0, -250], agl: 0,
-      short: 'Radiation-tolerant AI compute on the surface, packaged in Odisha.',
-      body: 'A containerised compute module that runs AI inference, autonomy and sensor processing at the Moon instead of round-tripping data to Earth. Its radiation-tolerant, thermally managed processors are an advanced-packaging problem, aligned with the 3D packaging facility at Info Valley, Khordha. Operated as LunarEdge.',
-      specs: [['Workloads', 'AI inference · autonomy · sensor fusion'], ['Packaging', 'Radiation-tolerant 3D packaging'], ['Thermal', 'Radiator wall · night survival'], ['Ecosystem', 'Info Valley, Khordha'], ['Operator', 'LunarEdge']], img: 'assets/wp-compute.jpg', link: 'programmes.html#wp04' }
+    { id: 'vsat', n: '01', tag: 'Power', title: 'Lunar Power · VSAT', pos: [-11000, 0, -250], agl: 0,
+      short: 'A 6 to 10 kW vertical solar array that keeps the outpost powered through the long polar day.',
+      body: 'VSAT is a deployable vertical solar array sized at 6 to 10 kW, built for the low sun angles of the lunar poles where a vertical panel catches light that a flat array would miss. Paired with radioisotope heater units and lunar batteries, it is the power backbone of every surface asset Orbit Beyond builds. Surface infrastructure needs kW-class power, and today only a handful of suppliers serve the surface.',
+      specs: [['Output', '6 to 10 kW, vertical deployable array'], ['Night survival', 'Radioisotope heater units and lunar batteries'], ['Site', 'Polar, low sun-angle operation'], ['Role', 'Power for landers, rovers and surface payloads'], ['Future', 'Lunar power-as-a-service']], img: null, link: 'programmes.html#stack' },
+    { id: 'night', n: '02', tag: 'Night survival', title: 'RHUs, Batteries & Stirling Night Unit', pos: [-7600, 0, 380], agl: 0,
+      short: 'Keeps landers and surface assets alive through 14 Earth days of darkness below minus 170 °C.',
+      body: 'Lunar missions stall at nightfall: roughly 14 Earth days of darkness below minus 170 °C, and few surface assets survive it today. Orbit Beyond\'s night-survival unit combines radioisotope heater units, lunar-rated batteries and a Stirling conversion stage with deployable radiators, so electronics, batteries and compute stay warm and powered until sunrise. Only about two suppliers serve this need on the surface.',
+      specs: [['Night', 'About 354 hours of darkness'], ['Thermal', 'Radioisotope heater units (RHUs)'], ['Storage', 'Lunar batteries, cold-rated'], ['Conversion', 'Stirling stage with deployable radiators'], ['Heritage', 'Thermal lead: Chandrayaan lunar-night survival']], img: null, link: 'programmes.html#stack' },
+    { id: 'rover', n: '03', tag: 'Mobility', title: 'Long-Range Rover Platform', pos: [-4200, 0, -300], agl: 0,
+      short: 'India-owned mobility IP: long-distance rovers with AI-based autonomous navigation.',
+      body: 'Mining, prospecting and logistics on the Moon need rovers that travel long distances, and very few have been built. Orbit Beyond\'s rover platform is designed for site survey, prospecting and mining logistics with AI-based autonomous navigation, developed under India-owned IP. The first prototype will be field-tested on lunar-analogue terrain within 18 months of the GENESIS programme.',
+      specs: [['Range', 'Long-distance traverse for prospecting and logistics'], ['Autonomy', 'AI-based autonomous navigation'], ['IP', 'Mobility platform owned in India'], ['Lead', 'Dr. Shreya Santra, Robotics & Autonomy'], ['Milestone', 'Analogue-terrain prototype within 18 months']], img: 'assets/rover-color.jpg', link: 'programmes.html#stack' },
+    { id: 'extract', n: '04', tag: 'Resources', title: 'Helium-3 Extraction', pos: [-800, 0, 420], agl: 0,
+      short: 'Regolith processing and Helium-3 separation for quantum computing, medical imaging and fusion.',
+      body: 'Helium-3 is scarce on Earth and demand from quantum computing, medical imaging and future fusion is already being contracted through offtake agreements worth hundreds of millions of dollars. Orbit Beyond is developing regolith processing and Helium-3 separation on India-owned IP, starting with an extraction and purification bench demonstrator, with surface units to follow.',
+      specs: [['Process', 'Regolith heating and He-3 separation'], ['Demand', 'Quantum computing, medical, fusion'], ['IP', 'Extraction system owned in India'], ['Milestone', 'Bench demonstrator within 18 months'], ['Built', 'Odisha production line']], img: null, link: 'programmes.html#stack' },
+    { id: 'lander', n: '05', tag: 'Systems', title: 'OB1 Lunar Lander', pos: [3000, 0, -350], agl: 0,
+      short: 'Full-system lander engineering under a ₹200 Cr programme, completion targeted for 2029.',
+      body: 'OB1 is the group\'s lunar lander for NASA CLPS and commercial customers. Orbit Beyond Pvt Ltd holds the engineering scope: full-system design, payloads, integration and test, delivered milestone by milestone from system requirements review through preliminary and critical design, structures and integration. Ex-ISRO Chandrayaan leads head every subsystem, from the landing legs to propulsion, thermal, communications, guidance and power.',
+      specs: [['Scope', 'Design, payloads, integration and test'], ['Milestones', 'SRR, PDR, CDR, structures, integration'], ['Completion', 'Targeted 2029'], ['Architect', 'M. Krishnaswamy, Chief Systems Engineer'], ['Legs heritage', 'Chandrayaan-2/3 landing legs']], img: 'assets/wp-legs.jpg', link: 'programmes.html#programme' },
+    { id: 'orbiter', n: '06', tag: 'Systems', title: 'Communications Relay Orbiter', pos: [6800, 300, -900], agl: 300, sky: true,
+      short: 'No lunar relay network exists today. The orbiter links landers and rovers back to Earth.',
+      body: 'Surface assets on the far side, in craters and across the poles need a relay. Orbit Beyond is engineering a communications relay orbiter as part of its contracted programme, alongside lunar 5G co-development with Tejas Networks. The same platform supports exploration payloads and, in later configurations, cislunar awareness and resource mapping.',
+      specs: [['Role', 'Relay for landers, rovers and surface payloads'], ['Network', 'Lunar 5G co-development with Tejas Networks (LOI targeted)'], ['Programme', 'Contracted scope with Orbit Beyond, Inc.'], ['Lead', 'Dr. V. Sambasiva Rao, Communications'], ['Delivery', 'Orbiter testing FY28, delivery FY29']], img: 'assets/sat-color.jpg', link: 'programmes.html#programme' },
+    { id: 'datacentre', n: '07', tag: 'Compute', title: 'AI Data Centre Prototype', pos: [10200, 0, -250], agl: 0,
+      short: 'Radiation-tolerant AI compute on the surface, prototyped under the contracted programme.',
+      body: 'A containerised compute module that runs AI inference, autonomy and sensor processing at the Moon instead of round-tripping data to Earth. The prototype is part of the ₹200 Cr programme with design reviews in FY27 and a demonstration targeted for FY29. Its radiation-tolerant, thermally managed processors align with the advanced packaging ecosystem at Info Valley, Khordha. Operated as LunarEdge.',
+      specs: [['Workloads', 'AI inference, autonomy, sensor fusion'], ['Packaging', 'Radiation-tolerant 3D packaging, Odisha'], ['Thermal', 'Radiator wall, night survival'], ['Milestone', 'Design reviews FY27, demo FY29'], ['Operator', 'LunarEdge']], img: 'assets/wp-compute.jpg', link: 'programmes.html#programme' }
   ];
   window.OB_STATIONS = STATIONS;
 
@@ -115,16 +119,33 @@
   function dish(r) { var d = new THREE.Mesh(new THREE.SphereGeometry(r, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2.4), M.rad); d.castShadow = true; return d; }
 
   function buildVSAT() {
+    // vertical solar array: tall mast with two panel wings, RHU/battery pallet at the base
     var g = new THREE.Group();
-    for (var i = 0; i < 3; i++) { var a = i * Math.PI * 2 / 3, leg = mesh(new THREE.CylinderGeometry(.06, .08, 3.2, 8), M.steel, Math.cos(a) * 1.3, 1.5, Math.sin(a) * 1.3); leg.lookAt(new THREE.Vector3(0, 3.1, 0)); leg.rotateX(Math.PI / 2); g.add(leg); g.add(mesh(new THREE.CylinderGeometry(.3, .35, .15, 10), M.gold, Math.cos(a) * 1.35, .05, Math.sin(a) * 1.35)); }
-    g.add(mesh(new THREE.CylinderGeometry(.25, .25, .6, 12), M.dark, 0, 3.2, 0));
-    var head = new THREE.Group(); head.position.y = 3.6; g.add(head);
-    var d = dish(1.6); d.rotation.x = Math.PI * .62; d.position.y = .4; head.add(d);
-    head.add(mesh(new THREE.CylinderGeometry(.04, .04, 1.9, 6), M.steel, 0, .9, -.9)); head.add(mesh(new THREE.ConeGeometry(.14, .3, 10), M.white, 0, 1.3, -1.6));
-    var box = mesh(new THREE.BoxGeometry(1.6, .9, .8), M.gold, 2.6, .5, 0); g.add(box); g.add(mesh(new THREE.BoxGeometry(1.7, .04, .9), M.panel, 2.6, .97, 0));
-    g.add(mesh(new THREE.BoxGeometry(.08, .08, .08), M.glow, 1.9, .8, .3));
-    g.userData.anim = function (t) { head.rotation.y = Math.sin(t * .15) * .4; d.rotation.x = Math.PI * .62 + Math.sin(t * .1) * .08; };
-    g.userData.anchor = new THREE.Vector3(0, 5.0, 0); return g;
+    g.add(mesh(new THREE.BoxGeometry(3.4, .35, 3.4), M.dark, 0, .18, 0));
+    for (var i = 0; i < 4; i++) { var a = i * Math.PI / 2 + Math.PI / 4; g.add(mesh(new THREE.CylinderGeometry(.22, .3, .3, 10), M.gold, Math.cos(a) * 2.0, .15, Math.sin(a) * 2.0)); g.add(mesh(new THREE.CylinderGeometry(.05, .06, 2.2, 8), M.steel, Math.cos(a) * 1.2, 1.1, Math.sin(a) * 1.2).rotateZ(0)); }
+    g.add(mesh(new THREE.CylinderGeometry(.16, .22, 9.5, 12), M.steel, 0, 5.0, 0));
+    var wings = new THREE.Group(); wings.position.y = 5.6; g.add(wings);
+    for (var s = -1; s <= 1; s += 2) {
+      wings.add(mesh(new THREE.BoxGeometry(3.6, 7.6, .06), M.panel, s * 2.0, 0, 0));
+      wings.add(mesh(new THREE.BoxGeometry(3.7, .08, .14), M.steel, s * 2.0, 3.85, 0)); wings.add(mesh(new THREE.BoxGeometry(3.7, .08, .14), M.steel, s * 2.0, -3.85, 0));
+      for (var r = -3; r <= 3; r++) wings.add(mesh(new THREE.BoxGeometry(3.6, .02, .08), M.dark, s * 2.0, r * 1.05, .04));
+    }
+    g.add(mesh(new THREE.CylinderGeometry(.5, .5, .5, 16), M.gold, 0, 9.9, 0));
+    var rhu = mesh(new THREE.BoxGeometry(1.4, .9, .9), M.white, 2.1, .8, 1.3); g.add(rhu); g.add(mesh(new THREE.BoxGeometry(1.5, .06, 1.0), M.orange, 2.1, 1.28, 1.3));
+    g.add(mesh(new THREE.BoxGeometry(1.6, .7, .8), M.gold, -2.0, .7, -1.2)); g.add(mesh(new THREE.BoxGeometry(.1, .1, .1), M.glow, -1.2, 1.0, -1.2));
+    g.userData.anim = function (t) { wings.rotation.y = Math.sin(t * .05) * .35 + .4; };
+    g.userData.anchor = new THREE.Vector3(0, 10.8, 0); return g;
+  }
+  function buildRover() {
+    var g = new THREE.Group();
+    g.add(mesh(new THREE.BoxGeometry(2.6, .7, 1.7), M.gold, 0, 1.0, 0)); g.add(mesh(new THREE.BoxGeometry(2.9, .05, 1.9), M.panel, 0, 1.38, 0));
+    var wheels = [];
+    for (var s = -1; s <= 1; s += 2) for (var i = -1; i <= 1; i++) { var w = mesh(new THREE.CylinderGeometry(.42, .42, .32, 18), M.steel, i * 1.05, .42, s * 1.05); w.rotation.x = Math.PI / 2; g.add(w); wheels.push(w); g.add(mesh(new THREE.BoxGeometry(.12, .5, .12), M.dark, i * 1.05, .75, s * .85)); }
+    g.add(mesh(new THREE.CylinderGeometry(.05, .05, 1.4, 8), M.steel, .9, 2.1, -.4)); g.add(mesh(new THREE.BoxGeometry(.5, .25, .22), M.white, .9, 2.85, -.4)); g.add(mesh(new THREE.BoxGeometry(.08, .08, .08), M.glow, .9, 2.85, -.27));
+    g.add(mesh(new THREE.BoxGeometry(.6, .4, .5), M.white, -1.0, 1.6, .4)); var d = dish(.35); d.rotation.x = Math.PI * .7; d.position.set(-1.0, 2.0, .4); g.add(d);
+    g.add(mesh(new THREE.BoxGeometry(.9, .14, .14), M.steel, 1.5, 1.15, .5).rotateZ(-.5)); g.add(mesh(new THREE.BoxGeometry(.3, .3, .3), M.dark, 1.95, .75, .5));
+    g.userData.anim = function (t) { var v = (Math.sin(t * .35) + 1) * .5; wheels.forEach(function (w) { w.rotation.y += v * .04; }); g.position.x = g.userData.x0 + Math.sin(t * .35) * 6; g.rotation.y = Math.cos(t * .35) * .1; };
+    g.userData.anchor = new THREE.Vector3(0, 3.6, 0); return g;
   }
   function buildLander() {
     var g = window.OBLander ? OBLander.build() : new THREE.Group(); g.scale.setScalar(2.8); g.position.y = 2.98;
@@ -140,9 +161,9 @@
     g.add(mesh(new THREE.CylinderGeometry(.05, .05, 2.4, 6), M.steel, 0, 2.3, -.6)); g.add(mesh(new THREE.SphereGeometry(.12, 8, 8), M.glow, 0, 3.5, -.6));
     g.add(mesh(new THREE.CylinderGeometry(.5, .7, .6, 16), M.steel, 0, 0, -1.6).rotateX(Math.PI / 2));
     g.scale.setScalar(9); g.userData.anchor = new THREE.Vector3(0, 0, 0);
-    g.userData.anim = function (t, k) { g.rotation.y = t * .08; g.rotation.z = .3; g.position.x = -2500 + Math.sin(t * .05) * 120; }; return g;
+    g.userData.anim = function (t, k) { g.rotation.y = t * .08; g.rotation.z = .3; g.position.x = g.userData.x0 + Math.sin(t * .05) * 120; }; return g;
   }
-  function buildStirling() {
+  function buildNight() {
     var g = new THREE.Group();
     g.add(mesh(new THREE.BoxGeometry(5, .4, 3), M.dark, 0, .2, 0)); g.add(mesh(new THREE.CylinderGeometry(.9, .9, 3.2, 20), M.white, 0, 1.4, 0).rotateZ(Math.PI / 2));
     for (var i = 0; i < 9; i++) g.add(mesh(new THREE.BoxGeometry(.06, 2.6, 2.4), M.rad, -3.2 - i * .32, 1.9, 0));
@@ -174,9 +195,9 @@
     var d = dish(.9); d.rotation.x = Math.PI * .7; d.position.set(-3.6, 3.6, 1.2); g.add(d); g.add(mesh(new THREE.CylinderGeometry(.06, .06, 1.2, 6), M.steel, -3.6, 3.1, 1.2));
     g.userData.anchor = new THREE.Vector3(0, 6.6, 0); g.userData.anim = function (t) { d.rotation.y = Math.sin(t * .2) * .5; }; return g;
   }
-  var builders = { vsat: buildVSAT, lander: buildLander, orbiter: buildOrbiter, stirling: buildStirling, extract: buildExtractor, datacentre: buildDataCentre };
+  var builders = { vsat: buildVSAT, night: buildNight, rover: buildRover, extract: buildExtractor, lander: buildLander, orbiter: buildOrbiter, datacentre: buildDataCentre };
   var objects = {};
-  STATIONS.forEach(function (s) { var o = builders[s.id](); o.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); o.position.set(s.pos[0], s.pos[1], s.pos[2]); scene.add(o); objects[s.id] = o; });
+  STATIONS.forEach(function (s) { var o = builders[s.id](); o.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); o.position.set(s.pos[0], s.pos[1], s.pos[2]); o.userData.x0 = s.pos[0]; scene.add(o); objects[s.id] = o; });
   // a few boulders around the sites
   var rocks = new THREE.Group(); scene.add(rocks); var rockMat = new THREE.MeshStandardMaterial({ color: 0x5e5a55, roughness: 1, flatShading: true });
   function rockGeo() { var g = new THREE.DodecahedronGeometry(1, 1), pa = g.attributes.position; for (var i = 0; i < pa.count; i++) { var k = .75 + Math.random() * .5; pa.setXYZ(i, pa.getX(i) * k, pa.getY(i) * (k * .8), pa.getZ(i) * k); } g.computeVertexNormals(); return g; }
@@ -194,13 +215,13 @@
   // between stations the camera cruises at altitude. Ground clearance is enforced at runtime.
   var KEYS = [];
   function K(p, pos, look, stop) { KEYS.push({ p: p, pos: new THREE.Vector3(pos[0], pos[1], pos[2]), look: new THREE.Vector3(look[0], look[1], look[2]), stop: !!stop }); }
-  var OFFS = { vsat: [27, 6.5, 23], lander: [34, 9, -27], orbiter: [90, 0, 420], stirling: [25, 6, 21], extract: [31, 7.5, -24], datacentre: [36, 8, 28] };
-  var WIN = [[.11, .24], [.24, .37], [.37, .50], [.50, .63], [.63, .76], [.76, .89]];
+  var OFFS = { vsat: [34, 7, 30], night: [25, 6, 21], rover: [26, 6, 22], extract: [31, 7.5, -24], lander: [34, 9, -27], orbiter: [90, 0, 420], datacentre: [36, 8, 28] };
+  var WIN = (function () { var n = STATIONS.length, out = [], a = .10, b = .90, w = (b - a) / n; for (var i = 0; i < n; i++) out.push([a + i * w, a + (i + 1) * w]); return out; })();
   function buildPath() {
     KEYS.length = 0;
     var g = function (x, z) { return ground(x, z); };
     K(0.00, [-16000, g(-16000, 2600) + 2600, 2600], [-9500, 100, 0], true);
-    K(0.07, [-12600, g(-12600, 1100) + 380, 1100], [-10500, 60, -250], false);
+    K(0.06, [-13000, g(-13000, 1100) + 380, 1100], [-11000, 60, -250], false);
     var prev = null;
     STATIONS.forEach(function (s, i) {
       var o = objects[s.id], P = o.position, off = OFFS[s.id], w = WIN[i];
@@ -210,8 +231,8 @@
         var mx = (prev[0] + cam[0]) / 2, mz = (prev[2] + cam[2]) / 2 + 260;
         K(w[0] - .005, [mx, g(mx, mz) + 140, mz], [cam[0] + 200, cam[1] + 10, cam[2]], false);
       }
-      K(w[0] + .035, cam, look, true);
-      K(w[1] - .035, [cam[0] + off[0] * .08, cam[1] + .6, cam[2] + off[2] * .08], look, true);
+      K(w[0] + .03, cam, look, true);
+      K(w[1] - .03, [cam[0] + off[0] * .08, cam[1] + .6, cam[2] + off[2] * .08], look, true);
       prev = cam;
     });
     K(0.93, [11800, g(11800, 900) + 650, 900], [14500, 300, -1200], false);
@@ -243,7 +264,7 @@
     if (progEl) progEl.style.setProperty('--p', (p * 100).toFixed(1) + '%');
     if (si !== lastStation) {
       lastStation = si;
-      if (si >= 0) { var s = STATIONS[si]; captionEl.innerHTML = '<div class="sc-k">' + s.n + ' / 06 · ' + s.tag + '</div><h3>' + s.title + '</h3><p>' + s.short + '</p><button class="btn" onclick="openStation(\'' + s.id + '\')">Open details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>'; captionEl.classList.add('on'); }
+      if (si >= 0) { var s = STATIONS[si]; captionEl.innerHTML = '<div class="sc-k">' + s.n + ' / 0' + STATIONS.length + ' · ' + s.tag + '</div><h3>' + s.title + '</h3><p>' + s.short + '</p><button class="btn" onclick="openStation(\'' + s.id + '\')">Open details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>'; captionEl.classList.add('on'); }
       else captionEl.classList.remove('on');
       document.querySelectorAll('.sdot').forEach(function (d, i) { d.classList.toggle('on', i === si); });
     }
@@ -251,7 +272,7 @@
   var panel = document.getElementById('stationPanel');
   window.openStation = function (id) {
     var s = STATIONS.filter(function (x) { return x.id === id; })[0]; if (!s || !panel) return;
-    panel.querySelector('.sp-k').textContent = s.n + ' / 06 · ' + s.tag; panel.querySelector('.sp-t').textContent = s.title; panel.querySelector('.sp-b').textContent = s.body;
+    panel.querySelector('.sp-k').textContent = s.n + ' / 0' + STATIONS.length + ' · ' + s.tag; panel.querySelector('.sp-t').textContent = s.title; panel.querySelector('.sp-b').textContent = s.body;
     panel.querySelector('.sp-specs').innerHTML = s.specs.map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>'; }).join('');
     var im = panel.querySelector('.sp-img'); if (s.img) { im.src = s.img; im.style.display = ''; } else { im.style.display = 'none'; }
     panel.querySelector('.sp-link').href = s.link; panel.classList.add('open'); document.body.classList.add('panel-open');
