@@ -9,7 +9,7 @@
   var isSmall = Math.min(innerWidth, innerHeight) < 700 || !window.matchMedia('(pointer:fine)').matches;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var WX = 30000, WZ = 12000, HMAX = 1213, SEG_X = isSmall ? 512 : 1024, SEG_Z = isSmall ? 205 : 410;
+  var WX = 30000, WZ = 12000, HMAX = 1204, SEG_X = isSmall ? 512 : 1024, SEG_Z = isSmall ? 205 : 410;
   var SKY = 0x070c1a;
 
   /* ---------------- stations (draft specifications, to be confirmed by the company) ---------------- */

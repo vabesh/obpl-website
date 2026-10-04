@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "30"
+VER = "31"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
