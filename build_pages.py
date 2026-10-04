@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "39"
+VER = "40"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -234,16 +234,8 @@ index_body = f"""
   {team_grid()}
 </div></section>
 
-<section class="section" id="newsletter" style="padding-top:0"><div class="wrap"><div class="glass news" style="padding:clamp(2rem,4vw,3.5rem)">
-  <div class="rv"><div class="eyebrow">02 · Newsletter</div><h2 style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Dispatches from <span class="grad">orbit to outpost.</span></h2>
-    <p class="lede" style="margin-top:1rem">Programme milestones and lunar resource notes, a few times a year. No noise.</p>
-    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:info@obpl.com?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
-      <input type="email" name="email" placeholder="you@organisation.com" required /><button class="btn" type="submit">Subscribe {ARROW}</button></form></div>
-  <div class="rv rv-d2"><div class="glass img-card duo" style="min-height:300px;border-radius:var(--r)"><img src="assets/wp-lander.jpg" alt="Lander integration" loading="lazy" /><div class="ov"></div><div class="cap-ov"><span class="chip">Latest · Helium-3 and the return trip</span></div></div></div>
-</div></div></section>
-
 <section class="section" id="services" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">03 · Services</div><h2>What we deliver, <span class="grad">end to end.</span></h2></div>
+  <div class="sec-head rv"><div><div class="eyebrow">02 · Services</div><h2>What we deliver, <span class="grad">end to end.</span></h2></div>
     <p class="lede">From a payload slot on OB1 to India-owned products for the lunar economy.</p></div>
   <div class="svc-grid">
     <div class="svc glass tilt rv"><div class="k">S01 · Today</div><div><h3>Contract engineering</h3><p>Full-system lander, orbiter and payload engineering on milestones: SRR, PDR, CDR, structures, integration and test.</p></div></div>
@@ -254,6 +246,14 @@ index_body = f"""
     <div class="svc glass tilt rv rv-d2"><div class="k">S06</div><div><h3>Mission support &amp; manufacturing</h3><p>Mission support services, plus rover, satellite and lander-component production.</p></div></div>
   </div>
 </div></section>
+
+<section class="section" id="newsletter" style="padding-top:0"><div class="wrap"><div class="glass news" style="padding:clamp(2rem,4vw,3.5rem)">
+  <div class="rv"><div class="eyebrow">03 · Newsletter</div><h2 style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Dispatches from <span class="grad">orbit to outpost.</span></h2>
+    <p class="lede" style="margin-top:1rem">Programme milestones and lunar resource notes, a few times a year. No noise.</p>
+    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:info@obpl.com?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
+      <input type="email" name="email" placeholder="you@organisation.com" required /><button class="btn" type="submit">Subscribe {ARROW}</button></form></div>
+  <div class="rv rv-d2"><div class="glass img-card duo" style="min-height:300px;border-radius:var(--r)"><img src="assets/wp-lander.jpg" alt="Lander integration" loading="lazy" /><div class="ov"></div><div class="cap-ov"><span class="chip">Latest · Helium-3 and the return trip</span></div></div></div>
+</div></div></section>
 
 {cta("Talk to us about lunar systems engineering in India.", "Payload customers, industry partners, research institutions and press: we respond within two business days.")}
 """
@@ -302,7 +302,7 @@ about_body = f"""
     <ul class="cert-pts"><li><i>№</i><div><b>DIPP285038</b><span>Certificate number</span></div></li><li><i>25.9</i><div><b>Issued 25 September 2026</b><span>Valid up to 26 December 2032</span></div></li><li><i>IN</i><div><b>Self-certified sector</b><span>Aeronautics, Aerospace &amp; Defence · Space Technology</span></div></li></ul></div>
 </div></div></section>
 
-{cta("Meet the people behind the programme.", "A founder and seven ex-ISRO subsystem heads.", "Meet the team", "team.html", "Contact us", "contact.html")}
+{cta("Meet the people behind the programme.", "The founding members and the team behind the programme.", "Meet the team", "team.html", "Contact us", "contact.html")}
 """
 
 # =============================== PROGRAMMES ===============================
@@ -323,7 +323,7 @@ programmes_body = f"""
 </div></section>
 <section class="section" id="stack" style="padding-top:1rem"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Product, technology &amp; innovation</div><h2>An integrated <span class="grad">lunar infrastructure stack.</span></h2></div>
-    <p class="lede">Six systems, from surface power to the lander and orbiter, with the mobility platform and Helium-3 extraction IP owned in India.</p></div>
+    <p class="lede">Six systems, from surface power to the lander and orbiter, engineered in India with the mobility platform and Helium-3 extraction IP owned here.</p></div>
   <div class="pillars">
     <div class="pillar glass tilt rv"><div class="ic">{ICONS['bolt']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Power</div><h3>Lunar power · VSAT</h3><p>6 to 10 kW vertical solar array with radioisotope heater units for lunar night survival.</p></div>
     <div class="pillar glass tilt rv rv-d1"><div class="ic">{ICONS['shield']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Night survival</div><h3>RHUs and lunar batteries</h3><p>Keep landers and surface assets alive. Only about two suppliers serve the surface today.</p></div>
