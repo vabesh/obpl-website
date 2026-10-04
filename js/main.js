@@ -124,7 +124,7 @@
       'Dr. Shreya Santra leads robotics and autonomy at Orbit Beyond Private Limited, including the long-range rover platform and its AI-based autonomous navigation.',
       'She holds a PhD from Tohoku University, where she led lunar rover autonomy research, and co-led lunar-base robotics in the Moonshot programme.',
       'She is an International Astronautical Federation Emerging Space Leader.'] },
-    durga: { img: null, name: 'Y. V. Durga Prasad', role: 'Propulsion', tag: 'Founding member', bio: [
+    durga: { img: 'assets/team-durga.jpg', name: 'Y. V. Durga Prasad', role: 'Propulsion', tag: 'Founding member', bio: [
       'Y. V. Durga Prasad brings more than six years of spacecraft propulsion experience to the founding team.',
       'He previously worked on lander propulsion at Starops, formerly TeamIndus, taking thrusters through to hot-fire testing.'] },
     anand: { img: 'assets/team-anand.jpg', name: 'Anand Nagesh', role: 'Avionics & Communications', tag: 'Founding member', bio: [
