@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "21"
+VER = "22"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -313,7 +313,7 @@ programmes_body = f"""
   <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Programmes</span></div>
   <div class="eyebrow">What we build in India</div>
   <h1>Power, mobility, resources, <span class="grad">landers and orbiters.</span></h1>
-  <p class="lede">The integrated lunar infrastructure stack Orbit Beyond engineers in India, and the ₹200 crore programme under contract.</p>
+  <p class="lede">The integrated lunar infrastructure stack Orbit Beyond engineers in India.</p>
 </div></section>
 <section class="section" id="stack" style="padding-top:1rem"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Product, technology &amp; innovation</div><h2>An integrated <span class="grad">lunar infrastructure stack.</span></h2></div>
@@ -325,21 +325,6 @@ programmes_body = f"""
     <div class="pillar glass tilt rv"><div class="ic">{ICONS['cube']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Resources</div><h3>Helium-3 extraction</h3><p>Regolith processing and Helium-3 separation for quantum computing, medical and fusion demand.</p></div>
     <div class="pillar glass tilt rv rv-d1"><div class="ic">{ICONS['layers']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Systems</div><h3>Lander and orbiter engineering</h3><p>Full-system design, payloads, integration and test: the OB1 lander scope and a relay orbiter.</p></div>
     <div class="pillar glass tilt rv rv-d2"><div class="ic">{ICONS['people']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Why Orbit Beyond</div><h3>Chandrayaan heritage</h3><p>Ex-ISRO Chandrayaan leads head each subsystem, an Indian engineering cost base, and IP held in India.</p></div>
-  </div>
-</div></section>
-
-<section class="section" id="programme" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Programme under contract</div><h2>A ₹200 crore flight programme <span class="grad">is underway.</span></h2></div>
-    <p class="lede">An engineering services, supply and development agreement with our customer, Orbit Beyond, Inc. (USA), effective 1 April 2026, delivered milestone by milestone.</p></div>
-  <div class="split">
-    <div class="glass tilt rv" style="padding:1.2rem 1.6rem"><table class="table"><tr><th>Project</th><th>Scope</th><th>Value</th></tr>
-      <tr><td>OB1 lunar lander</td><td>Full-system design, payloads, integration and test</td><td>₹93.92 Cr</td></tr>
-      <tr><td>Communications relay orbiter</td><td>Relay and exploration orbiter, design through delivery</td><td>₹53.08 Cr</td></tr>
-      <tr><td>AI data centre prototype</td><td>Radiation-tolerant lunar compute demonstrator</td><td>₹53.00 Cr</td></tr>
-      <tr><td><b>Total</b></td><td>Approximately US$20.7M</td><td><b>₹200 Cr</b></td></tr></table></div>
-    <div class="rv rv-d2"><div class="eyebrow">Milestone-driven delivery</div>
-      <div class="wp-detail" style="border-top:0;padding-top:0"><ul><li><b>SRR</b> system requirements review</li><li><b>PDR</b> preliminary design review</li><li><b>CDR</b> critical design review</li><li><b>Structures</b> qualification structure and environmental test</li><li><b>Integration</b> and acceptance, OB1 completion targeted in 2029</li></ul></div>
-    </div>
   </div>
 </div></section>
 
@@ -393,6 +378,6 @@ contact_body = f"""
 
 shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
 shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure for its customer Orbit Beyond, Inc. (USA).", about_body)
-shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack and ₹200 Cr contracted programme.", programmes_body)
+shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
 shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: founding members Siba Prasad Padhi and Dr. M. Krishnaswamy, and an advisory committee of ex-ISRO subsystem heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
 shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: engineering office at World Trade Center, Bengaluru, and registered office in Bhubaneswar.", contact_body)
