@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "12"
+VER = "13"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -160,19 +160,19 @@ def numbers():
 </div>"""
 
 def team_grid():
-    ppl = [("siba","assets/team-siba.jpg","Siba Prasad Padhi","Founder & Director","Leadership"),
-           ("krishnaswamy","assets/team-krishnaswamy.jpg","M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect","Engineering"),
-           ("somanath","assets/team-somanath.jpg","Dr. S. Somanath","Strategic Advisor · Former ISRO Chairman","Advisory"),
-           ("rabindra","assets/team-rabindra.jpg","CA Rabindra Sahu","CFO Advisory","Finance")]
-    cards = "".join(f"""<div class="person glass tilt rv" onclick="openTeam('{k}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openTeam('{k}')"><img src="{img}" alt="{n}" loading="lazy" /><div class="ov"></div><span class="tag">{tag}</span><div class="meta"><h3>{n}</h3><div class="r">{r}</div></div></div>""" for k,img,n,r,tag in ppl)
-    initials = [("shreya","SS","Dr. Shreya Santra","Robotics & Autonomy","Engineering"),("durga","DP","Y. V. Durga Prasad","Propulsion","Engineering"),("anand","AN","Anand Nagesh","Avionics & Communications","Engineering")]
-    cards += "".join(f"""<div class="person glass tilt rv" onclick="openTeam('{k}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openTeam('{k}')"><div class="avatar">{ini}</div><div class="ov"></div><span class="tag">{tag}</span><div class="meta"><h3>{n}</h3><div class="r">{r}</div></div></div>""" for k,ini,n,r,tag in initials)
+    ppl = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director","Leadership"),
+           ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect","Systems"),
+           ("sashi",None,"RS","R. Sashi Sekhar","Head, Propulsion","Propulsion"),
+           ("kesava",None,"KR","Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director","GNC"),
+           ("venugopalan",None,"VS","Dr. Venugopalan Srinivasan","Head, Electrical Power","Power"),
+           ("sambasiva",None,"SR","Dr. V. Sambasiva Rao","Head, Communications","Communications"),
+           ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival","Thermal"),
+           ("rk",None,"RK","Dr. R.K. Srinivasan","Head, Structures · Chandrayaan-2/3 landing legs","Structures")]
+    cards = ""
+    for k,img,ini,n,r,tag in ppl:
+        visual = f'<img src="{img}" alt="{n}" loading="lazy" />' if img else f'<div class="avatar">{ini}</div>'
+        cards += f"""<div class="person glass tilt rv" onclick="openTeam('{k}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openTeam('{k}')">{visual}<div class="ov"></div><span class="tag">{tag}</span><div class="meta"><h3>{n}</h3><div class="r">{r}</div></div></div>"""
     return '<div class="team-grid">' + cards + '</div>'
-
-def subsystem_heads():
-    heads = [("Dr. R.K. Srinivasan","Head, Structures","Chandrayaan-2/3 landing legs"),("Dr. B.K. Venkataramu","Head, Propulsion",""),("Dr. Shashi Sekhar","Head, Propulsion",""),("Dr. Alok Shrivastava","Head, Thermal","Lunar-night survival"),("Dr. V. Sambasiva Rao","Head, Communications",""),("Dr. V. Kesava Raju","Head, GNC","Mars Orbiter Mission Director"),("Dr. S. Venugopalan","Head, Electrical Power","")]
-    rows = "".join(f"<tr><td>{n}</td><td>{r}</td><td>{h}</td></tr>" for n,r,h in heads)
-    return f"""<div class="glass rv" style="padding:1.2rem 1.6rem"><table class="table"><tr><th>Subsystem head (ex-ISRO)</th><th>Role</th><th>Heritage</th></tr>{rows}</table></div>"""
 
 def wp_cards():
     data = [("01","Lander Leg Development","assets/wp-legs.jpg","legs","Deployable landing gear, shock-attenuation struts and crushable energy absorbers, machined on CTTC Bhubaneswar's ISRO-qualified base."),
@@ -219,7 +219,7 @@ index_body = f"""
 
 <section class="section" id="people"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">01 · People</div><h2>Built by engineers who have <span class="grad">landed on the Moon.</span></h2></div>
-    <p class="lede">Leadership and advisors drawn from ISRO, NASA and the finance community that scales Indian deep-tech.</p></div>
+    <p class="lede">A founder and seven ex-ISRO Chandrayaan engineers, each heading a subsystem of the lander, orbiter and surface programmes.</p></div>
   {team_grid()}
 </div></section>
 
@@ -310,7 +310,7 @@ about_body = f"""
 <section class="section" style="padding-top:0"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Engineering lineage</div><h2>Three communities that have <span class="grad">attempted a soft landing.</span></h2></div></div>
   <div class="bento">
-    <div class="glass tilt b-4 rv"><div class="big grad">ISRO</div><div class="cap">Chandrayaan heritage</div><p style="margin-top:1rem;font-size:.92rem">Former ISRO Chairman Dr. S. Somanath advises the programme. Chief Systems Engineer Dr. M. Krishnaswamy led Cartosat and guided Chandrayaan-1.</p></div>
+    <div class="glass tilt b-4 rv"><div class="big grad">ISRO</div><div class="cap">Chandrayaan heritage</div><p style="margin-top:1rem;font-size:.92rem">Chief Systems Engineer Dr. M. Krishnaswamy led Cartosat and guided Chandrayaan-1; the structures, propulsion, GNC, power, communications and thermal heads all come from ISRO.</p></div>
     <div class="glass tilt b-4 rv rv-d1"><div class="big grad">NASA</div><div class="cap">Marshall Space Flight Center</div><p style="margin-top:1rem;font-size:.92rem">Mission control is paired with NASA Marshall in Huntsville, giving dual control during descent with no single point of failure.</p></div>
     <div class="glass tilt b-4 rv rv-d2"><div class="big grad">Beresheet</div><div class="cap">SpaceIL GNC engineers</div><p style="margin-top:1rem;font-size:.92rem">Guidance, navigation and control know-how from Israel's private lunar programme is co-developed with the India team.</p></div>
   </div>
@@ -325,7 +325,7 @@ about_body = f"""
     <ul class="cert-pts"><li><i>№</i><div><b>DIPP285038</b><span>Certificate number</span></div></li><li><i>25.9</i><div><b>Issued 25 September 2026</b><span>Valid up to 26 December 2032</span></div></li><li><i>IN</i><div><b>Self-certified sector</b><span>Aeronautics, Aerospace &amp; Defence · Space Technology</span></div></li></ul></div>
 </div></div></section>
 
-{cta("Meet the people behind the programme.", "Leadership and advisors drawn from ISRO, NASA and India's finance community.", "Meet the team", "team.html", "Contact us", "contact.html")}
+{cta("Meet the people behind the programme.", "A founder and seven ex-ISRO subsystem heads.", "Meet the team", "team.html", "Contact us", "contact.html")}
 """
 
 # =============================== PROGRAMMES ===============================
@@ -467,16 +467,11 @@ team_body = f"""
   <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>People</span></div>
   <div class="eyebrow">People</div>
   <h1>Built by engineers who have <span class="grad">landed on the Moon.</span></h1>
-  <p class="lede">A founding team of Chandrayaan, lunar-robotics and propulsion engineers, with every subsystem headed by an ex-ISRO lead. Tap a profile to read more.</p>
+  <p class="lede">A founder and seven ex-ISRO engineers who head every subsystem: systems, propulsion, guidance, power, communications, thermal and structures. Tap a profile to read more.</p>
 </div></section>
 <section class="section" style="padding-top:1rem"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Founding team</div><h2>Chandrayaan heritage meets <span class="grad">lunar robotics.</span></h2></div></div>
+  <div class="sec-head rv"><div><div class="eyebrow">The team</div><h2>Chandrayaan heritage, <span class="grad">subsystem by subsystem.</span></h2></div></div>
   {team_grid()}</div></section>
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">Subsystem heads</div><h2>Every subsystem led by an <span class="grad">ex-ISRO Chandrayaan engineer.</span></h2></div>
-    <p class="lede">Structures, propulsion, thermal, communications, guidance and electrical power, with Dr. S. Somanath, former ISRO Chairman, as Strategic Advisor.</p></div>
-  {subsystem_heads()}
-</div></section>
 <section class="section" style="padding-top:0"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Join us</div><h2>From 50 to 500 engineers <span class="grad">by 2031.</span></h2></div>
     <p class="lede">Lander structures, GNC, flight software, rover autonomy, RF and satellite systems, advanced packaging and mission operations. Based in Bengaluru today and Bhubaneswar as the centre comes online.</p></div>
@@ -517,5 +512,5 @@ shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Desi
 shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, the engineering and manufacturing arm of the ORBITBeyond group.", about_body)
 shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack and ₹200 Cr contracted programme.", programmes_body)
 shell("odisha.html","Odisha Centre · ORBITBeyond India","Why Odisha won on evidence: supply chain, materials, talent and speed. The 20-acre Global Space Systems Centre in Bhubaneswar and the CTTC partnership.", odisha_body)
-shell("team.html","People · ORBITBeyond India","Leadership and advisors from ISRO, NASA and India's finance community behind Orbit Beyond Private Limited.", team_body)
+shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: founder Siba Prasad Padhi and seven ex-ISRO subsystem heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
 shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: World Trade Center Bengaluru and the proposed Global Space Systems Centre, Bhubaneswar.", contact_body)
