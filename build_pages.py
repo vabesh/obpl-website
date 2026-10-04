@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "41"
+VER = "42"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -164,14 +164,14 @@ FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & D
             ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer"),
             ("shreya","assets/team-shreya.jpg",None,"Dr. Shreya Santra","Head of Robotics and Autonomy"),
             ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Finance & Compliance")]
-ADVISORS = [("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
-            ("anand","assets/team-anand.jpg",None,"Anand Nagesh","Lead, Avionics"),
-            ("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
+ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
             ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head of Orbiter Mission Control"),
             ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power"),
             ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications"),
             ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival"),
             ("rk",None,"RK","Dr. R.K. Srinivasan","Head of Structures"),
+            ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
+            ("anand","assets/team-anand.jpg",None,"Anand Nagesh","Lead, Avionics"),
             ("monica","assets/team-monica.jpg",None,"Monica Dey","HR & Operations Manager")]
 
 def team_cards(ppl, tag):
