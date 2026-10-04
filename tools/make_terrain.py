@@ -68,7 +68,8 @@ def add_crater(cx, cy, r_px, depth_m, age, rays=0.0, cluster=True):
     bowl = -(1 - d ** 2) * (d < 1)
     if r_px > 50:
         floor_r = 0.45 + 0.2 * min(1, (r_px - 50) / 200)
-        bowl = np.maximum(bowl, -(1 - floor_r ** 2))              # flat floor
+        fl = -(1 - floor_r ** 2); sm = 0.12
+        bowl = fl + sm * np.log1p(np.exp(np.clip((bowl - fl) / sm, -40, 40)))   # flat floor with a soft inner edge
         if r_px > 120:
             bowl += 0.08 * (1 - np.clip(np.abs(d - 0.78) / 0.06, 0, 1)) * (d < 1)   # terrace
             bowl += 0.22 * np.exp(-(d / 0.16) ** 2)              # central peak

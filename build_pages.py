@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "29"
+VER = "30"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -54,7 +54,7 @@ FOOTER = """
     </ul></div>
   </div>
   <div class="footer-bot">
-    <span>© <span data-year>2026</span> Orbit Beyond Private Limited · CIN U73100OR2022PTC041555. All rights reserved.</span>
+    <span>© <span data-year>2026</span> Orbit Beyond Private Limited. All rights reserved.</span>
     <span>Site by <a href="https://zuno-design-studios.com" rel="noopener" target="_blank">Zuno Design Studios</a></span>
   </div>
 </div></footer>
