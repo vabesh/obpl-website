@@ -124,7 +124,7 @@
     sashi: { img: 'assets/team-sashi.jpg', name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
       'R. Sashi Sekhar heads propulsion at Orbit Beyond Private Limited, responsible for the OB1 lander\'s descent and attitude-control propulsion from design through hot-fire qualification.',
       'He brings ISRO propulsion heritage to the programme.'] },
-    kesava: { img: null, name: 'Dr. V. Kesava Raju', role: 'Head, GNC · Mars Orbiter Mission Director', tag: 'GNC', bio: [
+    kesava: { img: 'assets/team-kesava.jpg', name: 'Dr. V. Kesava Raju', role: 'Head, GNC · Mars Orbiter Mission Director', tag: 'GNC', bio: [
       'Dr. V. Kesava Raju heads guidance, navigation and control, the subsystem that takes OB1 from lunar orbit to a precision touchdown.',
       'At ISRO he served as Mission Director of the Mars Orbiter Mission, India\'s first interplanetary spacecraft.'] },
     venugopalan: { img: 'assets/team-venugopalan.jpg', name: 'Dr. Venugopalan Srinivasan', role: 'Head, Electrical Power', tag: 'Power', bio: [
