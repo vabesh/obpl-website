@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "22"
+VER = "23"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -160,7 +160,11 @@ def numbers():
 </div>"""
 
 FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director"),
-            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect")]
+            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect"),
+            ("shreya",None,"SS","Dr. Shreya Santra","Robotics & Autonomy"),
+            ("durga",None,"DP","Y. V. Durga Prasad","Propulsion"),
+            ("anand",None,"AN","Anand Nagesh","Avionics & Communications"),
+            ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Finance & Compliance")]
 ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
             ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director"),
             ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power"),
@@ -379,5 +383,5 @@ contact_body = f"""
 shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
 shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure for its customer Orbit Beyond, Inc. (USA).", about_body)
 shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
-shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: founding members Siba Prasad Padhi and Dr. M. Krishnaswamy, and an advisory committee of ex-ISRO subsystem heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
+shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: six founding members and an advisory committee of ex-ISRO subsystem heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
 shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: engineering office at World Trade Center, Bengaluru, and registered office in Bhubaneswar.", contact_body)

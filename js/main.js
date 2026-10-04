@@ -120,6 +120,19 @@
       'Dr. M. Krishnaswamy is Chief Systems Engineer and the architect of the OB1 lunar lander, holding the systems-engineering design authority for the programme.',
       'With more than 40 years at ISRO, he served as Programme Director for Chandrayaan-1 and the Cartosat series, led the TES high-resolution imaging programme, guided IMS-1 and directed the NIUSAT nanosatellite mission.',
       'His honours include the IAA Laurel and ISRO\'s award for Overall Outstanding Contribution to Space.'] },
+    shreya: { img: null, name: 'Dr. Shreya Santra', role: 'Robotics & Autonomy', tag: 'Founding member', bio: [
+      'Dr. Shreya Santra leads robotics and autonomy at Orbit Beyond Private Limited, including the long-range rover platform and its AI-based autonomous navigation.',
+      'She holds a PhD from Tohoku University, where she led lunar rover autonomy research, and co-led lunar-base robotics in the Moonshot programme.',
+      'She is an International Astronautical Federation Emerging Space Leader.'] },
+    durga: { img: null, name: 'Y. V. Durga Prasad', role: 'Propulsion', tag: 'Founding member', bio: [
+      'Y. V. Durga Prasad brings more than six years of spacecraft propulsion experience to the founding team.',
+      'He previously worked on lander propulsion at Starops, formerly TeamIndus, taking thrusters through to hot-fire testing.'] },
+    anand: { img: null, name: 'Anand Nagesh', role: 'Avionics & Communications', tag: 'Founding member', bio: [
+      'Anand Nagesh leads avionics and communications, with lunar electrical power system and battery-management design experience at BigDipper.',
+      'He trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
+    rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'Finance & Compliance', tag: 'Founding member', bio: [
+      'CA Rabindra Sahu is a founding member of Orbit Beyond Private Limited, leading finance and compliance as a Growth Partner and Virtual CFO Advisor.',
+      'He transforms legacy business management systems into modern digitalised management systems, advises global companies on setting up Indian subsidiaries as a transfer pricing consultant, and is a business valuer for numerous startups across India.'] },
     sashi: { img: 'assets/team-sashi.jpg', name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
       'R. Sashi Sekhar heads propulsion at Orbit Beyond Private Limited, responsible for the OB1 lander\'s descent and attitude-control propulsion from design through hot-fire qualification.',
       'He brings ISRO propulsion heritage to the programme.'] },
