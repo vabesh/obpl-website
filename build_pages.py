@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "33"
+VER = "34"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -42,15 +42,15 @@ FOOTER = """
       <p>Orbit Beyond Private Limited designs, integrates and manufactures landers, orbiters and mobility systems for missions worldwide.</p>
     </div>
     <div><h4>Explore</h4><ul>
-      <li><a href="about.html">About the company</a></li><li><a href="programmes.html">Programmes</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About</a></li><li><a href="programmes.html">Programmes</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
     </ul></div>
     <div><h4>Offices</h4><ul>
       <li><a href="contact.html">World Trade Center, Brigade Gateway, Bengaluru 560055</a></li>
       <li><a href="contact.html">Regd. office: MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</a></li>
-      <li><a href="mailto:info@orbitbeyond.com">info@orbitbeyond.com</a></li>
+      <li><a href="mailto:info@obpl.com">info@obpl.com</a></li>
     </ul></div>
     <div><h4>Recognition</h4><ul>
-      <li><a href="about.html#recognition">DPIIT Recognised Startup</a></li><li><a href="about.html#recognition">Certificate DIPP285038</a></li><li><a href="about.html#recognition">Aerospace &amp; Defence · Space Technology</a></li><li><span>Customer: Orbit Beyond, Inc. (USA)</span></li>
+      <li><a href="about.html#recognition">DPIIT Recognised Startup</a></li><li><a href="about.html#recognition">Certificate DIPP285038</a></li><li><a href="about.html#recognition">Aerospace &amp; Defence · Space Technology</a></li>
     </ul></div>
   </div>
   <div class="footer-bot">
@@ -161,17 +161,17 @@ def numbers():
 </div>"""
 
 FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director"),
-            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect"),
-            ("shreya","assets/team-shreya.jpg",None,"Dr. Shreya Santra","Robotics & Autonomy"),
-            ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Propulsion"),
-            ("anand","assets/team-anand.jpg",None,"Anand Nagesh","Avionics & Communications"),
+            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer"),
+            ("shreya","assets/team-shreya.jpg",None,"Dr. Shreya Santra","Head of Robotics and Autonomy"),
             ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Finance & Compliance")]
-ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
-            ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director"),
+ADVISORS = [("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Head of Propulsion"),
+            ("anand","assets/team-anand.jpg",None,"Anand Nagesh","Head of Avionics"),
+            ("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
+            ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head of Orbiter Mission Control"),
             ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power"),
             ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications"),
             ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival"),
-            ("rk",None,"RK","Dr. R.K. Srinivasan","Head, Structures · Chandrayaan-2/3 landing legs")]
+            ("rk",None,"RK","Dr. R.K. Srinivasan","Head of Structures")]
 
 def team_cards(ppl, tag):
     cards = ""
@@ -182,7 +182,7 @@ def team_cards(ppl, tag):
 
 def team_grid():
     return (f'<div class="team-group rv"><div class="eyebrow">Founding members</div></div>{team_cards(FOUNDERS, "Founding member")}'
-            f'<div class="team-group rv" style="margin-top:3rem"><div class="eyebrow">Advisory committee</div><p class="lede" style="margin-top:-.5rem;margin-bottom:1.5rem">Ex-ISRO Chandrayaan engineers who head each subsystem of the programme.</p></div>{team_cards(ADVISORS, "Advisory committee")}')
+            f'<div class="team-group rv" style="margin-top:3rem"><div class="eyebrow">Team members</div></div>{team_cards(ADVISORS, "Team member")}')
 
 def wp_cards():
     data = [("01","Lander Leg Development","assets/wp-legs.jpg","legs","Deployable landing gear, shock-attenuation struts and crushable energy absorbers, machined on CTTC Bhubaneswar's ISRO-qualified base."),
@@ -229,14 +229,14 @@ index_body = f"""
 
 <section class="section" id="people"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">01 · People</div><h2>Built by engineers who have <span class="grad">landed on the Moon.</span></h2></div>
-    <p class="lede">A founding team and an advisory committee of ex-ISRO Chandrayaan engineers, each heading a subsystem of the lander, orbiter and surface programmes.</p></div>
+    <p class="lede">A founding team and the engineers who head each subsystem of the lander, orbiter and surface programmes.</p></div>
   {team_grid()}
 </div></section>
 
 <section class="section" id="newsletter" style="padding-top:0"><div class="wrap"><div class="glass news" style="padding:clamp(2rem,4vw,3.5rem)">
   <div class="rv"><div class="eyebrow">02 · Newsletter</div><h2 style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Dispatches from <span class="grad">orbit to outpost.</span></h2>
     <p class="lede" style="margin-top:1rem">Programme milestones and lunar resource notes, a few times a year. No noise.</p>
-    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:info@orbitbeyond.com?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
+    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:info@obpl.com?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
       <input type="email" name="email" placeholder="you@organisation.com" required /><button class="btn" type="submit">Subscribe {ARROW}</button></form></div>
   <div class="rv rv-d2"><div class="glass img-card duo" style="min-height:300px;border-radius:var(--r)"><img src="assets/wp-lander.jpg" alt="Lander integration" loading="lazy" /><div class="ov"></div><div class="cap-ov"><span class="chip">Latest · Helium-3 and the return trip</span></div></div></div>
 </div></div></section>
@@ -245,7 +245,7 @@ index_body = f"""
   <div class="sec-head rv"><div><div class="eyebrow">03 · Services</div><h2>What we deliver, <span class="grad">end to end.</span></h2></div>
     <p class="lede">From a payload slot on OB1 to India-owned products for the lunar economy.</p></div>
   <div class="svc-grid">
-    <div class="svc glass tilt rv"><div class="k">S01 · Today</div><div><h3>Contract engineering</h3><p>Full-system lander, orbiter and payload engineering on milestones: SRR, PDR, CDR, structures, integration and test. Customer: Orbit Beyond, Inc. (USA).</p></div></div>
+    <div class="svc glass tilt rv"><div class="k">S01 · Today</div><div><h3>Contract engineering</h3><p>Full-system lander, orbiter and payload engineering on milestones: SRR, PDR, CDR, structures, integration and test.</p></div></div>
     <div class="svc glass tilt rv rv-d1"><div class="k">S02 · Next</div><div><h3>Own-IP products</h3><p>Rover mobility platforms and Helium-3 extraction systems on India-owned IP, sold per unit with integration and mission support.</p></div></div>
     <div class="svc glass tilt rv rv-d2"><div class="k">S03</div><div><h3>Lunar power-as-a-service</h3><p>VSAT vertical solar arrays with RHU and battery night survival, delivered as recurring power on the surface.</p></div></div>
     <div class="svc glass tilt rv"><div class="k">S04</div><div><h3>Relay communications</h3><p>Communications relay orbiter for landers, rovers and surface payloads.</p></div></div>
@@ -316,8 +316,8 @@ def wp_section(n, title, img, lead, bullets, meta, flip=False):
 programmes_body = f"""
 <section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
   <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Programmes</span></div>
-  <div class="eyebrow">What we build in India</div>
-  <h1>Power, mobility, resources, <span class="grad">landers and orbiters.</span></h1>
+  <div class="eyebrow">Programmes</div>
+  <h1>From orbit to outpost: <span class="grad">the systems we build.</span></h1>
   <p class="lede">The integrated lunar infrastructure stack Orbit Beyond engineers in India.</p>
 </div></section>
 <section class="section" id="stack" style="padding-top:1rem"><div class="wrap">
@@ -352,7 +352,7 @@ team_body = f"""
   <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>People</span></div>
   <div class="eyebrow">People</div>
   <h1>Built by engineers who have <span class="grad">landed on the Moon.</span></h1>
-  <p class="lede">The founding members, and an advisory committee of ex-ISRO engineers who head every subsystem: propulsion, guidance, power, communications, thermal and structures. Tap a profile to read more.</p>
+  <p class="lede">The founding members and the team that heads every subsystem: propulsion, avionics, guidance, power, communications, thermal and structures. Tap a profile to read more.</p>
 </div></section>
 <section class="section" style="padding-top:1rem"><div class="wrap">
   {team_grid()}</div></section>
@@ -369,7 +369,7 @@ contact_body = f"""
 <section class="section" style="padding-top:1rem"><div class="wrap"><div class="contact-grid">
   <div style="display:grid;gap:1.1rem">
     <div class="addr glass tilt rv"><div class="k">Engineering office · Bengaluru</div><h3>World Trade Center</h3><p>Brigade Gateway, 26/1 Dr. Rajkumar Road, Malleswaram West, Bengaluru 560055, Karnataka</p><div class="map"><span class="pin" style="--x:38%;--y:62%" data-l="Bengaluru"></span></div></div>
-    <div class="addr glass rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:info@orbitbeyond.com">info@orbitbeyond.com</a> · DPIIT recognised startup DIPP285038</p></div>
+    <div class="addr glass rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:info@obpl.com">info@obpl.com</a> · DPIIT recognised startup DIPP285038</p></div>
   </div>
   <form class="form glass rv rv-d1" id="contactForm">
     <div class="eyebrow">Send a message</div>
@@ -384,5 +384,5 @@ contact_body = f"""
 shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
 shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure for its customer Orbit Beyond, Inc. (USA).", about_body)
 shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
-shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: six founding members and an advisory committee of ex-ISRO subsystem heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
+shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: the founding members and team heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
 shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: engineering office at World Trade Center, Bengaluru, and registered office in Bhubaneswar.", contact_body)

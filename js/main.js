@@ -116,18 +116,18 @@
     siba: { img: 'assets/team-siba.jpg', name: 'Siba Prasad Padhi', role: 'Founder & Director', tag: 'Leadership', bio: [
       'Siba Prasad Padhi is Founder and Director of Orbit Beyond Private Limited, the Indian company recognised by DPIIT as a startup in the Aerospace & Defence and Space Technology sector.',
       'A serial entrepreneur and former Director of Finance at ConEdison Communications, educated at NYU Stern, LSE and AIM, he leads the Indian company that engineers, for its customer Orbit Beyond, Inc. (USA), the OB1 lander, relay orbiter, surface power, rovers, Helium-3 extraction and lunar AI compute.'] },
-    krishnaswamy: { img: 'assets/team-krishnaswamy.jpg', name: 'Dr. M. Krishnaswamy', role: 'Chief Systems Engineer · OB1 lander architect', tag: 'Systems', bio: [
+    krishnaswamy: { img: 'assets/team-krishnaswamy.jpg', name: 'Dr. M. Krishnaswamy', role: 'Chief Systems Engineer', tag: 'Systems', bio: [
       'Dr. M. Krishnaswamy is Chief Systems Engineer and the architect of the OB1 lunar lander, holding the systems-engineering design authority for the programme.',
       'With more than 40 years at ISRO, he served as Programme Director for Chandrayaan-1 and the Cartosat series, led the TES high-resolution imaging programme, guided IMS-1 and directed the NIUSAT nanosatellite mission.',
       'His honours include the IAA Laurel and ISRO\'s award for Overall Outstanding Contribution to Space.'] },
-    shreya: { img: 'assets/team-shreya.jpg', name: 'Dr. Shreya Santra', role: 'Robotics & Autonomy', tag: 'Founding member', bio: [
+    shreya: { img: 'assets/team-shreya.jpg', name: 'Dr. Shreya Santra', role: 'Head of Robotics and Autonomy', tag: 'Founding member', bio: [
       'Dr. Shreya Santra leads robotics and autonomy at Orbit Beyond Private Limited, including the long-range rover platform and its AI-based autonomous navigation.',
       'She holds a PhD from Tohoku University, where she led lunar rover autonomy research, and co-led lunar-base robotics in the Moonshot programme.',
       'She is an International Astronautical Federation Emerging Space Leader.'] },
-    durga: { img: 'assets/team-durga.jpg', name: 'Y. V. Durga Prasad', role: 'Propulsion', tag: 'Founding member', bio: [
+    durga: { img: 'assets/team-durga.jpg', name: 'Y. V. Durga Prasad', role: 'Head of Propulsion', tag: 'Team member', bio: [
       'Y. V. Durga Prasad brings more than six years of spacecraft propulsion experience to the founding team.',
       'He previously worked on lander propulsion at Starops, formerly TeamIndus, taking thrusters through to hot-fire testing.'] },
-    anand: { img: 'assets/team-anand.jpg', name: 'Anand Nagesh', role: 'Avionics & Communications', tag: 'Founding member', bio: [
+    anand: { img: 'assets/team-anand.jpg', name: 'Anand Nagesh', role: 'Head of Avionics', tag: 'Team member', bio: [
       'Anand Nagesh leads avionics and communications, with lunar electrical power system and battery-management design experience at BigDipper.',
       'He trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
     rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'Finance & Compliance', tag: 'Founding member', bio: [
@@ -136,7 +136,7 @@
     sashi: { img: 'assets/team-sashi.jpg', name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
       'R. Sashi Sekhar heads propulsion at Orbit Beyond Private Limited, responsible for the OB1 lander\'s descent and attitude-control propulsion from design through hot-fire qualification.',
       'He brings ISRO propulsion heritage to the programme.'] },
-    kesava: { img: 'assets/team-kesava.jpg', name: 'Dr. V. Kesava Raju', role: 'Head, GNC · Mars Orbiter Mission Director', tag: 'GNC', bio: [
+    kesava: { img: 'assets/team-kesava.jpg', name: 'Dr. V. Kesava Raju', role: 'Head of Orbiter Mission Control', tag: 'GNC', bio: [
       'Dr. V. Kesava Raju heads guidance, navigation and control, the subsystem that takes OB1 from lunar orbit to a precision touchdown.',
       'At ISRO he served as Mission Director of the Mars Orbiter Mission, India\'s first interplanetary spacecraft.'] },
     venugopalan: { img: 'assets/team-venugopalan.jpg', name: 'Dr. Venugopalan Srinivasan', role: 'Head, Electrical Power', tag: 'Power', bio: [
@@ -148,7 +148,7 @@
     alok: { img: null, name: 'Dr. Alok Srivastava', role: 'Head, Thermal · lunar-night survival', tag: 'Thermal', bio: [
       'Dr. Alok Srivastava heads thermal engineering, including the lunar-night survival design that keeps landers and surface assets alive through fourteen days of darkness below minus 170 °C.',
       'He brings ISRO spacecraft thermal heritage to the programme.'] },
-    rk: { img: null, name: 'Dr. R.K. Srinivasan', role: 'Head, Structures · Chandrayaan-2/3 landing legs', tag: 'Structures', bio: [
+    rk: { img: null, name: 'Dr. R.K. Srinivasan', role: 'Head of Structures', tag: 'Structures', bio: [
       'Dr. R.K. Srinivasan heads structures, including the OB1 landing legs, shock attenuation and crushable energy absorbers.',
       'At ISRO he worked on the landing legs of Chandrayaan-2 and Chandrayaan-3.'] }
   };
@@ -169,7 +169,7 @@
   if (form) form.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(form), body = 'Name: ' + d.get('name') + '\nOrganisation: ' + d.get('org') + '\nEmail: ' + d.get('email') + '\nTopic: ' + d.get('topic') + '\n\n' + d.get('msg');
-    location.href = 'mailto:info@orbitbeyond.com?subject=' + encodeURIComponent('[' + d.get('topic') + '] Enquiry from ' + d.get('name')) + '&body=' + encodeURIComponent(body);
+    location.href = 'mailto:info@obpl.com?subject=' + encodeURIComponent('[' + d.get('topic') + '] Enquiry from ' + d.get('name')) + '&body=' + encodeURIComponent(body);
   });
 
   /* ---------- year ---------- */
