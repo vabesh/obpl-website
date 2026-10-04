@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "32"
+VER = "33"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -39,7 +39,7 @@ FOOTER = """
     <div>
       <a href="index.html" class="brand"><img class="mark" src="assets/logo-mark.png" alt="" /><span><img class="word" src="assets/logo-wordmark.png" alt="Orbit Beyond" /><span class="tagline">INDIA · ORBIT TO OUTPOST</span></span></a>
       <div class="hindi">भारत से चंद्रमा तक</div>
-      <p>Orbit Beyond Private Limited designs, integrates and manufactures lunar landers, rovers, satellites and lunar AI compute payloads from India, for missions worldwide.</p>
+      <p>Orbit Beyond Private Limited designs, integrates and manufactures landers, orbiters and mobility systems for missions worldwide.</p>
     </div>
     <div><h4>Explore</h4><ul>
       <li><a href="about.html">About the company</a></li><li><a href="programmes.html">Programmes</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
