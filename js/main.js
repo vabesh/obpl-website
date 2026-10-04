@@ -115,7 +115,7 @@
   var TEAM = {
     siba: { img: 'assets/team-siba.jpg', name: 'Siba Prasad Padhi', role: 'Founder & Director', tag: 'Leadership', bio: [
       'Siba Prasad Padhi is Founder and Director of Orbit Beyond Private Limited, the Indian company recognised by DPIIT as a startup in the Aerospace & Defence and Space Technology sector.',
-      'A serial entrepreneur and former Director of Finance at ConEdison Communications, educated at NYU Stern, LSE and AIM, he leads the Indian company that engineers, for its customer Orbit Beyond, Inc. (USA), the OB1 lander, relay orbiter, surface power, rovers, Helium-3 extraction and lunar AI compute.'] },
+      'A serial entrepreneur and former Director of Finance at ConEdison Communications, educated at NYU Stern, LSE and AIM, he leads the Indian company that engineers the OB1 lander, relay orbiter, surface power, rovers, Helium-3 extraction and lunar AI compute.'] },
     krishnaswamy: { img: 'assets/team-krishnaswamy.jpg', name: 'Dr. M. Krishnaswamy', role: 'Chief Systems Engineer', tag: 'Systems', bio: [
       'Dr. M. Krishnaswamy is Chief Systems Engineer and the architect of the OB1 lunar lander, holding the systems-engineering design authority for the programme.',
       'With more than 40 years at ISRO, he served as Programme Director for Chandrayaan-1 and the Cartosat series, led the TES high-resolution imaging programme, guided IMS-1 and directed the NIUSAT nanosatellite mission.',

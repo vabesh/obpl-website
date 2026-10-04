@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "34"
+VER = "35"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -268,10 +268,10 @@ about_body = f"""
 
 <section class="section" style="padding-top:2rem"><div class="wrap"><div class="split">
   <div class="prose rv"><div class="eyebrow">Who we are</div><h2 style="margin-bottom:1.5rem">An Indian company, <span class="grad">engineering for the Moon.</span></h2>
-    <p>Orbit Beyond Private Limited is an Indian company. Its customer is Orbit Beyond, Inc. (USA).</p>
+    <p>Orbit Beyond Private Limited is an Indian space-technology company engineering lunar infrastructure: landers, orbiters and mobility systems for missions worldwide.</p>
     <p>Our product scope covers the OB1 lunar lander, a communications relay orbiter, lunar power and night-survival systems, long-range rovers, Helium-3 extraction and AI data-centre payloads for lunar-surface compute.</p></div>
   <div class="glass tilt rv rv-d2"><div class="eyebrow">At a glance</div>
-    <table class="table"><tr><td>Legal name</td><td>Orbit Beyond Private Limited</td></tr><tr><td>CIN</td><td>U73100OR2022PTC041555</td></tr><tr><td>Incorporated</td><td>27 December 2022</td></tr><tr><td>Registered office</td><td>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</td></tr><tr><td>Customer</td><td>Orbit Beyond, Inc. (USA)</td></tr><tr><td>Recognition</td><td>DPIIT Startup · DIPP285038</td></tr><tr><td>Industry</td><td>Aeronautics, Aerospace &amp; Defence</td></tr><tr><td>Sector</td><td>Space Technology</td></tr><tr><td>Engineering office</td><td>World Trade Center, Bengaluru</td></tr></table></div>
+    <table class="table"><tr><td>Legal name</td><td>Orbit Beyond Private Limited</td></tr><tr><td>CIN</td><td>U73100OR2022PTC041555</td></tr><tr><td>Incorporated</td><td>27 December 2022</td></tr><tr><td>Registered office</td><td>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</td></tr><tr><td>Recognition</td><td>DPIIT Startup · DIPP285038</td></tr><tr><td>Industry</td><td>Aeronautics, Aerospace &amp; Defence</td></tr><tr><td>Sector</td><td>Space Technology</td></tr><tr><td>Engineering office</td><td>World Trade Center, Bengaluru</td></tr></table></div>
 </div></div></section>
 
 <section class="section" style="padding-top:0"><div class="wrap">
@@ -382,7 +382,7 @@ contact_body = f"""
 """
 
 shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
-shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure for its customer Orbit Beyond, Inc. (USA).", about_body)
+shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure: landers, orbiters and mobility systems.", about_body)
 shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
 shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: the founding members and team heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
 shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: engineering office at World Trade Center, Bengaluru, and registered office in Bhubaneswar.", contact_body)
