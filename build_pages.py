@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "23"
+VER = "24"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -163,7 +163,7 @@ FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & D
             ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect"),
             ("shreya",None,"SS","Dr. Shreya Santra","Robotics & Autonomy"),
             ("durga",None,"DP","Y. V. Durga Prasad","Propulsion"),
-            ("anand",None,"AN","Anand Nagesh","Avionics & Communications"),
+            ("anand","assets/team-anand.jpg",None,"Anand Nagesh","Avionics & Communications"),
             ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Finance & Compliance")]
 ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
             ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director"),

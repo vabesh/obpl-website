@@ -127,7 +127,7 @@
     durga: { img: null, name: 'Y. V. Durga Prasad', role: 'Propulsion', tag: 'Founding member', bio: [
       'Y. V. Durga Prasad brings more than six years of spacecraft propulsion experience to the founding team.',
       'He previously worked on lander propulsion at Starops, formerly TeamIndus, taking thrusters through to hot-fire testing.'] },
-    anand: { img: null, name: 'Anand Nagesh', role: 'Avionics & Communications', tag: 'Founding member', bio: [
+    anand: { img: 'assets/team-anand.jpg', name: 'Anand Nagesh', role: 'Avionics & Communications', tag: 'Founding member', bio: [
       'Anand Nagesh leads avionics and communications, with lunar electrical power system and battery-management design experience at BigDipper.',
       'He trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
     rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'Finance & Compliance', tag: 'Founding member', bio: [
