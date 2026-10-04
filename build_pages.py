@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "36"
+VER = "37"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -323,14 +323,14 @@ programmes_body = f"""
 </div></section>
 <section class="section" id="stack" style="padding-top:1rem"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Product, technology &amp; innovation</div><h2>An integrated <span class="grad">lunar infrastructure stack.</span></h2></div>
-    <p class="lede">Five layers, each led by an ex-ISRO Chandrayaan engineer, with the mobility platform and Helium-3 extraction IP owned in India.</p></div>
+    <p class="lede">Six systems, from surface power to the lander and orbiter, with the mobility platform and Helium-3 extraction IP owned in India.</p></div>
   <div class="pillars">
     <div class="pillar glass tilt rv"><div class="ic">{ICONS['bolt']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Power</div><h3>Lunar power · VSAT</h3><p>6 to 10 kW vertical solar array with radioisotope heater units for lunar night survival.</p></div>
     <div class="pillar glass tilt rv rv-d1"><div class="ic">{ICONS['shield']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Night survival</div><h3>RHUs and lunar batteries</h3><p>Keep landers and surface assets alive. Only about two suppliers serve the surface today.</p></div>
     <div class="pillar glass tilt rv rv-d2"><div class="ic">{ICONS['target']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Mobility</div><h3>Long-range rover platform</h3><p>Mobility for prospecting, mining logistics and site survey, with AI-based autonomous navigation.</p></div>
     <div class="pillar glass tilt rv"><div class="ic">{ICONS['cube']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Resources</div><h3>Helium-3 extraction</h3><p>Regolith processing and Helium-3 separation for quantum computing, medical and fusion demand.</p></div>
-    <div class="pillar glass tilt rv rv-d1"><div class="ic">{ICONS['layers']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Systems</div><h3>Lander and orbiter engineering</h3><p>Full-system design, payloads, integration and test: the OB1 lander scope and a relay orbiter.</p></div>
-    <div class="pillar glass tilt rv rv-d2"><div class="ic">{ICONS['people']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Why Orbit Beyond</div><h3>Chandrayaan heritage</h3><p>Ex-ISRO Chandrayaan leads head each subsystem, an Indian engineering cost base, and IP held in India.</p></div>
+    <div class="pillar glass tilt rv rv-d1"><div class="ic">{ICONS['layers']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Lander</div><h3>Lander engineering</h3><p>Full-system design of the OB1 lunar lander: structures and landing legs, propulsion, GNC, thermal, payloads, integration and test.</p></div>
+    <div class="pillar glass tilt rv rv-d2"><div class="ic">{ICONS['globe']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Orbiter</div><h3>Orbiter engineering</h3><p>A communications relay orbiter for landers, rovers and surface payloads, with exploration payloads and mission control from India.</p></div>
   </div>
 </div></section>
 
