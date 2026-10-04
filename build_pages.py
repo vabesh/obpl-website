@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "38"
+VER = "39"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -369,8 +369,8 @@ contact_body = f"""
 </div></section>
 <section class="section" style="padding-top:1rem"><div class="wrap"><div class="contact-grid">
   <div style="display:grid;gap:1.1rem">
-    <div class="addr glass tilt rv"><div class="k">Engineering office · Bengaluru</div><h3>World Trade Center</h3><p>Brigade Gateway, 26/1 Dr. Rajkumar Road, Malleswaram West, Bengaluru 560055, Karnataka</p><div class="map"><span class="pin" style="--x:38%;--y:62%" data-l="Bengaluru"></span></div></div>
-    <div class="addr glass rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:info@obpl.com">info@obpl.com</a> · DPIIT recognised startup DIPP285038</p></div>
+    <div class="addr glass tilt rv"><div class="k">Engineering office · Bengaluru</div><h3>World Trade Center</h3><p>Brigade Gateway, 26/1 Dr. Rajkumar Road, Malleswaram West, Bengaluru 560055, Karnataka</p><div class="map"><iframe src="https://maps.google.com/maps?q=World+Trade+Center,+Brigade+Gateway,+26/1+Dr.+Rajkumar+Road,+Malleswaram+West,+Bengaluru+560055&z=16&output=embed" title="Map: World Trade Center, Bengaluru" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=World+Trade+Center,+Brigade+Gateway,+26/1+Dr.+Rajkumar+Road,+Malleswaram+West,+Bengaluru+560055" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
+    <div class="addr glass tilt rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:info@obpl.com">info@obpl.com</a> · DPIIT recognised startup DIPP285038</p><div class="map"><iframe src="https://maps.google.com/maps?q=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012&z=15&output=embed" title="Map: registered office, Bhubaneswar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
   </div>
   <form class="form glass rv rv-d1" id="contactForm">
     <div class="eyebrow">Send a message</div>
