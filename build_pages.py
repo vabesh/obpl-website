@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "20"
+VER = "21"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.in"
 
@@ -159,20 +159,25 @@ def numbers():
   <div><div class="n">Export-first</div><div class="l">Revenue orientation · NASA, USSF, global</div></div>
 </div>"""
 
-def team_grid():
-    ppl = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director","Leadership"),
-           ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect","Systems"),
-           ("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion","Propulsion"),
-           ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director","GNC"),
-           ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power","Power"),
-           ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications","Communications"),
-           ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival","Thermal"),
-           ("rk",None,"RK","Dr. R.K. Srinivasan","Head, Structures · Chandrayaan-2/3 landing legs","Structures")]
+FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director"),
+            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer · OB1 lander architect")]
+ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
+            ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head, GNC · Mars Orbiter Mission Director"),
+            ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power"),
+            ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications"),
+            ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival"),
+            ("rk",None,"RK","Dr. R.K. Srinivasan","Head, Structures · Chandrayaan-2/3 landing legs")]
+
+def team_cards(ppl, tag):
     cards = ""
-    for k,img,ini,n,r,tag in ppl:
+    for k,img,ini,n,r in ppl:
         visual = f'<img src="{img}" alt="{n}" loading="lazy" />' if img else f'<div class="avatar">{ini}</div>'
         cards += f"""<div class="person glass tilt rv" onclick="openTeam('{k}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openTeam('{k}')">{visual}<div class="ov"></div><span class="tag">{tag}</span><div class="meta"><h3>{n}</h3><div class="r">{r}</div></div></div>"""
     return '<div class="team-grid">' + cards + '</div>'
+
+def team_grid():
+    return (f'<div class="team-group rv"><div class="eyebrow">Founding members</div></div>{team_cards(FOUNDERS, "Founding member")}'
+            f'<div class="team-group rv" style="margin-top:3rem"><div class="eyebrow">Advisory committee</div><p class="lede" style="margin-top:-.5rem;margin-bottom:1.5rem">Ex-ISRO Chandrayaan engineers who head each subsystem of the programme.</p></div>{team_cards(ADVISORS, "Advisory committee")}')
 
 def wp_cards():
     data = [("01","Lander Leg Development","assets/wp-legs.jpg","legs","Deployable landing gear, shock-attenuation struts and crushable energy absorbers, machined on CTTC Bhubaneswar's ISRO-qualified base."),
@@ -219,7 +224,7 @@ index_body = f"""
 
 <section class="section" id="people"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">01 · People</div><h2>Built by engineers who have <span class="grad">landed on the Moon.</span></h2></div>
-    <p class="lede">A founder and seven ex-ISRO Chandrayaan engineers, each heading a subsystem of the lander, orbiter and surface programmes.</p></div>
+    <p class="lede">A founding team and an advisory committee of ex-ISRO Chandrayaan engineers, each heading a subsystem of the lander, orbiter and surface programmes.</p></div>
   {team_grid()}
 </div></section>
 
@@ -357,10 +362,9 @@ team_body = f"""
   <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>People</span></div>
   <div class="eyebrow">People</div>
   <h1>Built by engineers who have <span class="grad">landed on the Moon.</span></h1>
-  <p class="lede">A founder and seven ex-ISRO engineers who head every subsystem: systems, propulsion, guidance, power, communications, thermal and structures. Tap a profile to read more.</p>
+  <p class="lede">The founding members, and an advisory committee of ex-ISRO engineers who head every subsystem: propulsion, guidance, power, communications, thermal and structures. Tap a profile to read more.</p>
 </div></section>
 <section class="section" style="padding-top:1rem"><div class="wrap">
-  <div class="sec-head rv"><div><div class="eyebrow">The team</div><h2>Chandrayaan heritage, <span class="grad">subsystem by subsystem.</span></h2></div></div>
   {team_grid()}</div></section>
 """
 
@@ -390,5 +394,5 @@ contact_body = f"""
 shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
 shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure for its customer Orbit Beyond, Inc. (USA).", about_body)
 shell("programmes.html","Programmes · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack and ₹200 Cr contracted programme.", programmes_body)
-shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: founder Siba Prasad Padhi and seven ex-ISRO subsystem heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
+shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: founding members Siba Prasad Padhi and Dr. M. Krishnaswamy, and an advisory committee of ex-ISRO subsystem heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
 shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: engineering office at World Trade Center, Bengaluru, and registered office in Bhubaneswar.", contact_body)

@@ -76,3 +76,5 @@ body.panel-open .spanel-scrim{opacity:1;pointer-events:auto}
 .modal-card img[style*='display: none']+.modal-body{grid-column:1/-1}
 @media (max-width:1100px){.pillars[style*='repeat(4'],.road-grid[style*='repeat(4']{grid-template-columns:repeat(2,1fr)!important}}
 @media (max-width:560px){.pillars[style*='repeat(4'],.road-grid[style*='repeat(4']{grid-template-columns:1fr!important}}
+
+.team-group .eyebrow{margin-bottom:1.2rem}
