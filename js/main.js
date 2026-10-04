@@ -124,11 +124,11 @@
       'Dr. Shreya Santra leads robotics and autonomy at Orbit Beyond Private Limited, including the long-range rover platform and its AI-based autonomous navigation.',
       'She holds a PhD from Tohoku University, where she led lunar rover autonomy research, and co-led lunar-base robotics in the Moonshot programme.',
       'She is an International Astronautical Federation Emerging Space Leader.'] },
-    durga: { img: 'assets/team-durga.jpg', name: 'Y. V. Durga Prasad', role: 'Head of Propulsion', tag: 'Team member', bio: [
-      'Y. V. Durga Prasad brings more than six years of spacecraft propulsion experience to the founding team.',
+    durga: { img: 'assets/team-durga.jpg', name: 'Y. V. Durga Prasad', role: 'Lead, Propulsion and RHU', tag: 'Team member', bio: [
+      'Y. V. Durga Prasad leads propulsion and the radioisotope heater unit (RHU) work, bringing more than six years of spacecraft propulsion experience.',
       'He previously worked on lander propulsion at Starops, formerly TeamIndus, taking thrusters through to hot-fire testing.'] },
-    anand: { img: 'assets/team-anand.jpg', name: 'Anand Nagesh', role: 'Head of Avionics', tag: 'Team member', bio: [
-      'Anand Nagesh leads avionics and communications, with lunar electrical power system and battery-management design experience at BigDipper.',
+    anand: { img: 'assets/team-anand.jpg', name: 'Anand Nagesh', role: 'Lead, Avionics', tag: 'Team member', bio: [
+      'Anand Nagesh leads avionics, with lunar electrical power system and battery-management design experience at BigDipper.',
       'He trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
     rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'Finance & Compliance', tag: 'Founding member', bio: [
       'CA Rabindra Sahu is a founding member of Orbit Beyond Private Limited, leading finance and compliance as a Growth Partner and Virtual CFO Advisor.',
