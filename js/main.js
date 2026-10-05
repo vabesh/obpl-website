@@ -150,7 +150,7 @@
       'He brings ISRO spacecraft thermal heritage to the programme.'] },
     monica: { img: 'assets/team-monica.jpg', name: 'Monica Dey', role: 'HR & Operations Manager', tag: 'Team member', bio: [
       'Monica Dey is HR & Operations Manager at Orbit Beyond Private Limited, responsible for people operations, recruitment and the day-to-day running of the company.'] },
-    rk: { img: null, name: 'Dr. R.K. Srinivasan', role: 'Head of Structures', tag: 'Structures', bio: [
+    rk: { img: 'assets/team-rk.jpg', name: 'Dr. R.K. Srinivasan', role: 'Head of Structures', tag: 'Structures', bio: [
       'Dr. R.K. Srinivasan heads structures, including the OB1 landing legs, shock attenuation and crushable energy absorbers.',
       'At ISRO he worked on the landing legs of Chandrayaan-2 and Chandrayaan-3.'] }
   };
