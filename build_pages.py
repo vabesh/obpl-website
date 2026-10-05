@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "45"
+VER = "48"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -71,7 +71,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
     if three:
         scripts = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>'
                    '<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>'
-                   '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
+                   '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script src="js/hardware.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
     url = SITE + "/" + ("" if name == "index.html" else name.replace(".html", ""))
     html = f"""<!DOCTYPE html>
 <html lang="en">

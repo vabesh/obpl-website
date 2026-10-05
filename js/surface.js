@@ -205,6 +205,7 @@
     g.userData.anchor = new THREE.Vector3(0, 6.6, 0); g.userData.anim = function (t) { d.rotation.y = Math.sin(t * .2) * .5; }; return g;
   }
   var builders = { vsat: buildVSAT, night: buildNight, rover: buildRover, extract: buildExtractor, lander: buildLander, orbiter: buildOrbiter, datacentre: buildDataCentre };
+  if (window.OBHardware) builders = OBHardware.builders(renderer);   // detailed PBR hardware models (js/hardware.js)
   var objects = {};
   STATIONS.forEach(function (s) { var o = builders[s.id](); o.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); o.position.set(s.pos[0], s.pos[1], s.pos[2]); o.userData.x0 = s.pos[0]; scene.add(o); objects[s.id] = o; });
   // a few boulders around the sites
@@ -224,7 +225,7 @@
   // between stations the camera cruises at altitude. Ground clearance is enforced at runtime.
   var KEYS = [];
   function K(p, pos, look, stop) { KEYS.push({ p: p, pos: new THREE.Vector3(pos[0], pos[1], pos[2]), look: new THREE.Vector3(look[0], look[1], look[2]), stop: !!stop }); }
-  var OFFS = { vsat: [34, 7, 30], night: [25, 6, 21], rover: [26, 6, 22], extract: [31, 7.5, -24], lander: [34, 9, -27], orbiter: [90, 0, 420], datacentre: [36, 8, 28] };
+  var OFFS = { vsat: [30, 7, 26], night: [16, 4.5, 13], rover: [14, 3.8, 11], extract: [19, 5.5, -15], lander: [22, 6.5, -17], orbiter: [60, 0, 300], datacentre: [24, 6.5, 19] };
   var WIN = (function () { var n = STATIONS.length, out = [], a = .10, b = .90, w = (b - a) / n; for (var i = 0; i < n; i++) out.push([a + i * w, a + (i + 1) * w]); return out; })();
   function buildPath() {
     KEYS.length = 0;
