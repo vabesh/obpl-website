@@ -130,8 +130,8 @@
     anand: { img: 'assets/team-anand.jpg', name: 'Anand Nagesh', role: 'Lead, Avionics', tag: 'Team member', bio: [
       'Anand Nagesh leads avionics, with lunar electrical power system and battery-management design experience at BigDipper.',
       'He trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
-    rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'Finance & Compliance', tag: 'Founding member', bio: [
-      'CA Rabindra Sahu is a founding member of Orbit Beyond Private Limited, leading finance and compliance as a Growth Partner and Virtual CFO Advisor.',
+    rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'Head, Corporate Development', tag: 'Founding member', bio: [
+      'CA Rabindra Sahu is a founding member of Orbit Beyond Private Limited and Head of Corporate Development, with a background as a Growth Partner and Virtual CFO Advisor.',
       'He transforms legacy business management systems into modern digitalised management systems, advises global companies on setting up Indian subsidiaries as a transfer pricing consultant, and is a business valuer for numerous startups across India.'] },
     sashi: { img: 'assets/team-sashi.jpg', name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
       'R. Sashi Sekhar heads propulsion at Orbit Beyond Private Limited, responsible for the OB1 lander\'s descent and attitude-control propulsion from design through hot-fire qualification.',
@@ -171,7 +171,7 @@
   if (form) form.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(form), body = 'Name: ' + d.get('name') + '\nOrganisation: ' + d.get('org') + '\nEmail: ' + d.get('email') + '\nTopic: ' + d.get('topic') + '\n\n' + d.get('msg');
-    location.href = 'mailto:info@obpl.com?subject=' + encodeURIComponent('[' + d.get('topic') + '] Enquiry from ' + d.get('name')) + '&body=' + encodeURIComponent(body);
+    location.href = 'mailto:info@orbit.space?subject=' + encodeURIComponent('[' + d.get('topic') + '] Enquiry from ' + d.get('name')) + '&body=' + encodeURIComponent(body);
   });
 
   /* ---------- year ---------- */

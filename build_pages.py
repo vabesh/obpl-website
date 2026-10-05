@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "42"
+VER = "43"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -45,9 +45,9 @@ FOOTER = """
       <li><a href="about.html">About</a></li><li><a href="programmes.html">Capabilities</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
     </ul></div>
     <div><h4>Offices</h4><ul>
-      <li><a href="contact.html">World Trade Center, Brigade Gateway, Bengaluru 560055</a></li>
+      <li><a href="contact.html">2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar, Bengaluru 560055</a></li>
       <li><a href="contact.html">Regd. office: MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</a></li>
-      <li><a href="mailto:info@obpl.com">info@obpl.com</a></li>
+      <li><a href="mailto:info@orbit.space">info@orbit.space</a></li>
     </ul></div>
     <div><h4>Recognition</h4><ul>
       <li><a href="about.html#recognition">DPIIT Recognised Startup</a></li><li><a href="about.html#recognition">Certificate DIPP285038</a></li><li><a href="about.html#recognition">Aerospace &amp; Defence · Space Technology</a></li>
@@ -87,7 +87,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Michroma&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css?v=VER" /><link rel="stylesheet" href="css/surface.css?v=VER" />
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"Orbit Beyond Private Limited","alternateName":"ORBITBeyond India","url":"{SITE}/","foundingDate":"2022-12-27","address":{{"@type":"PostalAddress","streetAddress":"World Trade Center, Brigade Gateway, 26/1 Dr. Rajkumar Road, Malleswaram West","addressLocality":"Bengaluru","postalCode":"560055","addressCountry":"IN"}},"description":"{desc}"}}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"Orbit Beyond Private Limited","alternateName":"ORBITBeyond India","url":"{SITE}/","foundingDate":"2022-12-27","address":{{"@type":"PostalAddress","streetAddress":"2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar","addressLocality":"Bengaluru","postalCode":"560055","addressCountry":"IN"}},"description":"{desc}"}}</script>
 {extra_head}
 </head>
 <body>
@@ -163,7 +163,7 @@ def numbers():
 FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director"),
             ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer"),
             ("shreya","assets/team-shreya.jpg",None,"Dr. Shreya Santra","Head of Robotics and Autonomy"),
-            ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Finance & Compliance")]
+            ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Head, Corporate Development")]
 ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
             ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head of Orbiter Mission Control"),
             ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power"),
@@ -250,7 +250,7 @@ index_body = f"""
 <section class="section" id="newsletter" style="padding-top:0"><div class="wrap"><div class="glass news" style="padding:clamp(2rem,4vw,3.5rem)">
   <div class="rv"><div class="eyebrow">03 · Newsletter</div><h2 style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Dispatches from <span class="grad">orbit to outpost.</span></h2>
     <p class="lede" style="margin-top:1rem">Programme milestones and lunar resource notes, a few times a year. No noise.</p>
-    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:info@obpl.com?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
+    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:info@orbit.space?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
       <input type="email" name="email" placeholder="you@organisation.com" required /><button class="btn" type="submit">Subscribe {ARROW}</button></form></div>
   <div class="rv rv-d2"><div class="glass img-card duo" style="min-height:300px;border-radius:var(--r)"><img src="assets/wp-lander.jpg" alt="Lander integration" loading="lazy" /><div class="ov"></div><div class="cap-ov"><span class="chip">Latest · Helium-3 and the return trip</span></div></div></div>
 </div></div></section>
@@ -272,7 +272,7 @@ about_body = f"""
     <p>Orbit Beyond Private Limited is an Indian space-technology company engineering lunar infrastructure: landers, orbiters and mobility systems for missions worldwide.</p>
     <p>Our product scope covers the OB1 lunar lander, a communications relay orbiter, lunar power and night-survival systems, long-range rovers, Helium-3 extraction and AI data-centre payloads for lunar-surface compute.</p></div>
   <div class="glass tilt rv rv-d2"><div class="eyebrow">At a glance</div>
-    <table class="table"><tr><td>Legal name</td><td>Orbit Beyond Private Limited</td></tr><tr><td>CIN</td><td>U73100OR2022PTC041555</td></tr><tr><td>Incorporated</td><td>27 December 2022</td></tr><tr><td>Registered office</td><td>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</td></tr><tr><td>Recognition</td><td>DPIIT Startup · DIPP285038</td></tr><tr><td>Industry</td><td>Aeronautics, Aerospace &amp; Defence</td></tr><tr><td>Sector</td><td>Space Technology</td></tr><tr><td>Engineering office</td><td>World Trade Center, Bengaluru</td></tr></table></div>
+    <table class="table"><tr><td>Legal name</td><td>Orbit Beyond Private Limited</td></tr><tr><td>CIN</td><td>U73100OR2022PTC041555</td></tr><tr><td>Incorporated</td><td>27 December 2022</td></tr><tr><td>Registered office</td><td>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</td></tr><tr><td>Recognition</td><td>DPIIT Startup · DIPP285038</td></tr><tr><td>Industry</td><td>Aeronautics, Aerospace &amp; Defence</td></tr><tr><td>Sector</td><td>Space Technology</td></tr><tr><td>Corporate office</td><td>2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar, Bengaluru 560055</td></tr></table></div>
 </div></div></section>
 
 <section class="section" style="padding-top:0"><div class="wrap">
@@ -369,8 +369,8 @@ contact_body = f"""
 </div></section>
 <section class="section" style="padding-top:1rem"><div class="wrap"><div class="contact-grid">
   <div style="display:grid;gap:1.1rem">
-    <div class="addr glass tilt rv"><div class="k">Engineering office · Bengaluru</div><h3>World Trade Center</h3><p>Brigade Gateway, 26/1 Dr. Rajkumar Road, Malleswaram West, Bengaluru 560055, Karnataka</p><div class="map"><iframe src="https://maps.google.com/maps?q=World+Trade+Center,+Brigade+Gateway,+26/1+Dr.+Rajkumar+Road,+Malleswaram+West,+Bengaluru+560055&z=16&output=embed" title="Map: World Trade Center, Bengaluru" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=World+Trade+Center,+Brigade+Gateway,+26/1+Dr.+Rajkumar+Road,+Malleswaram+West,+Bengaluru+560055" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
-    <div class="addr glass tilt rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:info@obpl.com">info@obpl.com</a> · DPIIT recognised startup DIPP285038</p><div class="map"><iframe src="https://maps.google.com/maps?q=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012&z=15&output=embed" title="Map: registered office, Bhubaneswar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
+    <div class="addr glass tilt rv"><div class="k">Corporate office · Bengaluru</div><h3>WTC Annexe</h3><p>2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar, Bengaluru, Karnataka 560055</p><div class="map"><iframe src="https://maps.google.com/maps?q=WTC+Annexe,+Dr.+Rajkumar+Road,+Malleswaram,+Rajajinagar,+Bengaluru,+Karnataka+560055&z=16&output=embed" title="Map: WTC Annexe, Bengaluru" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=WTC+Annexe,+Dr.+Rajkumar+Road,+Malleswaram,+Rajajinagar,+Bengaluru,+Karnataka+560055" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
+    <div class="addr glass tilt rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:info@orbit.space">info@orbit.space</a> · DPIIT recognised startup DIPP285038</p><div class="map"><iframe src="https://maps.google.com/maps?q=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012&z=15&output=embed" title="Map: registered office, Bhubaneswar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
   </div>
   <form class="form glass rv rv-d1" id="contactForm">
     <div class="eyebrow">Send a message</div>
@@ -386,4 +386,4 @@ shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Desi
 shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure: landers, orbiters and mobility systems.", about_body)
 shell("programmes.html","Capabilities · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
 shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: the founding members and team heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
-shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: engineering office at World Trade Center, Bengaluru, and registered office in Bhubaneswar.", contact_body)
+shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: corporate office at WTC Annexe, Bengaluru, and registered office in Bhubaneswar.", contact_body)
