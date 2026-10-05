@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "54"
+VER = "55"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -223,7 +223,7 @@ def surface_section():
 <aside class="spanel" id="stationPanel" aria-label="Station details">
   <button class="sp-x" onclick="closeStation()" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <img class="sp-img" src="" alt="" />
-  <div class="sp-body"><div class="sp-k"></div><h3 class="sp-t"></h3><p class="sp-b"></p><table><tbody class="sp-specs"></tbody></table><div class="sp-note">Draft specification · figures to be confirmed by Orbit Beyond engineering</div><a class="btn sp-link" href="programmes.html">Capability details {ARROW}</a></div>
+  <div class="sp-body"><div class="sp-k"></div><h3 class="sp-t"></h3><p class="sp-b"></p><table><tbody class="sp-specs"></tbody></table><a class="btn sp-link" href="programmes.html">Capability details {ARROW}</a></div>
 </aside>"""
 
 index_body = f"""
