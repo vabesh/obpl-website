@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-VER = "44"
+VER = "45"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -168,7 +168,7 @@ ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propu
             ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head of Orbiter Mission Control"),
             ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power"),
             ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications"),
-            ("alok",None,"AS","Dr. Alok Srivastava","Head, Thermal · lunar-night survival"),
+            ("alok","assets/team-alok.jpg",None,"Dr. Alok Shrivastav","Head, Thermal · lunar-night survival"),
             ("rk","assets/team-rk.jpg",None,"Dr. R.K. Srinivasan","Head of Structures"),
             ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
             ("anand","assets/team-anand.jpg",None,"Anand Nagesh","Lead, Avionics"),

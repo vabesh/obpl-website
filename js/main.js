@@ -145,8 +145,8 @@
     sambasiva: { img: 'assets/team-sambasiva.jpg', name: 'Dr. Sambasiva Rao Venigalla', role: 'Head, Communications', tag: 'Communications', bio: [
       'Dr. Sambasiva Rao Venigalla heads communications, covering the lander and rover links, and the communications relay orbiter.',
       'He brings ISRO spacecraft communications heritage to the programme.'] },
-    alok: { img: null, name: 'Dr. Alok Srivastava', role: 'Head, Thermal · lunar-night survival', tag: 'Thermal', bio: [
-      'Dr. Alok Srivastava heads thermal engineering, including the lunar-night survival design that keeps landers and surface assets alive through fourteen days of darkness below minus 170 °C.',
+    alok: { img: 'assets/team-alok.jpg', name: 'Dr. Alok Shrivastav', role: 'Head, Thermal · lunar-night survival', tag: 'Thermal', bio: [
+      'Dr. Alok Shrivastav heads thermal engineering, including the lunar-night survival design that keeps landers and surface assets alive through fourteen days of darkness below minus 170 °C.',
       'He brings ISRO spacecraft thermal heritage to the programme.'] },
     monica: { img: 'assets/team-monica.jpg', name: 'Monica Dey', role: 'HR & Operations Manager', tag: 'Team member', bio: [
       'Monica Dey is HR & Operations Manager at Orbit Beyond Private Limited, responsible for people operations, recruitment and the day-to-day running of the company.'] },
