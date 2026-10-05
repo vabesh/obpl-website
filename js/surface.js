@@ -40,7 +40,7 @@
       specs: [['Role', 'Relay for landers, rovers and surface payloads'], ['Payloads', 'Relay, exploration and later awareness configurations'], ['Programme', 'Contracted engineering scope'], ['Lead', 'Dr. Sambasiva Rao Venigalla, Communications'], ['Delivery', 'Orbiter testing FY28, delivery FY29']], img: 'assets/sat-color.jpg', link: 'programmes.html#stack' },
     { id: 'datacentre', n: '07', tag: 'Compute', title: 'AI Data Centre Prototype', pos: [10200, 0, -250], agl: 0,
       short: 'Radiation-tolerant AI compute on the surface, prototyped under the contracted programme.',
-      body: 'A containerised compute module that runs AI inference, autonomy and sensor processing at the Moon instead of round-tripping data to Earth. The prototype is part of the ₹200 Cr programme with design reviews in FY27 and a demonstration targeted for FY29. Its processors are radiation-tolerant and thermally managed for the surface. Operated as LunarEdge.',
+      body: 'A containerised compute module that runs AI inference, autonomy and sensor processing at the Moon instead of round-tripping data to Earth. Its processors are radiation-tolerant and thermally managed for the surface. Operated as LunarEdge.',
       specs: [['Workloads', 'AI inference, autonomy, sensor fusion'], ['Packaging', 'Radiation-tolerant 3D packaging'], ['Thermal', 'Radiator wall, night survival'], ['Milestone', 'Design reviews FY27, demo FY29'], ['Operator', 'LunarEdge']], img: 'assets/wp-compute.jpg', link: 'programmes.html#stack' }
   ];
   window.OB_STATIONS = STATIONS;

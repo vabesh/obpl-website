@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "53"
+VER = "54"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
