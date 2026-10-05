@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "51"
+VER = "52"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://obpl.space"
 
@@ -388,3 +388,10 @@ shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: i
 shell("programmes.html","Capabilities · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
 shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: the founding members and team heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
 shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: corporate office at WTC Annexe, Bengaluru, and registered office in Bhubaneswar.", contact_body)
+
+# Hidden preview page with the glTF hardware models switched on (not linked, not indexed)
+_idx = open(os.path.join(OUT, "index.html"), encoding="utf-8").read()
+_prev = (_idx.replace("window.OB_USE_MODELS = false", "window.OB_USE_MODELS = true")
+            .replace('<link rel="canonical" href="https://obpl.space/" />', '<link rel="canonical" href="https://obpl.space/preview-models" /><meta name="robots" content="noindex, nofollow" />'))
+open(os.path.join(OUT, "preview-models.html"), "w", encoding="utf-8").write(_prev)
+print("wrote preview-models.html")

@@ -10,7 +10,8 @@
     rover:      { url: 'assets/models/perseverance.glb', height: 2.3, yaw: 0.4, anchor: 3.6 },
     extract:    { url: 'assets/models/rassor.glb',       height: 3.0, yaw: -0.5, anchor: 4.4 },
     orbiter:    { url: 'assets/models/lro.glb',          height: 8.0, yaw: 0, anchor: 0, sky: true },
-    datacentre: { url: ['assets/models/hdu1.glb', 'assets/models/hdu2.glb'], height: 5.5, yaw: 0.2, anchor: 7.0 }
+    // datacentre: the NASA Habitat Demonstration Unit carries a US flag in its texture, so the procedural module stays
+    datacentre: null
   };
   function fit(model, cfg) {
     var box = new THREE.Box3().setFromObject(model), size = new THREE.Vector3(), centre = new THREE.Vector3();
@@ -35,7 +36,7 @@
       var loader = new THREE.GLTFLoader();
       if (THREE.DRACOLoader) { var draco = new THREE.DRACOLoader(); draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/'); loader.setDRACOLoader(draco); }
       Object.keys(MAP).forEach(function (id) {
-        var cfg = MAP[id], target = objects[id]; if (!target) return;
+        var cfg = MAP[id], target = objects[id]; if (!cfg || !target) return;
         var urls = Array.isArray(cfg.url) ? cfg.url : [cfg.url], holder = new THREE.Group(), pending = urls.length;
         urls.forEach(function (u) {
           loader.load(u, function (gltf) {
