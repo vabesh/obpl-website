@@ -1,0 +1,4 @@
+Models in this folder are from NASA's public-domain 3D Resources library (https://github.com/nasa/NASA-3D-Resources).
+They are stand-ins used to represent Orbit Beyond hardware classes until the company's own models are available:
+apollo-lm.glb (Apollo Lunar Module), lro.glb (Lunar Reconnaissance Orbiter), perseverance.glb (Mars 2020 rover),
+rassor.glb (RASSOR regolith robot), hdu1/hdu2.glb (Habitat Demonstration Unit), ladee.glb (LADEE orbiter).

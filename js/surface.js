@@ -206,8 +206,10 @@
   }
   var builders = { vsat: buildVSAT, night: buildNight, rover: buildRover, extract: buildExtractor, lander: buildLander, orbiter: buildOrbiter, datacentre: buildDataCentre };
   if (window.OBHardware) builders = OBHardware.builders(renderer);   // detailed PBR hardware models (js/hardware.js)
+  var hwEnv = window.OBHardware ? OBHardware.env : null;
   var objects = {};
   STATIONS.forEach(function (s) { var o = builders[s.id](); o.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); o.position.set(s.pos[0], s.pos[1], s.pos[2]); o.userData.x0 = s.pos[0]; scene.add(o); objects[s.id] = o; });
+  if (window.OBModels) OBModels.apply(objects, hwEnv, isSmall);   // real glTF models replace the procedural ones once loaded
   // a few boulders around the sites
   var rocks = new THREE.Group(); scene.add(rocks); var rockMat = new THREE.MeshStandardMaterial({ color: 0x3b3835, roughness: 1, flatShading: true });
   function rockGeo() { var g = new THREE.DodecahedronGeometry(1, 1), pa = g.attributes.position; for (var i = 0; i < pa.count; i++) { var k = .75 + Math.random() * .5; pa.setXYZ(i, pa.getX(i) * k, pa.getY(i) * (k * .8), pa.getZ(i) * k); } g.computeVertexNormals(); return g; }

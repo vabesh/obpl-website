@@ -278,6 +278,7 @@
   window.OBHardware = {
     builders: function (renderer) {
       var env = makeEnv(); allMats.forEach(function (m) { m.envMap = env; m.envMapIntensity = .9; m.needsUpdate = true; });
+      window.OBHardware.env = env;
       return { vsat: buildVSAT, night: buildNight, rover: buildRover, extract: buildExtractor, lander: buildLander, orbiter: buildOrbiter, datacentre: buildDataCentre };
     },
     materials: M
