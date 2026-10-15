@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "55"
+VER = "56"
 OUT = os.path.dirname(os.path.abspath(__file__))
-SITE = "https://obpl.space"
+SITE = "https://orbitbeyond.space"
 
 NAV = """
 <div id="loader" class="loader"><div class="loader-in">
@@ -392,6 +392,6 @@ shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Privat
 # Hidden preview page with the glTF hardware models switched on (not linked, not indexed)
 _idx = open(os.path.join(OUT, "index.html"), encoding="utf-8").read()
 _prev = (_idx.replace("window.OB_USE_MODELS = false", "window.OB_USE_MODELS = true")
-            .replace('<link rel="canonical" href="https://obpl.space/" />', '<link rel="canonical" href="https://obpl.space/preview-models" /><meta name="robots" content="noindex, nofollow" />'))
+            .replace('<link rel="canonical" href="https://orbitbeyond.space/" />', '<link rel="canonical" href="https://orbitbeyond.space/preview-models" /><meta name="robots" content="noindex, nofollow" />'))
 open(os.path.join(OUT, "preview-models.html"), "w", encoding="utf-8").write(_prev)
 print("wrote preview-models.html")
