@@ -42,8 +42,8 @@
   // radiator: embossed channels
   var radH = heightField(256, function (u, v) { return Math.abs(Math.sin(u * Math.PI * 24)) < .25 ? .5 : 0; });
   var radN = normalTex(256, radH, .9, 2);
-  // label strip: tricolour + OBPL
-  var labelA = albedoTex(256, function (g, s) { g.fillStyle = '#e8eefa'; g.fillRect(0, 0, s, s); g.fillStyle = '#f2a33a'; g.fillRect(0, 0, s, s * .18); g.fillStyle = '#138808'; g.fillRect(0, s * .82, s, s * .18); g.fillStyle = '#0a2a6b'; g.font = 'bold 72px Arial'; g.textAlign = 'center'; g.fillText('OBPL', s / 2, s * .6); }, 1);
+  // label strip: tricolour + ORBIT BEYOND
+  var labelA = albedoTex(256, function (g, s) { g.fillStyle = '#e8eefa'; g.fillRect(0, 0, s, s); g.fillStyle = '#f2a33a'; g.fillRect(0, 0, s, s * .18); g.fillStyle = '#138808'; g.fillRect(0, s * .82, s, s * .18); g.fillStyle = '#0a2a6b'; g.font = 'bold 72px Arial'; g.textAlign = 'center'; g.fillText('ORBIT BEYOND', s / 2, s * .6); }, 1);
 
   /* ---------------- materials (env map assigned later) ---------------- */
   var M = {
