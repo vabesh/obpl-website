@@ -87,3 +87,7 @@ body.panel-open .spanel-scrim{opacity:1;pointer-events:auto}
 .addr .maplink svg{width:14px;height:14px}
 .addr .maplink:hover{color:var(--ivory)}
 .tilt .map iframe{transform:none}
+
+/* pre-rendered plate shown while the camera holds at a station */
+.surface .s-plate{position:absolute;inset:0;opacity:0;overflow:hidden;background:#000;z-index:2;transition:none}
+.surface .s-plate img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 55%;will-change:transform}

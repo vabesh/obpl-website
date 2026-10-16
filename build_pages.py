@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "57"
+VER = "62"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -72,7 +72,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
     if three:
         scripts = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>'
                    '<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>'
-                   '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script>window.OB_USE_MODELS = USE_MODELS;</script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script><script src="js/hardware.js?v=VER"></script><script src="js/models.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
+                   '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script>window.OB_USE_MODELS = USE_MODELS; window.OB_VER = VER;</script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script><script src="js/hardware.js?v=VER"></script><script src="js/rocks.js?v=VER"></script><script src="js/models.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
     url = SITE + "/" + ("" if name == "index.html" else name.replace(".html", ""))
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -101,7 +101,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 </body>
 </html>
 """
-    html = html.replace("?v=VER", "?v=" + VER).replace("window.OB_USE_MODELS = USE_MODELS;", "window.OB_USE_MODELS = " + USE_MODELS + ";")
+    html = html.replace("?v=VER", "?v=" + VER).replace("window.OB_USE_MODELS = USE_MODELS;", "window.OB_USE_MODELS = " + USE_MODELS + ";").replace("window.OB_VER = VER;", "window.OB_VER = " + VER + ";")
     with open(os.path.join(OUT, name), "w", encoding="utf-8") as f: f.write(html)
     print("wrote", name, len(html))
 
@@ -214,6 +214,7 @@ def surface_section():
       <p>Lunar infrastructure engineering, built in India: power, night survival, mobility, Helium-3 extraction, landers and orbiters, and AI compute. Scroll to fly across the lunar south pole and meet each system.</p>
       <div class="acts"><a href="programmes.html" class="btn btn-ghost">Our capabilities</a><a href="contact.html" class="btn">Partner with us {ARROW}</a></div>
     </div><div class="cue">Scroll to descend<i></i></div></div>
+    <div class="s-plate" id="surfacePlate" aria-hidden="true"><img alt=""></div>
     <div class="s-caption" id="stationCaption"></div>
     <div class="s-rail">{dots}</div>
     <div class="s-end" id="surfaceEnd"><div><div class="eyebrow" style="justify-content:center">Leaving the surface</div><h2>Seven systems. One outpost. <span class="grad">Built in India.</span></h2><p>Now the people and the services that make it real.</p><div class="cue">Keep scrolling</div></div></div>

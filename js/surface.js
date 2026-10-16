@@ -9,12 +9,12 @@
   var isSmall = Math.min(innerWidth, innerHeight) < 700 || !window.matchMedia('(pointer:fine)').matches;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var WX = 30000, WZ = 12000, HMAX = 1204, SEG_X = isSmall ? 512 : 1024, SEG_Z = isSmall ? 205 : 410;
-  var SKY = 0x070c1a;
+  var WX = 30000, WZ = 12000, HMAX = 1770, SEG_X = isSmall ? 512 : 1024, SEG_Z = isSmall ? 205 : 410;
+  var SKY = 0x000000;                                                      // no atmosphere: the sky is black, as in the reference renders
 
   /* ---------------- stations (draft specifications, to be confirmed by the company) ---------------- */
   var STATIONS = [
-    { id: 'vsat', n: '01', tag: 'Power', title: 'Lunar Power · VSAT', pos: [-11000, 0, -250], agl: 0,
+    { id: 'vsat', n: '01', tag: 'Power', title: 'Lunar Power · VSAT', pos: [-11000, 0, -250], agl: 0, plate: 'assets/renders/vsat.jpg',
       short: 'A 6 to 10 kW vertical solar array that keeps the outpost powered through the long polar day.',
       body: 'VSAT is a deployable vertical solar array sized at 6 to 10 kW, built for the low sun angles of the lunar poles where a vertical panel catches light that a flat array would miss. Paired with radioisotope heater units and lunar batteries, it is the power backbone of every surface asset Orbit Beyond builds. Surface infrastructure needs kW-class power, and today only a handful of suppliers serve the surface.',
       specs: [['Output', '6 to 10 kW, vertical deployable array'], ['Night survival', 'Radioisotope heater units and lunar batteries'], ['Site', 'Polar, low sun-angle operation'], ['Role', 'Power for landers, rovers and surface payloads'], ['Future', 'Lunar power-as-a-service']], img: null, link: 'programmes.html#stack' },
@@ -50,7 +50,7 @@
   renderer.setPixelRatio(Math.min(devicePixelRatio, isSmall ? 1.25 : 1.5));
   renderer.outputEncoding = THREE.sRGBEncoding; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.25;
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  var scene = new THREE.Scene(); scene.background = new THREE.Color(SKY); scene.fog = new THREE.Fog(SKY, 14000, 42000);
+  var scene = new THREE.Scene(); scene.background = new THREE.Color(SKY);                             // no fog: there is no air to scatter light
   var camera = new THREE.PerspectiveCamera(46, 1, 1, 90000);
   var SUN_DIR = new THREE.Vector3(0.84, 0.27, 0.42).normalize();          // south-polar sun, about 16 degrees up: long shadows, lit ground
   var sun = new THREE.DirectionalLight(0xfff4e6, 2.4); sun.castShadow = true;
@@ -63,12 +63,15 @@
 
   /* ---------------- textures and terrain ---------------- */
   var manager = new THREE.LoadingManager(), loader = new THREE.TextureLoader(manager);
-  var tex = function (p, srgb) { var t = loader.load(p); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; if (srgb) t.encoding = THREE.sRGBEncoding; return t; };
+  var V = '?v=' + (window.OB_VER || 1);                                   // cache-busting for the terrain maps
+  var tex = function (p, srgb) { var t = loader.load(p + V); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; if (srgb) t.encoding = THREE.sRGBEncoding; return t; };
   var albedo = tex('assets/moon/albedo.jpg', true), normal = tex('assets/moon/normal.jpg'), height = tex('assets/moon/height.png'), detail = tex('assets/moon/detail.jpg');
+  height.minFilter = height.magFilter = THREE.NearestFilter; height.generateMipmaps = false;   // packed 16-bit height: no filtering across the byte boundary
   albedo.wrapS = albedo.wrapT = normal.wrapS = normal.wrapT = height.wrapS = height.wrapT = THREE.ClampToEdgeWrapping;
   var geo = new THREE.PlaneGeometry(WX, WZ, SEG_X, SEG_Z); geo.rotateX(-Math.PI / 2);
   var mat = new THREE.MeshStandardMaterial({ map: albedo, normalMap: normal, normalScale: new THREE.Vector2(1.0, 1.0), displacementMap: height, displacementScale: HMAX, roughness: 1.0, metalness: 0, color: 0xd6d2cb });
   mat.onBeforeCompile = function (sh) {
+    sh.vertexShader = sh.vertexShader.replace('#include <displacementmap_vertex>', '#ifdef USE_DISPLACEMENTMAP\ntransformed += normalize( objectNormal ) * ( dot( texture2D( displacementMap, vUv ).rg, vec2( 65280.0 / 65535.0, 255.0 / 65535.0 ) ) * displacementScale + displacementBias );\n#endif');   // 16-bit height packed in R,G
     sh.uniforms.detailMap = { value: detail }; sh.uniforms.detailRepeat = { value: new THREE.Vector2(170, 68) }; sh.uniforms.detailScale = { value: 0.5 };
     var lunar = THREE.ShaderChunk.lights_physical_pars_fragment.replace('reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );',
       'float muV = saturate( dot( geometry.normal, geometry.viewDir ) ); float opp = 1.0 + 0.45 * pow( saturate( dot( geometry.viewDir, directLight.direction ) ), 6.0 );' +
@@ -82,13 +85,13 @@
   };
   var terrain = new THREE.Mesh(geo, mat); terrain.castShadow = true; terrain.receiveShadow = true; scene.add(terrain);
   // horizon skirt: a vast dark plane so the strip never ends against black
-  var skirt = new THREE.Mesh(new THREE.CircleGeometry(90000, 64), new THREE.MeshStandardMaterial({ color: 0x9c9892, roughness: 1 }));
+  var skirt = new THREE.Mesh(new THREE.CircleGeometry(90000, 64), new THREE.MeshStandardMaterial({ color: 0x8e8b86, roughness: 1 }));
   skirt.rotation.x = -Math.PI / 2; skirt.position.y = 60; scene.add(skirt);
 
   /* height sampling (reads the displacement map through a canvas, approximating the mesh) */
   var hData = null, hW = 0, hH = 0;
-  var hImg = new Image(); hImg.onload = function () { var c = document.createElement('canvas'); c.width = hImg.width; c.height = hImg.height; var g = c.getContext('2d'); g.drawImage(hImg, 0, 0); hData = g.getImageData(0, 0, c.width, c.height).data; hW = c.width; hH = c.height; placeAll(); }; hImg.src = 'assets/moon/height.png';
-  function hAt(u, v) { if (!hData) return 0; var x = Math.max(0, Math.min(hW - 1.001, u * (hW - 1))), y = Math.max(0, Math.min(hH - 1.001, v * (hH - 1))); var x0 = x | 0, y0 = y | 0, fx = x - x0, fy = y - y0; var p = function (xx, yy) { return hData[(yy * hW + xx) * 4]; }; return ((p(x0, y0) * (1 - fx) + p(x0 + 1, y0) * fx) * (1 - fy) + (p(x0, y0 + 1) * (1 - fx) + p(x0 + 1, y0 + 1) * fx) * fy) / 255 * HMAX; }
+  var hImg = new Image(); hImg.onload = function () { var c = document.createElement('canvas'); c.width = hImg.width; c.height = hImg.height; var g = c.getContext('2d'); g.drawImage(hImg, 0, 0); hData = g.getImageData(0, 0, c.width, c.height).data; hW = c.width; hH = c.height; placeAll(); }; hImg.src = 'assets/moon/height.png' + V;
+  function hAt(u, v) { if (!hData) return 0; var x = Math.max(0, Math.min(hW - 1.001, u * (hW - 1))), y = Math.max(0, Math.min(hH - 1.001, v * (hH - 1))); var x0 = x | 0, y0 = y | 0, fx = x - x0, fy = y - y0; var p = function (xx, yy) { var i = (yy * hW + xx) * 4; return hData[i] * 256 + hData[i + 1]; }; return ((p(x0, y0) * (1 - fx) + p(x0 + 1, y0) * fx) * (1 - fy) + (p(x0, y0 + 1) * (1 - fx) + p(x0 + 1, y0 + 1) * fx) * fy) / 65535 * HMAX; }   // 16-bit height packed in R,G
   function ground(x, z) { // bilinear between the mesh vertices nearest to (x,z)
     var gx = (x / WX + .5) * SEG_X, gz = (z / WZ + .5) * SEG_Z, x0 = Math.floor(gx), z0 = Math.floor(gz), fx = gx - x0, fz = gz - z0;
     var v = function (i, j) { return hAt(i / SEG_X, j / SEG_Z); };
@@ -211,14 +214,10 @@
   STATIONS.forEach(function (s) { var o = builders[s.id](); o.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); o.position.set(s.pos[0], s.pos[1], s.pos[2]); o.userData.x0 = s.pos[0]; scene.add(o); objects[s.id] = o; });
   if (window.OBModels) OBModels.apply(objects, hwEnv, isSmall);   // real glTF models replace the procedural ones once loaded
   // a few boulders around the sites
-  var rocks = new THREE.Group(); scene.add(rocks); var rockMat = new THREE.MeshStandardMaterial({ color: 0x3b3835, roughness: 1, flatShading: true });
-  function rockGeo() { var g = new THREE.DodecahedronGeometry(1, 1), pa = g.attributes.position; for (var i = 0; i < pa.count; i++) { var k = .75 + Math.random() * .5; pa.setXYZ(i, pa.getX(i) * k, pa.getY(i) * (k * .8), pa.getZ(i) * k); } g.computeVertexNormals(); return g; }
-  var rockGeos = [rockGeo(), rockGeo(), rockGeo(), rockGeo(), rockGeo()];
-  var rockList = [];
-  STATIONS.forEach(function (s) { if (s.sky) return; for (var i = 0; i < 70; i++) { var r = mesh(rockGeos[i % 5], rockMat); var a = Math.random() * Math.PI * 2, d = 6 + Math.pow(Math.random(), .6) * 90; r.position.set(s.pos[0] + Math.cos(a) * d, 0, s.pos[2] + Math.sin(a) * d); var sc = .12 + Math.pow(Math.random(), 2.2) * 1.3; r.scale.set(sc, sc * (.55 + Math.random() * .5), sc); r.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6); rocks.add(r); rockList.push(r); } });
+  var rockMeshes = [];                                                     // boulder fields (js/rocks.js), built once the height map is known
   function placeAll() {
     STATIONS.forEach(function (s) { var o = objects[s.id]; o.position.y = ground(s.pos[0], s.pos[2]) + (s.sky ? s.agl : .1); s.gy = o.position.y; });
-    rockList.forEach(function (r) { r.position.y = ground(r.position.x, r.position.z) - r.scale.y * .35; });
+    if (window.OBRocks && !rockMeshes.length) rockMeshes = OBRocks.build(scene, ground, STATIONS, isSmall, detail);
     buildPath();
   }
 
@@ -269,8 +268,21 @@
   var windows = WIN;
   function stationAt(p) { for (var i = 0; i < windows.length; i++) if (p >= windows[i][0] && p < windows[i][1]) return i; return -1; }
   var lastStation = -2;
+  var plateEl = document.getElementById('surfacePlate'), plateImg = plateEl ? plateEl.querySelector('img') : null, plateSrc = '';
+  function platePhase(p, si) {                       // 0..1 over the station hold; 0 while cruising
+    if (si < 0 || !STATIONS[si].plate) return 0;
+    var w = windows[si], a = w[0] + .024, b = w[1] - .024, f = .014;
+    if (p < a || p > b) return 0;
+    var t = Math.min((p - a) / f, (b - p) / f, 1); return t * t * (3 - 2 * t);
+  }
   function updateUI(p) {
     var si = stationAt(p);
+    if (plateEl) {
+      var ph = platePhase(p, si);
+      if (ph > 0 && si >= 0 && plateSrc !== STATIONS[si].plate) { plateSrc = STATIONS[si].plate; plateImg.src = plateSrc; }
+      plateEl.style.opacity = ph.toFixed(3); plateEl.style.pointerEvents = 'none';
+      if (ph > 0) { var w = windows[si], k = (p - w[0]) / (w[1] - w[0]); plateImg.style.transform = 'scale(' + (1.06 + k * .05).toFixed(4) + ') translate(' + ((k - .5) * -1.2).toFixed(3) + '%, ' + ((k - .5) * .6).toFixed(3) + '%)'; }
+    }
     if (heroEl) heroEl.style.opacity = Math.max(0, 1 - p / .07); if (heroEl) heroEl.style.pointerEvents = p < .07 ? 'auto' : 'none';
     if (endEl) { var e = Math.max(0, (p - .9) / .08); endEl.style.opacity = e; endEl.style.pointerEvents = e > .5 ? 'auto' : 'none'; }
     if (progEl) progEl.style.setProperty('--p', (p * 100).toFixed(1) + '%');
