@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
-USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "62"
+USE_MODELS = "false"
+USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
+VER = "63"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -69,7 +70,9 @@ FOOTER = """
 
 def shell(name, title, desc, body, three=False, extra_head=""):
     scripts = '<script src="js/main.js?v=VER"></script>'
-    if three:
+    if three and USE_SEQUENCE == "true":
+        scripts = ('<script src="js/main.js?v=VER"></script><script>window.OB_VER = VER;</script><script src="js/stations.js?v=VER"></script><script src="assets/sequence/manifest.js?v=VER"></script><script src="js/sequence.js?v=VER"></script>')
+    elif three:
         scripts = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>'
                    '<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>'
                    '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script>window.OB_USE_MODELS = USE_MODELS; window.OB_VER = VER;</script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script><script src="js/hardware.js?v=VER"></script><script src="js/rocks.js?v=VER"></script><script src="js/models.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
