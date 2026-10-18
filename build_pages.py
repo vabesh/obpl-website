@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "64"
+VER = "65"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -173,7 +173,6 @@ ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propu
             ("alok","assets/team-alok.jpg",None,"Dr. Alok Shrivastav","Head, Thermal · lunar-night survival"),
             ("rk","assets/team-rk.jpg",None,"Dr. R.K. Srinivasan","Head of Structures"),
             ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
-            ("anand","assets/team-anand.jpg",None,"Anand Nagesh","Lead, Avionics"),
             ("monica","assets/team-monica.jpg",None,"Monica Dey","HR & Operations Manager"),
             ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Head, Corporate Development"),
             ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer")]
