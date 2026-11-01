@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "61"
+VER = "63"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -13,23 +13,23 @@ NAV = """
   <div class="loader-bar"><i></i></div>
 </div></div>
 <header class="nav"><div class="nav-inner">
-  <a href="index.html" class="brand" aria-label="Orbit Beyond India home">
+  <a href="/" class="brand" aria-label="Orbit Beyond India home">
     <img class="mark" src="assets/logo-mark.png" alt="" /><span><img class="word" src="assets/logo-wordmark-name.png" alt="Orbit Beyond" /><span class="tagline">INDIA · ORBIT TO OUTPOST</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="programmes.html">Capabilities</a></li>
-    <li><a href="team.html">People</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/programmes">Capabilities</a></li>
+    <li><a href="/team">People</a></li>
+    <li><a href="/contact">Contact</a></li>
   </ul>
   <div class="nav-cta">
-    <a href="contact.html" class="btn">Partner with us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="/contact" class="btn">Partner with us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </div></header>
 <nav class="mnav" aria-label="Mobile">
-  <a href="index.html">Home</a><a href="about.html">About</a><a href="programmes.html">Capabilities</a><a href="team.html">People</a><a href="contact.html">Contact</a>
+  <a href="/">Home</a><a href="/about">About</a><a href="/programmes">Capabilities</a><a href="/team">People</a><a href="/contact">Contact</a>
   <div class="mnav-foot">DPIIT Recognised Startup · DIPP285038</div>
 </nav>
 """
@@ -38,20 +38,20 @@ FOOTER = """
 <footer class="footer"><div class="wrap">
   <div class="footer-in">
     <div>
-      <a href="index.html" class="brand"><img class="mark" src="assets/logo-mark.png" alt="" /><span><img class="word" src="assets/logo-wordmark-name.png" alt="Orbit Beyond" /><span class="tagline">INDIA · ORBIT TO OUTPOST</span></span></a>
+      <a href="/" class="brand"><img class="mark" src="assets/logo-mark.png" alt="" /><span><img class="word" src="assets/logo-wordmark-name.png" alt="Orbit Beyond" /><span class="tagline">INDIA · ORBIT TO OUTPOST</span></span></a>
       <div class="hindi">भारत से चंद्रमा तक</div>
       <p><strong style="display:block;color:var(--ivory);font-weight:600">Orbit Beyond Private Limited</strong>designs, integrates and manufactures landers, orbiters and mobility systems for missions worldwide.</p>
     </div>
     <div><h4>Explore</h4><ul>
-      <li><a href="about.html">About</a></li><li><a href="programmes.html">Capabilities</a></li><li><a href="team.html">People</a></li><li><a href="contact.html">Contact</a></li>
+      <li><a href="/about">About</a></li><li><a href="/programmes">Capabilities</a></li><li><a href="/team">People</a></li><li><a href="/contact">Contact</a></li>
     </ul></div>
     <div><h4>Offices</h4><ul>
-      <li><a href="contact.html">2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar, Bengaluru 560055</a></li>
-      <li><a href="contact.html">Regd. office: MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</a></li>
+      <li><a href="/contact">2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar, Bengaluru 560055</a></li>
+      <li><a href="/contact">Regd. office: MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</a></li>
       <li><a href="mailto:info@orbit.space">info@orbit.space</a></li>
     </ul></div>
     <div><h4>Recognition</h4><ul>
-      <li><a href="about.html#recognition">DPIIT Recognised Startup</a></li><li><a href="about.html#recognition">Certificate DIPP285038</a></li><li><a href="about.html#recognition">Aerospace &amp; Defence · Space Technology</a></li>
+      <li><a href="/about#recognition">DPIIT Recognised Startup</a></li><li><a href="/about#recognition">Certificate DIPP285038</a></li><li><a href="/about#recognition">Aerospace &amp; Defence · Space Technology</a></li>
     </ul></div>
   </div>
   <div class="footer-bot">
@@ -66,6 +66,30 @@ FOOTER = """
   </div>
 </div>
 """
+
+
+PAGE_LABEL = {"about.html": "About", "programmes.html": "Capabilities", "team.html": "People", "contact.html": "Contact"}
+def ld(name, title, desc):
+    import json
+    org = {"@type": "Organization", "@id": SITE + "/#org", "name": "Orbit Beyond Private Limited",
+           "alternateName": ["ORBITBeyond India", "Orbit Beyond India"], "legalName": "Orbit Beyond Private Limited",
+           "url": SITE + "/", "logo": SITE + "/assets/logo-mark.png", "image": SITE + "/assets/social-card.jpg",
+           "description": "DPIIT-recognised Indian space technology company engineering lunar infrastructure: the OB1 lunar lander, relay orbiter, lunar power, night survival, long-range rovers, Helium-3 extraction and AI compute.",
+           "foundingDate": "2022-12-27", "email": "info@orbit.space", "areaServed": "IN",
+           "address": {"@type": "PostalAddress", "streetAddress": "2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar",
+                       "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560055", "addressCountry": "IN"},
+           "identifier": {"@type": "PropertyValue", "propertyID": "DPIIT", "value": "DIPP285038"},
+           "parentOrganization": {"@type": "Organization", "name": "ORBITBeyond Inc.", "url": "https://orbitbeyond.com/"},
+           "knowsAbout": ["Lunar landers", "Lunar relay orbiters", "Lunar rovers", "Lunar surface power", "Lunar night survival", "Helium-3 extraction", "Space technology"]}
+    site = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Orbit Beyond India", "inLanguage": "en-IN", "publisher": {"@id": SITE + "/#org"}}
+    graph = [org, site]
+    if name != "index.html":
+        url = SITE + "/" + name.replace(".html", "")
+        graph.append({"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": title, "description": desc, "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": SITE + "/#org"}, "inLanguage": "en-IN"})
+        graph.append({"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": PAGE_LABEL.get(name, title), "item": url}]})
+    return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False) + '</script>'
 
 def shell(name, title, desc, body, three=False, extra_head=""):
     scripts = '<script src="js/main.js?v=VER"></script>'
@@ -83,12 +107,15 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 <meta name="description" content="{desc}" />
 <link rel="canonical" href="{url}" />
 <meta property="og:type" content="website" /><meta property="og:site_name" content="ORBITBeyond India" /><meta property="og:title" content="{title}" /><meta property="og:description" content="{desc}" /><meta property="og:url" content="{url}" />
+<meta property="og:image" content="{SITE}/assets/social-card.jpg" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="Orbit Beyond: lunar infrastructure engineered in India" /><meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="{title}" /><meta name="twitter:description" content="{desc}" /><meta name="twitter:image" content="{SITE}/assets/social-card.jpg" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="theme-color" content="#06081a" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Michroma&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css?v=VER" /><link rel="stylesheet" href="css/surface.css?v=VER" />
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"Orbit Beyond Private Limited","alternateName":"ORBITBeyond India","url":"{SITE}/","foundingDate":"2022-12-27","address":{{"@type":"PostalAddress","streetAddress":"2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar","addressLocality":"Bengaluru","postalCode":"560055","addressCountry":"IN"}},"description":"{desc}"}}</script>
+{ld(name, title, desc)}
 {extra_head}
 </head>
 <body>
@@ -107,7 +134,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
-def cta(h, p, a1="Partner with us", h1="contact.html", a2="Explore our capabilities", h2="programmes.html"):
+def cta(h, p, a1="Partner with us", h1="/contact", a2="Explore our capabilities", h2="/programmes"):
     second = f'<a href="{h2}" class="btn btn-ghost">{a2}</a>' if a2 else ""
     return f"""
 <section class="section"><div class="wrap"><div class="cta rv">
@@ -194,7 +221,7 @@ def wp_cards():
     out=[]
     for i,(n,t,img,id_,p) in enumerate(data):
         wide = ' wide' if i in (3,) else ''
-        out.append(f"""<a href="programmes.html#wp{n}" class="wp-card glass tilt rv{wide}"><img src="{img}" alt="{t}" loading="lazy" /><div class="ov"></div><span class="num">WORK PACKAGE {n}</span><h3>{t}</h3><p>{p}</p><span class="more">Read more {ARROW}</span></a>""")
+        out.append(f"""<a href="/programmes#wp{n}" class="wp-card glass tilt rv{wide}"><img src="{img}" alt="{t}" loading="lazy" /><div class="ov"></div><span class="num">WORK PACKAGE {n}</span><h3>{t}</h3><p>{p}</p><span class="more">Read more {ARROW}</span></a>""")
     return '<div class="wp-cards">' + "".join(out) + '</div>'
 
 # =============================== INDEX ===============================
@@ -211,7 +238,7 @@ def surface_section():
       <div class="tag">Orbit to Outpost</div>
       <h1>Designed in India. <span class="grad">Built for the Moon.</span></h1>
       <p>Lunar infrastructure engineering, built in India: power, night survival, mobility, Helium-3 extraction, landers and orbiters, and AI compute. Scroll to fly across the lunar south pole and meet each system.</p>
-      <div class="acts"><a href="programmes.html" class="btn btn-ghost">Our capabilities</a><a href="contact.html" class="btn">Partner with us {ARROW}</a></div>
+      <div class="acts"><a href="/programmes" class="btn btn-ghost">Our capabilities</a><a href="/contact" class="btn">Partner with us {ARROW}</a></div>
     </div><div class="cue">Scroll to descend<i></i></div></div>
     <div class="s-caption" id="stationCaption"></div>
     <div class="s-rail">{dots}</div>
@@ -222,7 +249,7 @@ def surface_section():
 <aside class="spanel" id="stationPanel" aria-label="Station details">
   <button class="sp-x" onclick="closeStation()" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <img class="sp-img" src="" alt="" />
-  <div class="sp-body"><div class="sp-k"></div><h3 class="sp-t"></h3><p class="sp-b"></p><table><tbody class="sp-specs"></tbody></table><a class="btn sp-link" href="programmes.html">Capability details {ARROW}</a></div>
+  <div class="sp-body"><div class="sp-k"></div><h3 class="sp-t"></h3><p class="sp-b"></p><table><tbody class="sp-specs"></tbody></table><a class="btn sp-link" href="/programmes">Capability details {ARROW}</a></div>
 </aside>"""
 
 index_body = f"""
@@ -261,7 +288,7 @@ index_body = f"""
 # =============================== ABOUT ===============================
 about_body = f"""
 <section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
-  <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>About</span></div>
+  <div class="crumbs"><a href="/">Home</a><span>/</span><span>About</span></div>
   <div class="eyebrow">Orbit Beyond Private Limited</div>
   <h1>An Indian company, built to <span class="grad">design and fly</span> lunar systems.</h1>
   <p class="lede">An Indian space-technology company engineering lunar infrastructure: incorporated on 27 December 2022 and recognised by DPIIT as a startup in Space Technology.</p>
@@ -302,7 +329,7 @@ about_body = f"""
     <ul class="cert-pts"><li><i>№</i><div><b>DIPP285038</b><span>Certificate number</span></div></li><li><i>25.9</i><div><b>Issued 25 September 2026</b><span>Valid up to 26 December 2032</span></div></li><li><i>IN</i><div><b>Self-certified sector</b><span>Aeronautics, Aerospace &amp; Defence · Space Technology</span></div></li></ul></div>
 </div></div></section>
 
-{cta("Meet the people behind the programme.", "The founding members and the team behind the programme.", "Meet the team", "team.html", "Contact us", "contact.html")}
+{cta("Meet the people behind the programme.", "The founding members and the team behind the programme.", "Meet the team", "/team", "Contact us", "/contact")}
 """
 
 # =============================== PROGRAMMES ===============================
@@ -316,7 +343,7 @@ def wp_section(n, title, img, lead, bullets, meta, flip=False):
 
 programmes_body = f"""
 <section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
-  <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Capabilities</span></div>
+  <div class="crumbs"><a href="/">Home</a><span>/</span><span>Capabilities</span></div>
   <div class="eyebrow">What we build in India</div>
   <h1>Power, mobility, resources, <span class="grad">landers and orbiters.</span></h1>
   <p class="lede">The integrated lunar infrastructure stack Orbit Beyond engineers in India.</p>
@@ -344,13 +371,13 @@ programmes_body = f"""
   </div>
 </div></section>
 
-{cta("Have a payload, a product line or a partnership in mind?", "Talk to the engineering team about lander, rover, satellite or compute programmes.", "Start a conversation", "contact.html", None, None)}
+{cta("Have a payload, a product line or a partnership in mind?", "Talk to the engineering team about lander, rover, satellite or compute programmes.", "Start a conversation", "/contact", None, None)}
 """
 
 # =============================== TEAM ===============================
 team_body = f"""
 <section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
-  <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>People</span></div>
+  <div class="crumbs"><a href="/">Home</a><span>/</span><span>People</span></div>
   <div class="eyebrow">People</div>
   <h1>Built by engineers who have <span class="grad">landed on the Moon.</span></h1>
   <p class="lede">The founding members and the team that heads every subsystem: propulsion, avionics, guidance, power, communications, thermal and structures. Tap a profile to read more.</p>
@@ -362,7 +389,7 @@ team_body = f"""
 # =============================== CONTACT ===============================
 contact_body = f"""
 <section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
-  <div class="crumbs"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+  <div class="crumbs"><a href="/">Home</a><span>/</span><span>Contact</span></div>
   <div class="eyebrow">Contact</div>
   <h1>Let's build it <span class="grad">in India.</span></h1>
   <p class="lede">Payload customers, industry, research institutions and press: we respond within two business days.</p>
@@ -391,6 +418,18 @@ shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Privat
 # Hidden preview page with the glTF hardware models switched on (not linked, not indexed)
 _idx = open(os.path.join(OUT, "index.html"), encoding="utf-8").read()
 _prev = (_idx.replace("window.OB_USE_MODELS = false", "window.OB_USE_MODELS = true")
-            .replace('<link rel="canonical" href="https://orbitbeyond.space/" />', '<link rel="canonical" href="https://orbitbeyond.space/preview-models" /><meta name="robots" content="noindex, nofollow" />'))
+            .replace('<link rel="canonical" href="https://orbitbeyond.space/" />', '<link rel="canonical" href="https://orbitbeyond.space/preview-models" />')
+            .replace('content="index, follow, max-image-preview:large"', 'content="noindex, nofollow"'))
 open(os.path.join(OUT, "preview-models.html"), "w", encoding="utf-8").write(_prev)
 print("wrote preview-models.html")
+
+# robots.txt and sitemap.xml (clean URLs, preview page excluded)
+import datetime
+_today = datetime.date.today().isoformat()
+_pages = [("", "1.0", "weekly"), ("about", "0.8", "monthly"), ("programmes", "0.9", "monthly"), ("team", "0.7", "monthly"), ("contact", "0.6", "yearly")]
+_sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
+    "  <url><loc>%s/%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq><priority>%s</priority></url>\n" % (SITE, path, _today, freq, pri)
+    for path, pri, freq in _pages) + "</urlset>\n"
+open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8").write(_sm)
+open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8").write("User-agent: *\nAllow: /\nDisallow: /preview-models\n\nSitemap: %s/sitemap.xml\n" % SITE)
+print("wrote sitemap.xml, robots.txt")
