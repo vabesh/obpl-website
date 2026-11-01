@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /preview-models
+
+Sitemap: https://orbitbeyond.space/sitemap.xml

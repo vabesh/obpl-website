@@ -46,10 +46,11 @@
     });
     mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mnav.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = ''; }); });
   }
-  var here = location.pathname.split('/').pop() || 'index.html';
+  var here = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav-links a, .mnav a').forEach(function (a) {
-    var h = a.getAttribute('href').split('#')[0];
-    if (h === here || (here === '' && h === 'index.html')) a.classList.add('active');
+    var h = a.getAttribute('href').split('#')[0].replace(/\.html$/, '').replace(/^index$/, '');
+    if (h.charAt(0) !== '/') h = '/' + h;
+    if (h === here) a.classList.add('active');
   });
 
   /* ---------- reveal on scroll ---------- */

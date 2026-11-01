@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "orbitbeyond-india", "runtimeExecutable": "python", "runtimeArgs": ["-m", "http.server", "8766"], "port": 8766 }
+    { "name": "orbitbeyond-india", "runtimeExecutable": "python", "runtimeArgs": ["tools/serve.py", "8766"], "port": 8766 }
   ]
 }
