@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "68"
+VER = "69"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -354,7 +354,7 @@ programmes_body = f"""
 </div></section>
 <section class="section" id="stack" style="padding-top:1rem"><div class="wrap">
   <div class="sec-head rv"><div><div class="eyebrow">Product, technology &amp; innovation</div><h2>An integrated <span class="grad">lunar infrastructure stack.</span></h2></div>
-    <p class="lede">Six systems, from surface power to the lander and orbiter, engineered in India with the mobility platform and Helium-3 extraction IP owned here.</p></div>
+    <p class="lede">Six systems, from surface power to the lander and orbiter, engineered in India.</p></div>
   <div class="pillars">
     <div class="pillar glass tilt rv"><div class="ic">{ICONS['bolt']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Power</div><h3>Lunar power · VSAT</h3><p>6 to 10 kW vertical solar array with radioisotope heater units for lunar night survival.</p></div>
     <div class="pillar glass tilt rv rv-d1"><div class="ic">{ICONS['shield']}</div><div class="k eyebrow" style="margin-bottom:.4rem">Night survival</div><h3>RHUs and lunar batteries</h3><p>Keep landers and surface assets alive. Only about two suppliers serve the surface today.</p></div>
