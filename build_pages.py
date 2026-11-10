@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "69"
+VER = "70"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -191,7 +191,7 @@ def numbers():
   <div><div class="n">Export-first</div><div class="l">Revenue orientation · NASA, USSF, global</div></div>
 </div>"""
 
-FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad Padhi","Founder & Director"),
+FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad","Founder & Director"),
             ("shreya","assets/team-shreya.jpg",None,"Dr. Shreya Santra","Head of Robotics and Autonomy")]
 ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
             ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head of Orbiter Mission Control"),
@@ -202,7 +202,8 @@ ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propu
             ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
             ("monica","assets/team-monica.jpg",None,"Monica Dey","HR & Operations Manager"),
             ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Head, Corporate Development"),
-            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer")]
+            ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer"),
+            ("dilna","assets/team-dilna.jpg",None,"Dilna Avinash","Head, Partnerships & Operations")]
 
 def team_cards(ppl, tag):
     cards = ""
