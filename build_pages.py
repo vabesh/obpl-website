@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "71"
+VER = "72"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -198,6 +198,7 @@ ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propu
             ("alok","assets/team-alok.jpg",None,"Dr. Alok Shrivastav","Head, Thermal · lunar-night survival"),
             ("rk","assets/team-rk.jpg",None,"Dr. R.K. Srinivasan","Head of Structures"),
             ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer"),
+            ("bimal","assets/team-bimal.jpg",None,"Bimal Mishra","Resident Director, Odisha"),
             ("dilna","assets/team-dilna.jpg",None,"Dilna Avinash","Manager – Government Relations, Partnerships & Outreach"),
             ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
             ("monica","assets/team-monica.jpg",None,"Monica Dey","HR & Operations Manager"),
