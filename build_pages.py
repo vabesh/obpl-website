@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "70"
+VER = "71"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -69,7 +69,23 @@ FOOTER = """
 """
 
 
+PAGE_TYPE = {"about.html": "AboutPage", "contact.html": "ContactPage"}
 PAGE_LABEL = {"about.html": "About", "programmes.html": "Capabilities", "team.html": "People", "contact.html": "Contact"}
+def team_people():
+    """Person records for the team page, with bios read from the modal data in js/main.js (single source)."""
+    import re
+    js = open(os.path.join(OUT, "js", "main.js"), encoding="utf-8").read()
+    people = []
+    for k, img, ini, n, r in FOUNDERS + ADVISORS:
+        m = re.search(r"\n    " + k + r": \{.*?bio: \[(.*?)\] \}", js, re.S)
+        bio = " ".join(x.replace("\\'", "'") for x in re.findall(r"'((?:[^'\\]|\\.)*)'", m.group(1))) if m else ""
+        if not bio: print("  warning: no bio found for", k)
+        person = {"@type": "Person", "@id": SITE + "/team#" + k, "name": n, "jobTitle": r, "worksFor": {"@id": SITE + "/#org"}, "url": SITE + "/team"}
+        if img: person["image"] = SITE + "/" + img
+        if bio: person["description"] = bio
+        people.append(person)
+    return people
+
 def ld(name, title, desc):
     import json
     org = {"@type": "Organization", "@id": SITE + "/#org", "name": "Orbit Beyond Private Limited",
@@ -83,13 +99,16 @@ def ld(name, title, desc):
            "parentOrganization": {"@type": "Organization", "name": "ORBITBeyond Inc.", "url": "https://orbitbeyond.com/"},
            "knowsAbout": ["Lunar landers", "Lunar relay orbiters", "Lunar rovers", "Lunar surface power", "Lunar night survival", "Helium-3 extraction", "Space technology"]}
     site = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Orbit Beyond India", "inLanguage": "en-IN", "publisher": {"@id": SITE + "/#org"}}
+    org["founder"] = {"@type": "Person", "@id": SITE + "/team#" + FOUNDERS[0][0], "name": FOUNDERS[0][3], "jobTitle": FOUNDERS[0][4]}
     graph = [org, site]
     if name != "index.html":
         url = SITE + "/" + name.replace(".html", "")
-        graph.append({"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": title, "description": desc, "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": SITE + "/#org"}, "inLanguage": "en-IN"})
+        graph.append({"@type": PAGE_TYPE.get(name, "WebPage"), "@id": url + "#webpage", "url": url, "name": title, "description": desc, "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": SITE + "/#org"}, "inLanguage": "en-IN"})
         graph.append({"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
             {"@type": "ListItem", "position": 2, "name": PAGE_LABEL.get(name, title), "item": url}]})
+    if name == "team.html":
+        graph.extend(team_people())
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False) + '</script>'
 
 def shell(name, title, desc, body, three=False, extra_head=""):
@@ -101,20 +120,22 @@ def shell(name, title, desc, body, three=False, extra_head=""):
                    '<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>'
                    '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script>window.OB_USE_MODELS = USE_MODELS; window.OB_VER = VER;</script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script><script src="js/hardware.js?v=VER"></script><script src="js/rocks.js?v=VER"></script><script src="js/models.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
     url = SITE + "/" + ("" if name == "index.html" else name.replace(".html", ""))
+    import html as _html
+    title_h, desc_h = _html.escape(title, quote=True), _html.escape(desc, quote=True)
     html = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{title}</title>
-<meta name="description" content="{desc}" />
+<title>{title_h}</title>
+<meta name="description" content="{desc_h}" />
 <link rel="canonical" href="{url}" />
-<meta property="og:type" content="website" /><meta property="og:site_name" content="ORBITBeyond India" /><meta property="og:title" content="{title}" /><meta property="og:description" content="{desc}" /><meta property="og:url" content="{url}" />
+<meta property="og:type" content="website" /><meta property="og:site_name" content="ORBITBeyond India" /><meta property="og:title" content="{title_h}" /><meta property="og:description" content="{desc_h}" /><meta property="og:url" content="{url}" />
 <meta property="og:image" content="{SITE}/assets/social-card.jpg" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="Orbit Beyond: lunar infrastructure engineered in India" /><meta property="og:locale" content="en_IN" />
-<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="{title}" /><meta name="twitter:description" content="{desc}" /><meta name="twitter:image" content="{SITE}/assets/social-card.jpg" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="{title_h}" /><meta name="twitter:description" content="{desc_h}" /><meta name="twitter:image" content="{SITE}/assets/social-card.jpg" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="theme-color" content="#06081a" />
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" /><link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Michroma&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css?v=VER" /><link rel="stylesheet" href="css/surface.css?v=VER" />
@@ -414,11 +435,11 @@ contact_body = f"""
 </div></div></section>
 """
 
-shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
-shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure: landers, orbiters and mobility systems.", about_body)
-shell("programmes.html","Capabilities · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
-shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: the founding members and team heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
-shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: corporate office at WTC Annexe, Bengaluru, and registered office in Bhubaneswar.", contact_body)
+shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond is a DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers and Helium-3 extraction.", index_body, three=True)
+shell("about.html","About · Indian Space Technology Company · ORBITBeyond India","Orbit Beyond Private Limited, incorporated in 2022 and a DPIIT-recognised Space Technology startup, engineers lunar landers, orbiters and rovers in India.", about_body)
+shell("programmes.html","Capabilities · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, the OB1 lander and relay orbiter: Orbit Beyond India's lunar infrastructure stack.", programmes_body)
+shell("team.html","People · Leadership & Engineering Team · ORBITBeyond India","The team behind Orbit Beyond India: founding members and the heads of systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
+shell("contact.html","Contact · Bengaluru & Bhubaneswar · ORBITBeyond India","Contact Orbit Beyond Private Limited: corporate office at WTC Annexe, Bengaluru, and registered office in Bhubaneswar.", contact_body)
 
 # Hidden preview page with the glTF hardware models switched on (not linked, not indexed)
 _idx = open(os.path.join(OUT, "index.html"), encoding="utf-8").read()
