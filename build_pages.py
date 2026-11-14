@@ -2,20 +2,20 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "71"
+VER = "72"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
 NAV = """
 <div id="loader" class="loader"><div class="loader-in">
-  <img class="loader-logo" src="assets/logo-mark.png" alt="Orbit Beyond" />
+  <img class="loader-logo" src="assets/logo-mark.png?v=VER" alt="Orbit Beyond" />
   <div class="loader-hi">भारत से चंद्रमा तक</div>
   <div class="loader-en">Orbit to Outpost</div>
   <div class="loader-bar"><i></i></div>
 </div></div>
 <header class="nav"><div class="nav-inner">
   <a href="/" class="brand" aria-label="Orbit Beyond India home">
-    <img class="mark" src="assets/logo-mark.png" alt="" /><span><img class="word" src="assets/logo-wordmark-name.png" alt="Orbit Beyond" /><span class="tagline">INDIA · ORBIT TO OUTPOST</span></span>
+    <img class="mark" src="assets/logo-mark.png?v=VER" alt="" /><span><img class="word" src="assets/logo-wordmark-name.png" alt="Orbit Beyond" /><span class="tagline">INDIA · ORBIT TO OUTPOST</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
@@ -39,7 +39,7 @@ FOOTER = """
 <footer class="footer"><div class="wrap">
   <div class="footer-in">
     <div>
-      <a href="/" class="brand"><img class="mark" src="assets/logo-mark.png" alt="" /><span><img class="word" src="assets/logo-wordmark-name.png" alt="Orbit Beyond" /><span class="tagline">INDIA · ORBIT TO OUTPOST</span></span></a>
+      <a href="/" class="brand"><img class="mark" src="assets/logo-mark.png?v=VER" alt="" /><span><img class="word" src="assets/logo-wordmark-name.png" alt="Orbit Beyond" /><span class="tagline">INDIA · ORBIT TO OUTPOST</span></span></a>
       <div class="hindi">भारत से चंद्रमा तक</div>
       <p><strong style="display:block;color:var(--ivory);font-weight:600">Orbit Beyond Private Limited</strong>designs, integrates and manufactures landers, orbiters and mobility systems for missions worldwide.</p>
     </div>
@@ -213,18 +213,18 @@ def numbers():
 </div>"""
 
 FOUNDERS = [("siba","assets/team-siba.jpg",None,"Siba Prasad","Founder & Director"),
-            ("shreya","assets/team-shreya.jpg",None,"Dr. Shreya Santra","Head of Robotics and Autonomy")]
+            ("shreya","assets/team-shreya.jpg",None,"Dr. Shreya Santra","Head of Robotics and Autonomy"),
+            ("anand","assets/team-anand-2.jpg",None,"Anand Nagesh","Lead, Avionics")]
 ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propulsion"),
             ("kesava","assets/team-kesava.jpg",None,"Dr. V. Kesava Raju","Head of Orbiter Mission Control"),
             ("venugopalan","assets/team-venugopalan.jpg",None,"Dr. Venugopalan Srinivasan","Head, Electrical Power"),
             ("sambasiva","assets/team-sambasiva.jpg",None,"Dr. Sambasiva Rao Venigalla","Head, Communications"),
             ("alok","assets/team-alok.jpg",None,"Dr. Alok Shrivastav","Head, Thermal · lunar-night survival"),
             ("rk","assets/team-rk.jpg",None,"Dr. R.K. Srinivasan","Head of Structures"),
-            ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
-            ("monica","assets/team-monica.jpg",None,"Monica Dey","HR & Operations Manager"),
-            ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Head, Corporate Development"),
             ("krishnaswamy","assets/team-krishnaswamy.jpg",None,"Dr. M. Krishnaswamy","Chief Systems Engineer"),
-            ("dilna","assets/team-dilna.jpg",None,"Dilna Avinash","Head, Partnerships & Operations")]
+            ("dilna","assets/team-dilna.jpg",None,"Dilna Avinash","Head, Partnerships & Operations"),
+            ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
+            ("monica","assets/team-monica.jpg",None,"Monica Dey","HR & Operations Manager")]
 
 def team_cards(ppl, tag):
     cards = ""
@@ -258,7 +258,7 @@ def surface_section():
     <canvas aria-label="Scroll-driven lunar surface with Orbit Beyond outpost hardware"></canvas>
     <div class="surface-grain"></div><div class="surface-vignette"></div>
     <div class="s-progress" id="surfaceProgress"></div>
-    <div class="surface-load"><div style="text-align:center"><img src="assets/logo-mark.png" alt="" style="width:90px;margin:0 auto" /><div class="l">Loading surface</div></div></div>
+    <div class="surface-load"><div style="text-align:center"><img src="assets/logo-mark.png?v=VER" alt="" style="width:90px;margin:0 auto" /><div class="l">Loading surface</div></div></div>
     <div class="s-hero" id="surfaceHero"><div class="s-hero-in">
       <div class="tag">Orbit to Outpost</div>
       <h1>Designed in India. <span class="grad">Built for the Moon.</span></h1>

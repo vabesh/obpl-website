@@ -128,12 +128,10 @@
     durga: { img: 'assets/team-durga.jpg', name: 'Y. V. Durga Prasad', role: 'Lead, Propulsion and RHU', tag: 'Team member', bio: [
       'Y. V. Durga Prasad leads propulsion and the radioisotope heater unit (RHU) work, bringing more than six years of spacecraft propulsion experience.',
       'He previously worked on lander propulsion at Starops, formerly TeamIndus, taking thrusters through to hot-fire testing.'] },
-    anand: { img: 'assets/team-anand.jpg', name: 'Anand Nagesh', role: 'Lead, Avionics', tag: 'Team member', bio: [
-      'Anand Nagesh leads avionics, with lunar electrical power system and battery-management design experience at BigDipper.',
-      'He trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
-    rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'Head, Corporate Development', tag: 'Founding member', bio: [
-      'CA Rabindra Sahu is a founding member of Orbit Beyond Private Limited and Head of Corporate Development, with a background as a Growth Partner and Virtual CFO Advisor.',
-      'He transforms legacy business management systems into modern digitalised management systems, advises global companies on setting up Indian subsidiaries as a transfer pricing consultant, and is a business valuer for numerous startups across India.'] },
+    anand: { img: 'assets/team-anand-2.jpg', name: 'Anand Nagesh', role: 'Lead, Avionics', tag: 'Founding member', bio: [
+      'Anand Nagesh is a spacecraft engineer at Orbit Beyond Private Limited, specialising in electrical and communication subsystems. His expertise is in embedded hardware: power supply and distribution, and telemetry, tracking and command networks.',
+      'He takes spacecraft subsystems from design through to realisation using commercial off-the-shelf (COTS) components, and simulates and analyses mission scenarios in MATLAB/Simulink, LabVIEW and STK.',
+      'He previously worked on lunar electrical power system and battery-management design at BigDipper, trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
     sashi: { img: 'assets/team-sashi.jpg', name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
       'R. Sashi Sekhar heads propulsion at Orbit Beyond Private Limited, responsible for the OB1 lander\'s descent and attitude-control propulsion from design through hot-fire qualification.',
       'He brings ISRO propulsion heritage to the programme.'] },
@@ -175,7 +173,7 @@
   if (form) form.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(form), body = 'Name: ' + d.get('name') + '\nOrganisation: ' + d.get('org') + '\nEmail: ' + d.get('email') + '\nTopic: ' + d.get('topic') + '\n\n' + d.get('msg');
-    location.href = 'mailto:info@orbit.space?subject=' + encodeURIComponent('[' + d.get('topic') + '] Enquiry from ' + d.get('name')) + '&body=' + encodeURIComponent(body);
+    location.href = 'mailto:dilna.a@orbitbeyond.space?subject=' + encodeURIComponent('[' + d.get('topic') + '] Enquiry from ' + d.get('name')) + '&body=' + encodeURIComponent(body);
   });
 
   /* ---------- year ---------- */

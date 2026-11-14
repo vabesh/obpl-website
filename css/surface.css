@@ -91,3 +91,14 @@ body.panel-open .spanel-scrim{opacity:1;pointer-events:auto}
 /* pre-rendered plate shown while the camera holds at a station */
 .surface .s-plate{position:absolute;inset:0;opacity:0;overflow:hidden;background:#000;z-index:2;transition:none}
 .surface .s-plate img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 55%;will-change:transform}
+
+/* home hero: headline in the wordmark face, intro in sky blue */
+.s-hero h1{font-family:var(--wide);font-weight:400;letter-spacing:.01em;line-height:1.22;font-size:clamp(1.55rem,3.5vw,3.3rem)}
+.s-hero h1 .grad{display:block}
+.s-hero p{color:var(--sky)}
+
+/* lander cursor (mouse and trackpad only; touch devices are unaffected) */
+@media (hover:hover) and (pointer:fine){
+  html{cursor:url(/assets/cursor/lander.png) 20 2,auto;cursor:image-set(url(/assets/cursor/lander.png) 1x,url(/assets/cursor/lander@2x.png) 2x) 20 2,auto}
+  a,button,select,summary,label[for],[role=button],[onclick],.btn,.hot,.wp-card,.flip,.person,.sdot{cursor:url(/assets/cursor/lander-go.png) 20 2,pointer;cursor:image-set(url(/assets/cursor/lander-go.png) 1x,url(/assets/cursor/lander-go@2x.png) 2x) 20 2,pointer}
+}
