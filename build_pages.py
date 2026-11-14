@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "72"
+VER = "73"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -135,7 +135,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="{title_h}" /><meta name="twitter:description" content="{desc_h}" /><meta name="twitter:image" content="{SITE}/assets/social-card.jpg" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="theme-color" content="#06081a" />
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" /><link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96.png" /><link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" /><link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Michroma&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css?v=VER" /><link rel="stylesheet" href="css/surface.css?v=VER" />
