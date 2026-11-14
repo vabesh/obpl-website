@@ -152,7 +152,7 @@
     rk: { img: 'assets/team-rk.jpg', name: 'Dr. R.K. Srinivasan', role: 'Head of Structures', tag: 'Structures', bio: [
       'Dr. R.K. Srinivasan heads structures, including the OB1 landing legs, shock attenuation and crushable energy absorbers.',
       'At ISRO he worked on the landing legs of Chandrayaan-2 and Chandrayaan-3.'] },
-    dilna: { img: 'assets/team-dilna.jpg', name: 'Dilna Avinash', role: 'Head, Partnerships & Operations', tag: 'Team member', bio: [
+    dilna: { img: 'assets/team-dilna.jpg', name: 'Dilna Avinash', role: 'Manager – Government Relations, Partnerships & Outreach', tag: 'Team member', bio: [
       'Dilna Avinash has more than 24 years of experience in relationship management and global operations. She has worked with leading maritime companies as a trusted link between owners, operators, agents, recruitment partners and seafarers worldwide. Her work is known for clear communication, close attention to detail and partnerships that last.',
       'Dilna now brings this experience to space technology. Her background in managing mission-critical teams, regulatory compliance and international coordination suits the sector\'s demanding, high-stakes environment. She offers a human-centred approach to partnerships and operational readiness.'] }
   };
