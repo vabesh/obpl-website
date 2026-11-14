@@ -132,6 +132,9 @@
       'Anand Nagesh is a spacecraft engineer at Orbit Beyond Private Limited, specialising in electrical and communication subsystems. His expertise is in embedded hardware: power supply and distribution, and telemetry, tracking and command networks.',
       'He takes spacecraft subsystems from design through to realisation using commercial off-the-shelf (COTS) components, and simulates and analyses mission scenarios in MATLAB/Simulink, LabVIEW and STK.',
       'He previously worked on lunar electrical power system and battery-management design at BigDipper, trained at ISRO ISTRAC and has authored 14 International Astronautical Congress papers.'] },
+    rabindra: { img: 'assets/team-rabindra.jpg', name: 'CA Rabindra Sahu', role: 'Head, Corporate Development', tag: 'Founding member', bio: [
+      'CA Rabindra Sahu is a founding member of Orbit Beyond Private Limited and Head of Corporate Development, with a background as a Growth Partner and Virtual CFO Advisor.',
+      'He transforms legacy business management systems into modern digitalised management systems, advises global companies on setting up Indian subsidiaries as a transfer pricing consultant, and is a business valuer for numerous startups across India.'] },
     sashi: { img: 'assets/team-sashi.jpg', name: 'R. Sashi Sekhar', role: 'Head, Propulsion', tag: 'Propulsion', bio: [
       'R. Sashi Sekhar heads propulsion at Orbit Beyond Private Limited, responsible for the OB1 lander\'s descent and attitude-control propulsion from design through hot-fire qualification.',
       'He brings ISRO propulsion heritage to the programme.'] },
