@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "78"
+VER = "79"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -253,7 +253,7 @@ def wp_cards():
 
 # =============================== INDEX ===============================
 def surface_section():
-    dots = "".join(f'<button class="sdot" data-l="{t}" aria-label="{t}"></button>' for t in ["VSAT power","Night survival","Rover","Helium-3","OB1 lander","Relay orbiter","AI data centre"])
+    dots = "".join(f'<button class="sdot" data-l="{t}" aria-label="{t}"></button>' for t in ["VSAT power","OB1 lander","Rover","Relay orbiter","Night survival","Helium-3"])
     return f"""
 <section id="surfaceSection">
   <div class="surface" id="surface">
@@ -270,7 +270,7 @@ def surface_section():
     <div class="s-plate" id="surfacePlate" aria-hidden="true"><img alt=""></div>
     <div class="s-caption" id="stationCaption"></div>
     <div class="s-rail">{dots}</div>
-    <div class="s-end" id="surfaceEnd"><div><div class="eyebrow" style="justify-content:center">Leaving the surface</div><h2>Seven systems. One outpost. <span class="grad">Built in India.</span></h2><p>Now the people and the services that make it real.</p><div class="cue">Keep scrolling</div></div></div>
+    <div class="s-end" id="surfaceEnd"><div><div class="eyebrow" style="justify-content:center">Leaving the surface</div><h2>Six systems. One outpost. <span class="grad">Built in India.</span></h2><p>Now the people and the services that make it real.</p><div class="cue">Keep scrolling</div></div></div>
   </div>
 </section>
 <div class="spanel-scrim" onclick="closeStation()"></div>

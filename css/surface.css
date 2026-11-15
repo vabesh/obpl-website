@@ -108,3 +108,6 @@ h2{font-size:clamp(1.3rem,2.5vw,2.3rem)}
   html{cursor:url(/assets/cursor/lander.png) 20 2,auto;cursor:image-set(url(/assets/cursor/lander.png) 1x,url(/assets/cursor/lander@2x.png) 2x) 20 2,auto}
   a,button,select,summary,label[for],[role=button],[onclick],.btn,.hot,.wp-card,.flip,.person,.sdot{cursor:url(/assets/cursor/lander-go.png) 20 2,pointer;cursor:image-set(url(/assets/cursor/lander-go.png) 1x,url(/assets/cursor/lander-go@2x.png) 2x) 20 2,pointer}
 }
+
+/* rendered flight: the closing line sits over the last (bright) frame, so dim the frame behind it */
+.s-end{background:radial-gradient(ellipse at center,rgba(6,12,26,.9) 0%,rgba(6,12,26,.8) 45%,rgba(6,12,26,.6) 100%)}

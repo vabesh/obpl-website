@@ -7,8 +7,8 @@
   var wrap = document.getElementById('surface'), MF = window.OB_SEQUENCE, STATIONS = window.OB_STATIONS || [];
   if (!wrap || !MF) return;
   var canvas = wrap.querySelector('canvas'), ctx = canvas.getContext('2d'), section = document.getElementById('surfaceSection');
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, isSmall = Math.min(innerWidth, innerHeight) < 700;
-  var F = MF.frames, pat = (isSmall && MF.mobilePattern) ? MF.mobilePattern : MF.pattern, V = '?v=' + (window.OB_VER || 1), pad = MF.pad || 4;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, useM = !!MF.mobilePattern && innerHeight > innerWidth && innerWidth < 700;   /* phone held upright: portrait frame set */
+  var F = MF.frames, pat = useM ? MF.mobilePattern : MF.pattern, V = '?v=' + (window.OB_VER || 1), pad = MF.pad || 4;
   function url(i) { var s = String(i); while (s.length < pad) s = '0' + s; return pat.replace('{i}', s) + V; }
 
   /* ---------- scroll -> frame: linear flight between holds, frame held still during each hold ---------- */
@@ -59,14 +59,20 @@
   pump();
   function nearest(f) { if (ok[f]) return f; for (var d = 1; d < F; d++) { if (ok[f - d]) return f - d; if (ok[f + d]) return f + d; } return -1; }
 
-  /* ---------- drawing (cover fit) ---------- */
+  /* ---------- drawing (cover fit; when the screen is narrower than the frame, pan to keep the subject in view) ---------- */
+  var FOCUS = (!useM && MF.focus) || null;
+  function focusAt(f) {
+    if (!FOCUS) return .5;
+    for (var k = 0; k < FOCUS.length - 1; k++) { var a = FOCUS[k], b = FOCUS[k + 1]; if (f <= b[0]) return a[1] + (b[1] - a[1]) * Math.max(0, Math.min(1, (f - a[0]) / Math.max(1e-6, b[0] - a[0]))); }
+    return FOCUS[FOCUS.length - 1][1];
+  }
   var cw = 0, ch = 0, dpr = 1, fit = { x: 0, y: 0, w: 1, h: 1 }, lastDrawn = -1;
   function resize() { cw = wrap.clientWidth; ch = wrap.clientHeight; dpr = Math.min(devicePixelRatio || 1, 1.5); canvas.width = Math.round(cw * dpr); canvas.height = Math.round(ch * dpr); lastDrawn = -1; }
   addEventListener('resize', resize); resize();
   function draw(f) {
     var i = nearest(f); if (i < 0) return;
     var im = imgs[i], iw = im.naturalWidth, ih = im.naturalHeight, s = Math.max(cw / iw, ch / ih);
-    fit.w = iw * s; fit.h = ih * s; fit.x = (cw - fit.w) / 2; fit.y = (ch - fit.h) / 2;
+    fit.w = iw * s; fit.h = ih * s; fit.x = Math.min(0, Math.max(cw - fit.w, cw / 2 - focusAt(i) * fit.w)); fit.y = (ch - fit.h) / 2;
     if (i === lastDrawn) return; lastDrawn = i;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.drawImage(im, fit.x, fit.y, fit.w, fit.h);
   }
@@ -85,9 +91,9 @@
     if (endEl) { var e = Math.max(0, (p - .9) / .08); endEl.style.opacity = e; endEl.style.pointerEvents = e > .5 ? 'auto' : 'none'; }
     if (progEl) progEl.style.setProperty('--p', (p * 100).toFixed(1) + '%');
     STATIONS.forEach(function (s, i) {
-      var h = hot[s.id], st = MF.stops[s.id] || {}, ph = (i === si) ? holdPhase(p, i) : 0;
+      var h = hot[s.id], st = MF.stops[s.id] || {}, hs = (useM && st.mobileHotspot) || st.hotspot, ph = (i === si) ? holdPhase(p, i) : 0;
       h.style.opacity = ph; h.style.pointerEvents = ph > .5 ? 'auto' : 'none';
-      if (ph > 0 && st.hotspot) { h.style.left = (fit.x + st.hotspot[0] * fit.w) + 'px'; h.style.top = (fit.y + st.hotspot[1] * fit.h) + 'px'; }
+      if (ph > 0 && hs) { h.style.left = (fit.x + hs[0] * fit.w) + 'px'; h.style.top = (fit.y + hs[1] * fit.h) + 'px'; }
     });
     if (si !== lastStation) {
       lastStation = si;
