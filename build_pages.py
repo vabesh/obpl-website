@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "72"
+VER = "73"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -98,6 +98,11 @@ def shell(name, title, desc, body, three=False, extra_head=""):
                    '<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>'
                    '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script>window.OB_USE_MODELS = USE_MODELS;</script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script><script src="js/hardware.js?v=VER"></script><script src="js/models.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
     url = SITE + "/" + ("" if name == "index.html" else name.replace(".html", ""))
+    panel_html = ""
+    _i = body.find('<div class="spanel-scrim"')
+    if _i >= 0:
+        _j = body.index("</aside>", _i) + len("</aside>")
+        panel_html, body = body[_i:_j], body[:_i] + body[_j:]
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,6 +128,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 <main>
 {body}
 </main>
+{panel_html}
 {FOOTER}
 {scripts}
 </body>
