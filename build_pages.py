@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "79"
+VER = "80"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -122,6 +122,11 @@ def shell(name, title, desc, body, three=False, extra_head=""):
     url = SITE + "/" + ("" if name == "index.html" else name.replace(".html", ""))
     import html as _html
     title_h, desc_h = _html.escape(title, quote=True), _html.escape(desc, quote=True)
+    panel_html = ""
+    _i = body.find('<div class="spanel-scrim"')
+    if _i >= 0:
+        _j = body.index("</aside>", _i) + len("</aside>")
+        panel_html, body = body[_i:_j], body[:_i] + body[_j:]
     html = f"""<!DOCTYPE html>
 <html lang="en-IN">
 <head>
@@ -147,6 +152,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 <main>
 {body}
 </main>
+{panel_html}
 {FOOTER}
 {scripts}
 </body>
