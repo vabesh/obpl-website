@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "80"
+VER = "81"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -232,7 +232,7 @@ ADVISORS = [("sashi","assets/team-sashi.jpg",None,"R. Sashi Sekhar","Head, Propu
             ("dilna","assets/team-dilna.jpg",None,"Dilna Avinash","Manager – Government Relations, Partnerships & Outreach"),
             ("durga","assets/team-durga.jpg",None,"Y. V. Durga Prasad","Lead, Propulsion and RHU"),
             ("monica","assets/team-monica.jpg",None,"Monica Dey","HR & Operations Manager"),
-            ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Head, Corporate Development")]
+            ("rabindra","assets/team-rabindra.jpg",None,"CA Rabindra Sahu","Head, Finance and Compliance")]
 
 def team_cards(ppl, tag):
     cards = ""
