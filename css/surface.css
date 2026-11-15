@@ -110,7 +110,7 @@ h1,h2,h3{overflow-wrap:break-word}
 .spanel{overscroll-behavior:contain}
 .spanel .sp-x{position:sticky;top:1rem;flex:none;margin:1rem 1rem -58px auto;background:rgba(9,20,40,.85)}
 /* top bar between tablet and small laptop widths: keep the tagline inside the brand block */
-@media (max-width:1120px){.brand .tagline{letter-spacing:.08em}}
+@media (min-width:901px) and (max-width:1120px){.brand .tagline{letter-spacing:.06em;font-size:.56rem}}
 /* phone menu: starts below the top bar, scrolls when the screen is short */
 .mnav{justify-content:flex-start;padding-top:var(--nav-h);padding-bottom:1.5rem;overflow-y:auto;overscroll-behavior:contain}
 .mnav>:first-child{margin-top:auto}.mnav>:last-child{margin-bottom:auto}
