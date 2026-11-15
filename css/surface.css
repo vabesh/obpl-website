@@ -88,6 +88,10 @@ body.panel-open .spanel-scrim{opacity:1;pointer-events:auto}
 .addr .maplink:hover{color:var(--ivory)}
 .tilt .map iframe{transform:none}
 
+/* pre-rendered plate shown while the camera holds at a station */
+.surface .s-plate{position:absolute;inset:0;opacity:0;overflow:hidden;background:#000;z-index:2;transition:none}
+.surface .s-plate img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 55%;will-change:transform}
+
 /* every page: headlines in the wordmark face (Michroma), intro paragraphs in white */
 h1,h2{font-family:var(--wide);font-weight:400;letter-spacing:.01em;line-height:1.22}
 h1,.hero h1,.page-hero h1,.s-hero h1{font-size:clamp(1.55rem,3.5vw,3.3rem)}
@@ -103,6 +107,9 @@ h2{font-size:clamp(1.3rem,2.5vw,2.3rem)}
   html{cursor:url(/assets/cursor/lander.png) 20 2,auto;cursor:image-set(url(/assets/cursor/lander.png) 1x,url(/assets/cursor/lander@2x.png) 2x) 20 2,auto}
   a,button,select,summary,label[for],[role=button],[onclick],.btn,.hot,.wp-card,.flip,.person,.sdot{cursor:url(/assets/cursor/lander-go.png) 20 2,pointer;cursor:image-set(url(/assets/cursor/lander-go.png) 1x,url(/assets/cursor/lander-go@2x.png) 2x) 20 2,pointer}
 }
+
+/* rendered flight: the closing line sits over the last (bright) frame, so dim the frame behind it */
+.s-end{background:radial-gradient(ellipse at center,rgba(6,12,26,.9) 0%,rgba(6,12,26,.8) 45%,rgba(6,12,26,.6) 100%)}
 
 /* ===== all-device pass ===== */
 h1,h2,h3{overflow-wrap:break-word}

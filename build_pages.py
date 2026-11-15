@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
-USE_MODELS = "false"   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "73"
+USE_MODELS = "false"
+USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
+VER = "80"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -68,7 +69,23 @@ FOOTER = """
 """
 
 
+PAGE_TYPE = {"about.html": "AboutPage", "contact.html": "ContactPage"}
 PAGE_LABEL = {"about.html": "About", "programmes.html": "Capabilities", "team.html": "People", "contact.html": "Contact"}
+def team_people():
+    """Person records for the team page, with bios read from the modal data in js/main.js (single source)."""
+    import re
+    js = open(os.path.join(OUT, "js", "main.js"), encoding="utf-8").read()
+    people = []
+    for k, img, ini, n, r in FOUNDERS + ADVISORS:
+        m = re.search(r"\n    " + k + r": \{.*?bio: \[(.*?)\] \}", js, re.S)
+        bio = " ".join(x.replace("\\'", "'") for x in re.findall(r"'((?:[^'\\]|\\.)*)'", m.group(1))) if m else ""
+        if not bio: print("  warning: no bio found for", k)
+        person = {"@type": "Person", "@id": SITE + "/team#" + k, "name": n, "jobTitle": r, "worksFor": {"@id": SITE + "/#org"}, "url": SITE + "/team"}
+        if img: person["image"] = SITE + "/" + img
+        if bio: person["description"] = bio
+        people.append(person)
+    return people
+
 def ld(name, title, desc):
     import json
     org = {"@type": "Organization", "@id": SITE + "/#org", "name": "Orbit Beyond Private Limited",
@@ -82,38 +99,45 @@ def ld(name, title, desc):
            "parentOrganization": {"@type": "Organization", "name": "ORBITBeyond Inc.", "url": "https://orbitbeyond.com/"},
            "knowsAbout": ["Lunar landers", "Lunar relay orbiters", "Lunar rovers", "Lunar surface power", "Lunar night survival", "Helium-3 extraction", "Space technology"]}
     site = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Orbit Beyond India", "inLanguage": "en-IN", "publisher": {"@id": SITE + "/#org"}}
+    org["founder"] = {"@type": "Person", "@id": SITE + "/team#" + FOUNDERS[0][0], "name": FOUNDERS[0][3], "jobTitle": FOUNDERS[0][4]}
     graph = [org, site]
     if name != "index.html":
         url = SITE + "/" + name.replace(".html", "")
-        graph.append({"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": title, "description": desc, "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": SITE + "/#org"}, "inLanguage": "en-IN"})
+        graph.append({"@type": PAGE_TYPE.get(name, "WebPage"), "@id": url + "#webpage", "url": url, "name": title, "description": desc, "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": SITE + "/#org"}, "inLanguage": "en-IN"})
         graph.append({"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
             {"@type": "ListItem", "position": 2, "name": PAGE_LABEL.get(name, title), "item": url}]})
+    if name == "team.html":
+        graph.extend(team_people())
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False) + '</script>'
 
 def shell(name, title, desc, body, three=False, extra_head=""):
     scripts = '<script src="js/main.js?v=VER"></script>'
-    if three:
+    if three and USE_SEQUENCE == "true":
+        scripts = ('<script src="js/main.js?v=VER"></script><script>window.OB_VER = VER;</script><script src="js/stations.js?v=VER"></script><script src="assets/sequence/manifest.js?v=VER"></script><script src="js/sequence.js?v=VER"></script>')
+    elif three:
         scripts = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>'
                    '<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>'
-                   '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script>window.OB_USE_MODELS = USE_MODELS;</script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script><script src="js/hardware.js?v=VER"></script><script src="js/models.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
+                   '<script src="js/main.js?v=VER"></script><script src="js/lander3d.js?v=VER"></script><script>window.OB_USE_MODELS = USE_MODELS; window.OB_VER = VER;</script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script><script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script><script src="js/hardware.js?v=VER"></script><script src="js/rocks.js?v=VER"></script><script src="js/models.js?v=VER"></script><script src="js/surface.js?v=VER"></script>')
     url = SITE + "/" + ("" if name == "index.html" else name.replace(".html", ""))
+    import html as _html
+    title_h, desc_h = _html.escape(title, quote=True), _html.escape(desc, quote=True)
     panel_html = ""
     _i = body.find('<div class="spanel-scrim"')
     if _i >= 0:
         _j = body.index("</aside>", _i) + len("</aside>")
         panel_html, body = body[_i:_j], body[:_i] + body[_j:]
     html = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{title}</title>
-<meta name="description" content="{desc}" />
+<title>{title_h}</title>
+<meta name="description" content="{desc_h}" />
 <link rel="canonical" href="{url}" />
-<meta property="og:type" content="website" /><meta property="og:site_name" content="ORBITBeyond India" /><meta property="og:title" content="{title}" /><meta property="og:description" content="{desc}" /><meta property="og:url" content="{url}" />
+<meta property="og:type" content="website" /><meta property="og:site_name" content="ORBITBeyond India" /><meta property="og:title" content="{title_h}" /><meta property="og:description" content="{desc_h}" /><meta property="og:url" content="{url}" />
 <meta property="og:image" content="{SITE}/assets/social-card.jpg" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="Orbit Beyond: lunar infrastructure engineered in India" /><meta property="og:locale" content="en_IN" />
-<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="{title}" /><meta name="twitter:description" content="{desc}" /><meta name="twitter:image" content="{SITE}/assets/social-card.jpg" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="{title_h}" /><meta name="twitter:description" content="{desc_h}" /><meta name="twitter:image" content="{SITE}/assets/social-card.jpg" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="theme-color" content="#06081a" />
 <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96.png" /><link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" /><link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
@@ -134,7 +158,7 @@ def shell(name, title, desc, body, three=False, extra_head=""):
 </body>
 </html>
 """
-    html = html.replace("?v=VER", "?v=" + VER).replace("window.OB_USE_MODELS = USE_MODELS;", "window.OB_USE_MODELS = " + USE_MODELS + ";")
+    html = html.replace("?v=VER", "?v=" + VER).replace("window.OB_USE_MODELS = USE_MODELS;", "window.OB_USE_MODELS = " + USE_MODELS + ";").replace("window.OB_VER = VER;", "window.OB_VER = " + VER + ";")
     with open(os.path.join(OUT, name), "w", encoding="utf-8") as f: f.write(html)
     print("wrote", name, len(html))
 
@@ -235,7 +259,7 @@ def wp_cards():
 
 # =============================== INDEX ===============================
 def surface_section():
-    dots = "".join(f'<button class="sdot" data-l="{t}" aria-label="{t}"></button>' for t in ["VSAT power","Night survival","Rover","Helium-3","OB1 lander","Relay orbiter","AI data centre"])
+    dots = "".join(f'<button class="sdot" data-l="{t}" aria-label="{t}"></button>' for t in ["VSAT power","OB1 lander","Rover","Relay orbiter","Night survival","Helium-3"])
     return f"""
 <section id="surfaceSection">
   <div class="surface" id="surface">
@@ -249,9 +273,10 @@ def surface_section():
       <p>Lunar infrastructure engineering, built in India: power, night survival, mobility, Helium-3 extraction, landers and orbiters, and AI compute. Scroll to fly across the lunar south pole and meet each system.</p>
       <div class="acts"><a href="/programmes" class="btn btn-ghost">Our capabilities</a><a href="/contact" class="btn">Partner with us {ARROW}</a></div>
     </div><div class="cue">Scroll to descend<i></i></div></div>
+    <div class="s-plate" id="surfacePlate" aria-hidden="true"><img alt=""></div>
     <div class="s-caption" id="stationCaption"></div>
     <div class="s-rail">{dots}</div>
-    <div class="s-end" id="surfaceEnd"><div><div class="eyebrow" style="justify-content:center">Leaving the surface</div><h2>Seven systems. One outpost. <span class="grad">Built in India.</span></h2><p>Now the people and the services that make it real.</p><div class="cue">Keep scrolling</div></div></div>
+    <div class="s-end" id="surfaceEnd"><div><div class="eyebrow" style="justify-content:center">Leaving the surface</div><h2>Six systems. One outpost. <span class="grad">Built in India.</span></h2><p>Now the people and the services that make it real.</p><div class="cue">Keep scrolling</div></div></div>
   </div>
 </section>
 <div class="spanel-scrim" onclick="closeStation()"></div>
@@ -418,11 +443,11 @@ contact_body = f"""
 </div></div></section>
 """
 
-shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond Private Limited, the DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers, Helium-3 extraction and AI compute from India.", index_body, three=True)
-shell("about.html","About · ORBITBeyond India","Orbit Beyond Private Limited: incorporated 27 December 2022, DPIIT recognised startup DIPP285038 in Space Technology, an Indian company engineering lunar infrastructure: landers, orbiters and mobility systems.", about_body)
-shell("programmes.html","Capabilities · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, OB1 lander and relay orbiter engineering: Orbit Beyond India's integrated lunar infrastructure stack.", programmes_body)
-shell("team.html","People · ORBITBeyond India","The team behind Orbit Beyond Private Limited: the founding members and team heads across systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
-shell("contact.html","Contact · ORBITBeyond India","Contact Orbit Beyond Private Limited: corporate office at WTC Annexe, Bengaluru, and registered office in Bhubaneswar.", contact_body)
+shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond is a DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers and Helium-3 extraction.", index_body, three=True)
+shell("about.html","About · Indian Space Technology Company · ORBITBeyond India","Orbit Beyond Private Limited, incorporated in 2022 and a DPIIT-recognised Space Technology startup, engineers lunar landers, orbiters and rovers in India.", about_body)
+shell("programmes.html","Capabilities · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, the OB1 lander and relay orbiter: Orbit Beyond India's lunar infrastructure stack.", programmes_body)
+shell("team.html","People · Leadership & Engineering Team · ORBITBeyond India","The team behind Orbit Beyond India: founding members and the heads of systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
+shell("contact.html","Contact · Bengaluru & Bhubaneswar · ORBITBeyond India","Contact Orbit Beyond Private Limited: corporate office at WTC Annexe, Bengaluru, and registered office in Bhubaneswar.", contact_body)
 
 # Hidden preview page with the glTF hardware models switched on (not linked, not indexed)
 _idx = open(os.path.join(OUT, "index.html"), encoding="utf-8").read()
