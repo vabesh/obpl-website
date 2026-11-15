@@ -7,7 +7,11 @@ Every STEP-th frame of the video becomes one frame of the scroll-driven flight, 
   v_####.webp  1280x720 landscape (desktop, tablets, phones held sideways)
   m_####.webp   540x960 portrait  (phones held upright; the crop follows each machine via FOCUS)
 and manifest.json / manifest.js describe the stops. STOPS is the order of the machines in the video
-and must match the order of window.OB_STATIONS in js/stations.js. The video itself is not committed."""
+and must match the order of window.OB_STATIONS in js/stations.js. The video itself is not committed.
+
+tools/label_fix holds small corrected patches for the frames where the night unit's painted label is readable:
+the video spells it STERLING, the patches repaint it as STIRLING. p_<source frame>.png is pasted at the x, y
+given in positions.json before the frame is encoded. They belong to this video only; drop them for a new render."""
 import os, sys, json, subprocess, glob
 import numpy as np
 from PIL import Image
@@ -34,16 +38,19 @@ FOCUS = [(0, .50), (272, .50), (300, .50), (420, .49), (500, .50), (540, .58), (
 fx_at = lambda f: float(np.interp(f, [k[0] for k in FOCUS], [k[1] for k in FOCUS]))
 crop_x0 = lambda f: int(round(min(max(fx_at(f) * SW - CW / 2, 0), SW - CW)))
 
+FIX = os.path.join(HERE, 'label_fix'); FIXPOS = json.load(open(os.path.join(FIX, 'positions.json'))) if os.path.isdir(FIX) else {}
 os.makedirs(OUT, exist_ok=True)
 for old in glob.glob(os.path.join(OUT, '*.jpg')) + glob.glob(os.path.join(OUT, '*.webp')): os.remove(old)
 ff = imageio_ffmpeg.get_ffmpeg_exe()
 p = subprocess.Popen([ff, '-loglevel', 'error', '-i', VIDEO, '-vf', r"select='not(mod(n\,%d))',scale=%d:%d" % (STEP, SW, SH), '-fps_mode', 'vfr',
                       '-pix_fmt', 'rgb24', '-f', 'rawvideo', '-'], stdout=subprocess.PIPE)
-n = 0; tot = [0, 0]
+n = 0; tot = [0, 0]; fixed = 0
 while True:
     buf = p.stdout.read(SW * SH * 3)
     if len(buf) < SW * SH * 3: break
     im = Image.frombuffer('RGB', (SW, SH), buf, 'raw', 'RGB', 0, 1); src = n * STEP
+    if str(src) in FIXPOS:
+        im = im.copy(); im.paste(Image.open(os.path.join(FIX, 'p_%04d.png' % src)).convert('RGB'), tuple(FIXPOS[str(src)])); fixed += 1
     a = os.path.join(OUT, 'v_%04d.webp' % n); im.resize((DW, DH), Image.LANCZOS).save(a, 'WEBP', quality=DQ, method=5)
     x0 = crop_x0(src)
     b = os.path.join(OUT, 'm_%04d.webp' % n); im.crop((x0, 0, x0 + CW, SH)).resize((MW, MH), Image.LANCZOS).save(b, 'WEBP', quality=MQ, method=5)
@@ -60,4 +67,4 @@ mf = {"frames": n, "fps": 24 / STEP, "width": DW, "height": DH, "pad": 4, "hold"
       "focus": [[round(f / STEP, 2), x] for f, x in FOCUS], "stops": stops}
 json.dump(mf, open(os.path.join(OUT, 'manifest.json'), 'w'), indent=1)
 open(os.path.join(OUT, 'manifest.js'), 'w').write('window.OB_SEQUENCE = ' + json.dumps(mf) + ';')
-print('frames', n, '| landscape %.1f MB | portrait %.1f MB' % (tot[0] / 1e6, tot[1] / 1e6))
+print('frames', n, '| landscape %.1f MB | portrait %.1f MB | label patches applied: %d' % (tot[0] / 1e6, tot[1] / 1e6, fixed))
