@@ -1,3 +1,7 @@
+/* Layout audit for local previews. Open any page from tools/serve.py, load this file in the console, then run
+   await __runAudit([[360,640],[768,1024],[1366,768]], ['/','/about','/programmes','/team','/contact'])
+   It loads every page at every size and reports: sideways overflow, overlapping text, clipped text, top-bar collisions,
+   hero fit, and whether the phone menu, profile pop-ups and station panel open fully on screen. Empty result = clean. */
 window.__auditDoc = function (win) {
   const doc = win.document, W = win.innerWidth, H = win.innerHeight, sy = win.scrollY;
   doc.querySelectorAll('#loader,.loader,.surface-load').forEach(e => e.style.display = 'none');
