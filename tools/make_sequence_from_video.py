@@ -11,11 +11,16 @@ and must match the order of window.OB_STATIONS in js/stations.js. The video itse
 
 tools/label_fix holds small corrected patches for the frames where the night unit's painted label is readable:
 the video spells it STERLING, the patches repaint it as STIRLING. p_<source frame>.png is pasted at the x, y
-given in positions.json before the frame is encoded. They belong to this video only; drop them for a new render."""
+given in positions.json before the frame is encoded. They belong to this video only; drop them for a new render.
+
+tools/dewatermark.py (with watermark_alpha.npz) takes the generator's sparkle mark out of the bottom-right corner
+of every frame. Also for this video only: delete both files for a render that has no mark."""
 import os, sys, json, subprocess, glob
 import numpy as np
 from PIL import Image
 import imageio_ffmpeg
+try: import dewatermark
+except ImportError: dewatermark = None
 
 VIDEO = sys.argv[1]
 HERE = os.path.dirname(os.path.abspath(__file__)); OUT = os.path.join(HERE, '..', 'assets', 'sequence')
@@ -48,9 +53,10 @@ n = 0; tot = [0, 0]; fixed = 0
 while True:
     buf = p.stdout.read(SW * SH * 3)
     if len(buf) < SW * SH * 3: break
-    im = Image.frombuffer('RGB', (SW, SH), buf, 'raw', 'RGB', 0, 1); src = n * STEP
+    src = n * STEP; arr = np.frombuffer(buf, np.uint8).reshape(SH, SW, 3)
+    im = Image.fromarray(dewatermark.clean(arr, src) if dewatermark else arr)
     if str(src) in FIXPOS:
-        im = im.copy(); im.paste(Image.open(os.path.join(FIX, 'p_%04d.png' % src)).convert('RGB'), tuple(FIXPOS[str(src)])); fixed += 1
+        im.paste(Image.open(os.path.join(FIX, 'p_%04d.png' % src)).convert('RGB'), tuple(FIXPOS[str(src)])); fixed += 1
     a = os.path.join(OUT, 'v_%04d.webp' % n); im.resize((DW, DH), Image.LANCZOS).save(a, 'WEBP', quality=DQ, method=5)
     x0 = crop_x0(src)
     b = os.path.join(OUT, 'm_%04d.webp' % n); im.crop((x0, 0, x0 + CW, SH)).resize((MW, MH), Image.LANCZOS).save(b, 'WEBP', quality=MQ, method=5)
