@@ -2,9 +2,25 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "83"
+VER = "84"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
+
+# =============================== NEWS POSTS ===============================
+# What is happening at the company: one entry per post, in any order (the page sorts them newest first).
+# Photos live in assets/news/ and are prepared with:  python tools/news_image.py <photo> <name>
+# The News tab, the /news page and its sitemap entry appear only once this list has at least one post.
+NEWS = [
+    {"slug": "ananth-technologies-visit", "date": "2026-11-19", "tag": "Visit",
+     "title": "Team Orbit Beyond visits Ananth Technologies Limited",
+     "images": [("assets/news/ananth-technologies-visit.jpg", "Team Orbit Beyond at Ananth Technologies Limited")],
+     "body": ["Team Orbit Beyond Private Limited visited Ananth Technologies Limited, engaging in discussions on potential collaboration opportunities and exploring advanced space technology infrastructure.",
+              "Orbit Beyond, a space technology startup incubated at the Centre of Excellence for Space Technology (CoE-ST), is focused on developing next-generation lunar and planetary mobility systems."]},
+]
+# Each post: slug (short id for the link /news#slug, never changed once published), date (YYYY-MM-DD), title, body (list of
+# plain-text paragraphs), and optionally tag (label such as Visit, Partnership, Milestone, Event), place (city) and
+# images (list of (file, caption); the first is the large photo, any number can follow).
+NEWS = sorted(NEWS, key=lambda p: p["date"], reverse=True)
 
 NAV = """
 <div id="loader" class="loader"><div class="loader-in">
@@ -68,9 +84,13 @@ FOOTER = """
 </div>
 """
 
+if NEWS:
+    NAV = NAV.replace('<li><a href="/team">People</a></li>', '<li><a href="/team">People</a></li>' + chr(10) + '    <li><a href="/news">News</a></li>').replace('<a href="/team">People</a><a href="/contact">', '<a href="/team">People</a><a href="/news">News</a><a href="/contact">')
+    FOOTER = FOOTER.replace('<li><a href="/team">People</a></li>', '<li><a href="/team">People</a></li><li><a href="/news">News</a></li>')
+    assert NAV.count('href="/news"') == 2 and FOOTER.count('href="/news"') == 1
 
-PAGE_TYPE = {"about.html": "AboutPage", "contact.html": "ContactPage"}
-PAGE_LABEL = {"about.html": "About", "programmes.html": "Capabilities", "team.html": "People", "contact.html": "Contact"}
+PAGE_TYPE = {"about.html": "AboutPage", "contact.html": "ContactPage", "news.html": "CollectionPage"}
+PAGE_LABEL = {"about.html": "About", "programmes.html": "Capabilities", "team.html": "People", "news.html": "News", "contact.html": "Contact"}
 def team_people():
     """Person records for the team page, with bios read from the modal data in js/main.js (single source)."""
     import re
@@ -109,6 +129,12 @@ def ld(name, title, desc):
             {"@type": "ListItem", "position": 2, "name": PAGE_LABEL.get(name, title), "item": url}]})
     if name == "team.html":
         graph.extend(team_people())
+    if name == "news.html":
+        for p in NEWS:
+            art = {"@type": "Article", "@id": SITE + "/news#" + p["slug"], "url": SITE + "/news#" + p["slug"], "headline": p["title"], "datePublished": p["date"],
+                   "articleBody": " ".join(p["body"]), "author": {"@id": SITE + "/#org"}, "publisher": {"@id": SITE + "/#org"}, "isPartOf": {"@id": SITE + "/news#webpage"}, "inLanguage": "en-IN"}
+            if p.get("images"): art["image"] = [SITE + "/" + s for s, _ in p["images"]]
+            graph.append(art)
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False) + '</script>'
 
 def shell(name, title, desc, body, three=False, extra_head=""):
@@ -443,10 +469,69 @@ contact_body = f"""
 </div></div></section>
 """
 
+# =============================== NEWS ===============================
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+def news_date(d):
+    y, m, dd = d.split("-")
+    return "%d %s %s" % (int(dd), MONTHS[int(m) - 1], y)
+
+def news_shot(src, cap, cls="", eager=False, extra=""):
+    """One photo: the link opens the full picture (in the viewer when scripts run), the page shows the smaller -s copy when there is one."""
+    import html as _h
+    if not os.path.isfile(os.path.join(OUT, src)): print("  warning: news photo missing:", src)
+    dot = src.rfind(".")
+    small = src[:dot] + "-s" + src[dot:]
+    show = small if os.path.isfile(os.path.join(OUT, small)) else src
+    cap = _h.escape(cap, quote=True)
+    return f'<a class="post-shot{cls}" href="{src}?v=VER" data-cap="{cap}"><img src="{show}?v=VER" alt="{cap}" loading="{"eager" if eager else "lazy"}" />{extra}</a>'
+
+def news_post(i, p):
+    import html as _h
+    imgs = p.get("images", [])
+    media = ""
+    if imgs:
+        thumbs, rest = imgs[1:4], imgs[4:]
+        t = "".join(news_shot(s, c, extra=(f'<span class="post-more">+{len(rest)}</span>' if rest and j == len(thumbs) - 1 else "")) for j, (s, c) in enumerate(thumbs))
+        hidden = "".join(f'<a class="post-shot" hidden href="{s}?v=VER" data-cap="{_h.escape(c, quote=True)}"></a>' for s, c in rest)
+        media = f'<div class="post-media">{news_shot(imgs[0][0], imgs[0][1], cls=" post-main", eager=(i == 0))}' + (f'<div class="post-thumbs n{len(thumbs)}">{t}</div>' if t else "") + hidden + "</div>"
+    paras = ["<p>" + _h.escape(x) + "</p>" for x in p["body"]]
+    if len(paras) > 1 and sum(len(x) for x in p["body"]) > 700:
+        text = paras[0] + '<details class="post-rest"><summary><span class="more">Read more</span><span class="less">Show less</span></summary>' + "".join(paras[1:]) + "</details>"
+    else:
+        text = "".join(paras)
+    place = " · " + _h.escape(p["place"]) if p.get("place") else ""
+    tag = f'<span class="chip">{_h.escape(p["tag"])}</span>' if p.get("tag") else ""
+    cls = "post glass rv" + (" flip" if i % 2 else "") + ("" if imgs else " noimg")
+    return f"""<article class="{cls}" id="{p['slug']}">{media}<div class="post-body">
+    <div class="post-meta">{tag}<span class="post-when"><time datetime="{p['date']}">{news_date(p['date'])}</time>{place}</span></div>
+    <h2>{_h.escape(p['title'])}</h2>
+    {text}
+  </div></article>"""
+
+news_body = f"""
+<section class="page-hero"><div class="chakra-bg" style="color:var(--marigold)" data-chakra="16" data-stroke=".5"></div><div class="wrap">
+  <div class="crumbs"><a href="/">Home</a><span>/</span><span>News</span></div>
+  <div class="eyebrow">News</div>
+  <h1>What's happening at <span class="grad">Orbit Beyond.</span></h1>
+  <p class="lede">Visits, collaborations, milestones and events from the Orbit Beyond team in India.</p>
+</div></section>
+<section class="section" style="padding-top:1rem"><div class="wrap">
+  <div class="posts">
+  {"".join(news_post(i, p) for i, p in enumerate(NEWS))}
+  </div>
+</div></section>
+
+{cta("Working on something we should be part of?", "Suppliers, research groups and partners: tell us what you are building.", "Get in touch", "/contact", None, None)}
+"""
+
 shell("index.html","ORBITBeyond India · Lunar Landers, Rovers & Satellites Designed in India","Orbit Beyond is a DPIIT-recognised Indian space technology company engineering the OB1 lunar lander, relay orbiter, lunar power, rovers and Helium-3 extraction.", index_body, three=True)
 shell("about.html","About · Indian Space Technology Company · ORBITBeyond India","Orbit Beyond Private Limited, incorporated in 2022 and a DPIIT-recognised Space Technology startup, engineers lunar landers, orbiters and rovers in India.", about_body)
 shell("programmes.html","Capabilities · Lunar Infrastructure Stack · ORBITBeyond India","VSAT lunar power, night survival, long-range rovers, Helium-3 extraction, the OB1 lander and relay orbiter: Orbit Beyond India's lunar infrastructure stack.", programmes_body)
 shell("team.html","People · Leadership & Engineering Team · ORBITBeyond India","The team behind Orbit Beyond India: founding members and the heads of systems, propulsion, GNC, power, communications, thermal and structures.", team_body)
+if NEWS:
+    shell("news.html","News · Visits, Partnerships & Milestones · ORBITBeyond India","News from Orbit Beyond Private Limited: supplier visits, collaborations, facility milestones and events from the team building lunar infrastructure in India.", news_body)
+elif os.path.isfile(os.path.join(OUT, "news.html")):
+    os.remove(os.path.join(OUT, "news.html"))
 shell("contact.html","Contact · Bengaluru & Bhubaneswar · ORBITBeyond India","Contact Orbit Beyond Private Limited: corporate office at WTC Annexe, Bengaluru, and registered office in Bhubaneswar.", contact_body)
 
 # Hidden preview page with the glTF hardware models switched on (not linked, not indexed)
@@ -460,7 +545,7 @@ print("wrote preview-models.html")
 # robots.txt and sitemap.xml (clean URLs, preview page excluded)
 import datetime
 _today = datetime.date.today().isoformat()
-_pages = [("", "1.0", "weekly"), ("about", "0.8", "monthly"), ("programmes", "0.9", "monthly"), ("team", "0.7", "monthly"), ("contact", "0.6", "yearly")]
+_pages = [("", "1.0", "weekly"), ("about", "0.8", "monthly"), ("programmes", "0.9", "monthly"), ("team", "0.7", "monthly")] + ([("news", "0.7", "weekly")] if NEWS else []) + [("contact", "0.6", "yearly")]
 _sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
     "  <url><loc>%s/%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq><priority>%s</priority></url>\n" % (SITE, path, _today, freq, pri)
     for path, pri, freq in _pages) + "</urlset>\n"

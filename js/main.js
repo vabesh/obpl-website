@@ -175,6 +175,42 @@
   if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeTeam(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeTeam(); });
 
+  /* ---------- news: photo viewer ---------- */
+  var shots = document.querySelectorAll('.post-shot');
+  if (shots.length) {
+    var ICO = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="' + d + '"/></svg>'; };
+    var lb = document.createElement('div'); lb.className = 'lightbox'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Photo viewer');
+    lb.innerHTML = '<button class="lb-btn lb-x" aria-label="Close">' + ICO('M6 6l12 12M18 6L6 18') + '</button><button class="lb-btn lb-prev" aria-label="Previous photo">' + ICO('M19 12H5M11 6l-6 6 6 6') + '</button><button class="lb-btn lb-next" aria-label="Next photo">' + ICO('M5 12h14M13 6l6 6-6 6') + '</button><img alt="" /><div class="lb-cap"></div><div class="lb-count"></div>';
+    document.body.appendChild(lb);
+    var lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.lb-cap'), lbCount = lb.querySelector('.lb-count'), set = [], at = 0, opener = null;
+    var lbShow = function (i) {
+      at = (i + set.length) % set.length;
+      var cap = set[at].getAttribute('data-cap') || '';
+      lbImg.src = set[at].getAttribute('href'); lbImg.alt = cap; lbCap.textContent = cap; lbCount.textContent = (at + 1) + ' / ' + set.length;
+      lb.classList.toggle('single', set.length < 2);
+    };
+    var lbClose = function () { if (!lb.classList.contains('open')) return; lb.classList.remove('open'); document.body.style.overflow = ''; if (opener) opener.focus(); };
+    shots.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault(); opener = a;
+        set = [].slice.call(a.closest('.post').querySelectorAll('.post-shot'));
+        lbShow(set.indexOf(a)); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.lb-x').focus();
+      });
+    });
+    lb.addEventListener('click', function (e) {
+      if (e.target.closest('.lb-prev')) lbShow(at - 1);
+      else if (e.target.closest('.lb-next')) lbShow(at + 1);
+      else if (e.target !== lbImg) lbClose();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') lbClose(); else if (e.key === 'ArrowLeft') lbShow(at - 1); else if (e.key === 'ArrowRight') lbShow(at + 1);
+    });
+    var sx = null;
+    lb.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50 && set.length > 1) lbShow(at + (dx < 0 ? 1 : -1)); }, { passive: true });
+  }
+
   /* ---------- contact form (mailto fallback) ---------- */
   var form = document.getElementById('contactForm');
   if (form) form.addEventListener('submit', function (e) {
