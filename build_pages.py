@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "87"
+VER = "88"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -465,6 +465,11 @@ contact_body = f"""
     <div class="f2"><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required /></div><div class="field"><label for="topic">Topic</label><select id="topic" name="topic"><option>Payload or product enquiry</option><option>Partnership</option><option>Press</option><option>Other</option></select></div></div>
     <div class="field"><label for="msg">Message</label><textarea id="msg" name="msg" rows="6" required></textarea></div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap"><span class="form-note">Opens in your mail client</span><button type="submit" class="btn">Send message {ARROW}</button></div>
+    <div class="form-alt" id="formAlt" hidden>
+      <p><strong>Your email app should now be open with the message ready to send.</strong> Nothing opened? Send it another way:</p>
+      <div class="fa-acts"><a class="btn btn-ghost fa-gmail" href="https://mail.google.com/" target="_blank" rel="noopener">Send with Gmail</a><button type="button" class="btn btn-ghost fa-copy">Copy message</button></div>
+      <p class="form-note">Or write to us directly at dilna.a@orbitbeyond.space</p>
+    </div>
   </form>
 </div></div></section>
 """
