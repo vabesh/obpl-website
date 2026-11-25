@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "84"
+VER = "85"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -15,7 +15,7 @@ NEWS = [
      "title": "Team Orbit Beyond visits Ananth Technologies Limited",
      "images": [("assets/news/ananth-technologies-visit.jpg", "Team Orbit Beyond at Ananth Technologies Limited")],
      "body": ["Team Orbit Beyond Private Limited visited Ananth Technologies Limited, engaging in discussions on potential collaboration opportunities and exploring advanced space technology infrastructure.",
-              "Orbit Beyond, a space technology startup incubated at the Centre of Excellence for Space Technology (CoE-ST), is focused on developing next-generation lunar and planetary mobility systems."]},
+              "Orbit Beyond, a space technology startup incubated at the Centre of Excellence for Space Technology (CoE), is focused on developing next-generation lunar and planetary mobility systems."]},
 ]
 # Each post: slug (short id for the link /news#slug, never changed once published), date (YYYY-MM-DD), title, body (list of
 # plain-text paragraphs), and optionally tag (label such as Visit, Partnership, Milestone, Event), place (city) and
