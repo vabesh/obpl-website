@@ -2,9 +2,16 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "88"
+VER = "89"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
+# Enquiry forms post to FormSubmit (the service orbitbeyond.com uses), which emails each submission to FORM_TO with a copy to FORM_CC.
+# FORM_TO has to click the activation link FormSubmit emails on the very first submission; nothing is delivered before that.
+FORM_TO = "vabesh.behera@orbitbeyond.space"
+FORM_CC = "dilna.a@orbitbeyond.space"
+def form_fields(subject, back):
+    return (f'<input type="hidden" name="_subject" value="{subject}" /><input type="hidden" name="_template" value="table" /><input type="hidden" name="_cc" value="{FORM_CC}" />'
+            f'<input type="hidden" name="_next" value="{SITE}/{back}" /><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />')
 
 # =============================== NEWS POSTS ===============================
 # What is happening at the company: one entry per post, in any order (the page sorts them newest first).
@@ -337,7 +344,7 @@ index_body = f"""
 <section class="section" id="newsletter" style="padding-top:0"><div class="wrap"><div class="glass news" style="padding:clamp(2rem,4vw,3.5rem)">
   <div class="rv"><div class="eyebrow">03 · Newsletter</div><h2 style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Dispatches from <span class="grad">orbit to outpost.</span></h2>
     <p class="lede" style="margin-top:1rem">Programme milestones and lunar resource notes, a few times a year. No noise.</p>
-    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:dilna.a@orbitbeyond.space,vabesh.behera@orbitbeyond.space?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
+    <form class="news-form" action="https://formsubmit.co/{FORM_TO}" method="POST">{form_fields("Newsletter signup · orbitbeyond.space", "?subscribed=1#newsletter")}
       <input type="email" name="email" placeholder="you@organisation.com" required /><button class="btn" type="submit">Subscribe {ARROW}</button></form></div>
   <div class="rv rv-d2"><div class="glass img-card duo" style="min-height:300px;border-radius:var(--r)"><img src="assets/wp-lander.jpg" alt="Lander integration" loading="lazy" /><div class="ov"></div><div class="cap-ov"><span class="chip">Latest · Helium-3 and the return trip</span></div></div></div>
 </div></div></section>
@@ -459,16 +466,15 @@ contact_body = f"""
     <div class="addr glass tilt rv"><div class="k">Corporate office · Bengaluru</div><h3>WTC Annexe</h3><p>2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar, Bengaluru, Karnataka 560055</p><div class="map"><iframe src="https://maps.google.com/maps?q=WTC+Annexe,+Dr.+Rajkumar+Road,+Malleswaram,+Rajajinagar,+Bengaluru,+Karnataka+560055&z=16&output=embed" title="Map: WTC Annexe, Bengaluru" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=WTC+Annexe,+Dr.+Rajkumar+Road,+Malleswaram,+Rajajinagar,+Bengaluru,+Karnataka+560055" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
     <div class="addr glass tilt rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:dilna.a@orbitbeyond.space,vabesh.behera@orbitbeyond.space">dilna.a@orbitbeyond.space</a> · DPIIT recognised startup DIPP285038</p><div class="map"><iframe src="https://maps.google.com/maps?q=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012&z=15&output=embed" title="Map: registered office, Bhubaneswar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
   </div>
-  <form class="form glass rv rv-d1" id="contactForm">
+  <form class="form glass rv rv-d1" id="contactForm" action="https://formsubmit.co/{FORM_TO}" method="POST">
+    {form_fields("Website enquiry · orbitbeyond.space", "contact?sent=1")}
     <div class="eyebrow">Send a message</div>
-    <div class="f2"><div class="field"><label for="name">Name</label><input id="name" name="name" required /></div><div class="field"><label for="org">Organisation</label><input id="org" name="org" /></div></div>
+    <div class="f2"><div class="field"><label for="name">Name</label><input id="name" name="name" required /></div><div class="field"><label for="org">Organisation</label><input id="org" name="organisation" /></div></div>
     <div class="f2"><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required /></div><div class="field"><label for="topic">Topic</label><select id="topic" name="topic"><option>Payload or product enquiry</option><option>Partnership</option><option>Press</option><option>Other</option></select></div></div>
-    <div class="field"><label for="msg">Message</label><textarea id="msg" name="msg" rows="6" required></textarea></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap"><span class="form-note">Opens in your mail client</span><button type="submit" class="btn">Send message {ARROW}</button></div>
-    <div class="form-alt" id="formAlt" hidden>
-      <p><strong>Your email app should now be open with the message ready to send.</strong> Nothing opened? Send it another way:</p>
-      <div class="fa-acts"><a class="btn btn-ghost fa-gmail" href="https://mail.google.com/" target="_blank" rel="noopener">Send with Gmail</a><button type="button" class="btn btn-ghost fa-copy">Copy message</button></div>
-      <p class="form-note">Or write to us directly at dilna.a@orbitbeyond.space</p>
+    <div class="field"><label for="msg">Message</label><textarea id="msg" name="message" rows="6" required></textarea></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap"><span class="form-note">We reply within two business days</span><button type="submit" class="btn">Send message {ARROW}</button></div>
+    <div class="form-alt" id="formSent" hidden>
+      <p><strong>Thank you. Your message has been sent.</strong> We will reply to the email address you gave within two business days.</p>
     </div>
   </form>
 </div></div></section>

@@ -211,35 +211,16 @@
     lb.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50 && set.length > 1) lbShow(at + (dx < 0 ? 1 : -1)); }, { passive: true });
   }
 
-  /* ---------- contact form: opens the visitor's email app, with a visible way out when none is set up ---------- */
-  var form = document.getElementById('contactForm');
-  if (form) {
-    var TO = 'dilna.a@orbitbeyond.space,vabesh.behera@orbitbeyond.space';
-    var alt = document.getElementById('formAlt');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var d = new FormData(form), subject = '[' + d.get('topic') + '] Enquiry from ' + d.get('name');
-      var body = 'Name: ' + d.get('name') + '\nOrganisation: ' + d.get('org') + '\nEmail: ' + d.get('email') + '\nTopic: ' + d.get('topic') + '\n\n' + d.get('msg');
-      if (alt) {
-        alt.querySelector('.fa-gmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(TO) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        var cp = alt.querySelector('.fa-copy');
-        cp.textContent = 'Copy message';
-        cp.onclick = function () {
-          var text = 'To: ' + TO.replace(',', ', ') + '\nSubject: ' + subject + '\n\n' + body;
-          var done = function () { cp.textContent = 'Copied'; };
-          var old = function () {
-            var t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
-            document.body.appendChild(t); t.select();
-            try { document.execCommand('copy'); done(); } catch (err) { cp.textContent = 'Copy failed'; }
-            document.body.removeChild(t);
-          };
-          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, old); else old();
-        };
-        alt.hidden = false;
-        alt.scrollIntoView({ block: 'nearest' });
-      }
-      location.href = 'mailto:' + TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    });
+  /* ---------- enquiry forms post to FormSubmit, which emails them; on return show the confirmation ---------- */
+  var sent = document.getElementById('formSent');
+  if (sent && /[?&]sent=1/.test(location.search)) {
+    sent.hidden = false;
+    setTimeout(function () { sent.scrollIntoView({ block: 'center' }); }, 600);
+  }
+  var nlForm = document.querySelector('.news-form');
+  if (nlForm && /[?&]subscribed=1/.test(location.search)) {
+    var ok = document.createElement('p'); ok.className = 'form-note'; ok.style.marginTop = '.9rem'; ok.style.color = 'var(--marigold)';
+    ok.textContent = 'Thank you. You are on the list.'; nlForm.parentNode.insertBefore(ok, nlForm.nextSibling);
   }
 
   /* ---------- year ---------- */

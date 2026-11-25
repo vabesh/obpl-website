@@ -345,8 +345,6 @@ main{position:relative;z-index:1}
 .form-alt[hidden]{display:none}
 .form-alt p{font-size:.92rem}
 .form-alt strong{color:var(--ivory);font-weight:600}
-.fa-acts{display:flex;gap:.75rem;flex-wrap:wrap}
-.fa-acts .btn{padding:.8rem 1.3rem;font-size:.86rem}
 .form-note{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--dust)}
 
 /* ---------- CTA band ---------- */
