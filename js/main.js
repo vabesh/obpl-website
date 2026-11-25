@@ -211,16 +211,45 @@
     lb.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50 && set.length > 1) lbShow(at + (dx < 0 ? 1 : -1)); }, { passive: true });
   }
 
-  /* ---------- enquiry forms post to FormSubmit, which emails them; on return show the confirmation ---------- */
-  var sent = document.getElementById('formSent');
-  if (sent && /[?&]sent=1/.test(location.search)) {
-    sent.hidden = false;
-    setTimeout(function () { sent.scrollIntoView({ block: 'center' }); }, 600);
+  /* ---------- enquiry forms: sent in the background through FormSubmit, with the result shown on the page.
+     Without scripts (or if the background request cannot be made) the form posts to FormSubmit the ordinary way. ---------- */
+  var MAILBOX = 'dilna.a@orbitbeyond.space';
+  function wireForm(form, box, okStrong, okRest) {
+    var say = function (strong, rest, bad) {
+      box.innerHTML = '';
+      var p = document.createElement('p'), s = document.createElement('strong');
+      s.textContent = strong; p.appendChild(s); p.appendChild(document.createTextNode(' ' + rest));
+      box.appendChild(p); box.classList.toggle('bad', !!bad); box.hidden = false;
+      box.scrollIntoView({ block: 'nearest' });
+    };
+    if (/[?&](sent|subscribed)=1/.test(location.search)) say(okStrong, okRest);
+    if (!window.fetch) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type=submit]'), label = btn.innerHTML, data = {};
+      new FormData(form).forEach(function (v, k) { if (k !== '_next') data[k] = v; });
+      btn.disabled = true; btn.textContent = 'Sending…';
+      var restore = function () { btn.disabled = false; btn.innerHTML = label; };
+      fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        restore();
+        if (String(res.success) === 'true') { form.reset(); say(okStrong, okRest); }
+        else say('Your message could not be sent.', (res.message ? res.message + ' ' : '') + 'Please email us at ' + MAILBOX + '.', true);
+      }).catch(function () {
+        restore();
+        say('Sending from this page did not work.', 'Trying another way now. If nothing happens, please email us at ' + MAILBOX + '.', true);
+        try { HTMLFormElement.prototype.submit.call(form); } catch (err) {}
+      });
+    });
   }
+  var cForm = document.getElementById('contactForm'), cBox = document.getElementById('formSent');
+  if (cForm && cBox) wireForm(cForm, cBox, 'Thank you. Your message has been sent.', 'We will reply to the email address you gave within two business days.');
   var nlForm = document.querySelector('.news-form');
-  if (nlForm && /[?&]subscribed=1/.test(location.search)) {
-    var ok = document.createElement('p'); ok.className = 'form-note'; ok.style.marginTop = '.9rem'; ok.style.color = 'var(--marigold)';
-    ok.textContent = 'Thank you. You are on the list.'; nlForm.parentNode.insertBefore(ok, nlForm.nextSibling);
+  if (nlForm) {
+    var nlBox = document.createElement('div'); nlBox.className = 'form-alt nl-note'; nlBox.hidden = true;
+    nlForm.parentNode.insertBefore(nlBox, nlForm.nextSibling);
+    wireForm(nlForm, nlBox, 'Thank you.', 'You are on the list.');
   }
 
   /* ---------- year ---------- */
