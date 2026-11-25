@@ -216,7 +216,7 @@
   if (form) form.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(form), body = 'Name: ' + d.get('name') + '\nOrganisation: ' + d.get('org') + '\nEmail: ' + d.get('email') + '\nTopic: ' + d.get('topic') + '\n\n' + d.get('msg');
-    location.href = 'mailto:dilna.a@orbitbeyond.space?subject=' + encodeURIComponent('[' + d.get('topic') + '] Enquiry from ' + d.get('name')) + '&body=' + encodeURIComponent(body);
+    location.href = 'mailto:dilna.a@orbitbeyond.space,vabesh.behera@orbitbeyond.space?subject=' + encodeURIComponent('[' + d.get('topic') + '] Enquiry from ' + d.get('name')) + '&body=' + encodeURIComponent(body);
   });
 
   /* ---------- year ---------- */

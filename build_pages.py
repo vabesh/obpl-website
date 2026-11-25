@@ -2,7 +2,7 @@
 import os
 USE_MODELS = "false"
 USE_SEQUENCE = "true"     # "true": home page plays assets/sequence (pre-rendered flight); "false": WebGL surface   # "true" swaps in the glTF hardware models (assets/models) on desktop
-VER = "86"
+VER = "87"
 OUT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://orbitbeyond.space"
 
@@ -65,7 +65,7 @@ FOOTER = """
     <div><h4>Offices</h4><ul>
       <li><a href="/contact">2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar, Bengaluru 560055</a></li>
       <li><a href="/contact">Regd. office: MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar 751012</a></li>
-      <li><a href="mailto:dilna.a@orbitbeyond.space">dilna.a@orbitbeyond.space</a></li>
+      <li><a href="mailto:dilna.a@orbitbeyond.space,vabesh.behera@orbitbeyond.space">dilna.a@orbitbeyond.space</a></li>
     </ul></div>
     <div><h4>Recognition</h4><ul>
       <li><a href="/about#recognition">DPIIT Recognised Startup</a></li><li><a href="/about#recognition">Certificate DIPP285038</a></li><li><a href="/about#recognition">Aerospace &amp; Defence · Space Technology</a></li>
@@ -337,7 +337,7 @@ index_body = f"""
 <section class="section" id="newsletter" style="padding-top:0"><div class="wrap"><div class="glass news" style="padding:clamp(2rem,4vw,3.5rem)">
   <div class="rv"><div class="eyebrow">03 · Newsletter</div><h2 style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Dispatches from <span class="grad">orbit to outpost.</span></h2>
     <p class="lede" style="margin-top:1rem">Programme milestones and lunar resource notes, a few times a year. No noise.</p>
-    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:dilna.a@orbitbeyond.space?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
+    <form class="news-form" onsubmit="event.preventDefault();location.href='mailto:dilna.a@orbitbeyond.space,vabesh.behera@orbitbeyond.space?subject='+encodeURIComponent('Newsletter signup')+'&amp;body='+encodeURIComponent('Please add '+this.email.value+' to the Orbit Beyond India newsletter.')">
       <input type="email" name="email" placeholder="you@organisation.com" required /><button class="btn" type="submit">Subscribe {ARROW}</button></form></div>
   <div class="rv rv-d2"><div class="glass img-card duo" style="min-height:300px;border-radius:var(--r)"><img src="assets/wp-lander.jpg" alt="Lander integration" loading="lazy" /><div class="ov"></div><div class="cap-ov"><span class="chip">Latest · Helium-3 and the return trip</span></div></div></div>
 </div></div></section>
@@ -457,7 +457,7 @@ contact_body = f"""
 <section class="section" style="padding-top:1rem"><div class="wrap"><div class="contact-grid">
   <div style="display:grid;gap:1.1rem">
     <div class="addr glass tilt rv"><div class="k">Corporate office · Bengaluru</div><h3>WTC Annexe</h3><p>2nd Floor, WTC Annexe, Dr. Rajkumar Road, Malleswaram, Rajajinagar, Bengaluru, Karnataka 560055</p><div class="map"><iframe src="https://maps.google.com/maps?q=WTC+Annexe,+Dr.+Rajkumar+Road,+Malleswaram,+Rajajinagar,+Bengaluru,+Karnataka+560055&z=16&output=embed" title="Map: WTC Annexe, Bengaluru" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=WTC+Annexe,+Dr.+Rajkumar+Road,+Malleswaram,+Rajajinagar,+Bengaluru,+Karnataka+560055" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
-    <div class="addr glass tilt rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:dilna.a@orbitbeyond.space">dilna.a@orbitbeyond.space</a> · DPIIT recognised startup DIPP285038</p><div class="map"><iframe src="https://maps.google.com/maps?q=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012&z=15&output=embed" title="Map: registered office, Bhubaneswar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
+    <div class="addr glass tilt rv rv-d2"><div class="k">Registered office</div><h3>Orbit Beyond Private Limited</h3><p>MIG-A/24, Brit Colony, Nayapalli, Bhubaneswar, Odisha 751012 · CIN U73100OR2022PTC041555</p><p style="margin-top:.6rem"><a href="mailto:dilna.a@orbitbeyond.space,vabesh.behera@orbitbeyond.space">dilna.a@orbitbeyond.space</a> · DPIIT recognised startup DIPP285038</p><div class="map"><iframe src="https://maps.google.com/maps?q=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012&z=15&output=embed" title="Map: registered office, Bhubaneswar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MIG-A/24,+Brit+Colony,+Nayapalli,+Bhubaneswar,+Odisha+751012" target="_blank" rel="noopener">Open in Google Maps {ARROW}</a></div>
   </div>
   <form class="form glass rv rv-d1" id="contactForm">
     <div class="eyebrow">Send a message</div>
